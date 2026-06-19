@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Rozgar - Analytics Integration Example</title>
+    
+    <!-- Your existing stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Punjab Rozgar Analytics Library -->
+    <script src="js/punjab-analytics.js"></script>
+</head>
+<body>
+    <!-- Your existing content -->
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/profile">Profile</a>
+        <a href="/contact">Contact</a>
+    </nav>
+
+    <main>
+        <h1>Job Listings</h1>
+        
+        <!-- Job Search Form -->
+        <form id="job-search-form" class="search-form">
+            <input type="text" id="search-query" name="query" placeholder="Search jobs...">
+            <select name="location">
+                <option value="">All Locations</option>
+                <option value="lahore">Lahore</option>
+                <option value="karachi">Karachi</option>
+                <option value="islamabad">Islamabad</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Job Listings -->
+        <div class="job-listings">
+            <!-- Each job should have data-job-id attribute for automatic tracking -->
+            <div class="job-card" data-job-id="job_123" data-job-title="Software Developer">
+                <h3>Software Developer</h3>
+                <p>Tech Company • Lahore</p>
+                <p>Rs. 50,000 - 80,000</p>
+                <button class="btn-apply" onclick="applyForJob('job_123', 'Software Developer')">Apply Now</button>
+                <button class="btn-save" onclick="saveJob('job_123')">Save Job</button>
+            </div>
+
+            <div class="job-card" data-job-id="job_124" data-job-title="Marketing Manager">
+                <h3>Marketing Manager</h3>
+                <p>Marketing Agency • Karachi</p>
+                <p>Rs. 60,000 - 90,000</p>
+                <button class="btn-apply" onclick="applyForJob('job_124', 'Marketing Manager')">Apply Now</button>
+                <button class="btn-save" onclick="saveJob('job_124')">Save Job</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Custom tracking for job search
+        document.getElementById('job-search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const query = document.getElementById('search-query').value;
+            const location = this.querySelector('[name="location"]').value;
+            
+            // Track the search
+            trackSearch(query, 0, { location: location });
+            
+            // Your existing search logic here
+            performJobSearch(query, location);
+        });
+
+        // Custom job interaction tracking
+        function applyForJob(jobId, jobTitle) {
+            // Track job application
+            trackJobApply(jobId, jobTitle);
+            
+            // Track custom event
+            trackEvent('Job Application Started', {
+                job_id: jobId,
+                job_title: jobTitle,
+                source: 'job_listing'
+            });
+            
+            // Your existing application logic here
+            window.location.href = `/jobs/${jobId}/apply`;
+        }
+
+        function saveJob(jobId) {
+            // Track job save
+            trackEvent('Job Saved', {
+                job_id: jobId,
+                source: 'job_listing'
+            });
+            
+            // Your existing save logic here
+            console.log('Job saved:', jobId);
+        }
+
+        function performJobSearch(query, location) {
+            // Simulate search results
+            const results = Math.floor(Math.random() * 50) + 1;
+            
+            // Track search with results
+            trackSearch(query, results, { location: location });
+            
+            // Your existing search logic here
+            console.log(`Searching for "${query}" in ${location || 'all locations'}`);
+        }
+
+        // Track page-specific events
+        trackEvent('Jobs Page Viewed', {
+            page_type: 'job_listings',
+            user_intent: 'job_search'
+        });
+
+        // Example: Track user engagement
+        setTimeout(() => {
+            trackEvent('User Engaged', {
+                time_on_page: 30,
+                engagement_level: 'high'
+            });
+        }, 30000); // Track after 30 seconds
+    </script>
+</body>
+</html>

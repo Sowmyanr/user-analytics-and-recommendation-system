@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Jobs - Punjab Rozgar Portal</title>
+    <meta name="description" content="Browse and search through thousands of job opportunities in Punjab">
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        /* Job Listings */
+        .jobs-section {
+            padding: 2rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-stats {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .jobs-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-company {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .job-location {
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-salary {
+            background: #e8f2ff;
+            color: #0066cc;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .job-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            background: #f0f4f8;
+            color: #495057;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-apply {
+            background: #28a745;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-apply:hover {
+            background: #218838;
+        }
+
+        .btn-save {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e1e5e9;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="../../index.html" class="logo">Punjab Rozgar</a>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="browse.html">Jobs</a></li>
+                    <li><a href="../profile/view.html">Profile</a></li>
+                    <li><a href="../static/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <form class="search-form" id="job-search-form">
+                <input type="text" class="search-input" id="search-query" placeholder="Search for jobs, companies, or keywords...">
+                <select class="search-input" id="location-filter" style="flex: 0 0 200px;">
+                    <option value="">All Locations</option>
+                    <option value="lahore">Lahore</option>
+                    <option value="karachi">Karachi</option>
+                    <option value="islamabad">Islamabad</option>
+                    <option value="faisalabad">Faisalabad</option>
+                    <option value="rawalpindi">Rawalpindi</option>
+                </select>
+                <button type="submit" class="btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Available Job Opportunities</h1>
+                <p class="job-stats">Showing <span id="job-count">15</span> jobs in Punjab</p>
+            </div>
+
+            <div class="jobs-grid" id="jobs-grid">
+                <!-- Jobs will be dynamically loaded here -->
+                        <span class="job-tag">Analytics</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn-apply" onclick="applyForJob('job_003', 'Data Analyst')">
+                            <i class="fas fa-paper-plane"></i> Apply Now
+                        </button>
+                        <button class="btn-save" onclick="saveJob('job_003', 'Data Analyst')">
+                            <i class="fas fa-bookmark"></i> Save
+                        </button>
+                    </div>
+                    <div class="job-meta">
+                        <span>Posted 3 days ago</span>
+                        <span>42 applicants</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fetch and display jobs from backend API
+        async function loadJobsFromApi(params = {}) {
+            try {
+                const query = new URLSearchParams();
+                // Only show active jobs by default
+                query.set('only_active', 'true');
+                if (params.search && params.search.trim()) query.set('search', params.search.trim());
+                if (params.location_city && params.location_city.trim()) query.set('location_city', params.location_city.trim());
+                if (params.job_type && params.job_type.trim()) query.set('job_type', params.job_type.trim());
+
+                const url = `${authManager.apiBaseUrl}/jobs/${query.toString() ? `?${query.toString()}` : ''}`;
+                const res = await fetch(url, { method: 'GET' });
+                if (!res.ok) throw new Error(`Failed to load jobs (${res.status})`);
+                const jobs = await res.json();
+
+                // Update job count
+                document.getElementById('job-count').textContent = jobs.length;
+
+                // Render jobs
+                const jobsGrid = document.getElementById('jobs-grid');
+                if (!jobs.length) {
+                    jobsGrid.innerHTML = `
+                        <div style="text-align: center; padding: 3rem; color: #666;">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #ddd;"></i>
+                            <h3>No jobs found</h3>
+                            <p>Try adjusting your search criteria or check back later.</p>
+                        </div>
+                    `;
+                } else {
+                    jobsGrid.innerHTML = jobs.map(job => createJobCardFromApi(job)).join('');
+                }
+            } catch (err) {
+                console.error('Error loading jobs', err);
+                const jobsGrid = document.getElementById('jobs-grid');
+                jobsGrid.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #b00020;">
+                        <h3>Unable to load jobs</h3>
+                        <p>${err.message || 'Please try again later.'}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Create job card from API job shape
+        function createJobCardFromApi(job) {
+            const title = job.title || '';
+            const company = job.employer_name || '';
+            const location = [job.location_city, job.location_state].filter(Boolean).join(', ');
+            const jobType = (job.job_type || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+            // Salary formatting
+            let salary = 'Salary not specified';
+            if (typeof job.salary_min === 'number' && typeof job.salary_max === 'number') {
+                salary = `Rs. ${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()}`;
+            } else if (typeof job.salary_min === 'number') {
+                salary = `Rs. ${job.salary_min.toLocaleString()}+`;
+            }
+
+            // Posted time
+            const postedDateStr = job.published_at || job.created_at;
+            const postedDate = postedDateStr ? new Date(postedDateStr) : new Date();
+            const now = new Date();
+            const diffDays = Math.max(1, Math.ceil(Math.abs(now - postedDate) / (1000 * 60 * 60 * 24)));
+            const timeAgo = diffDays === 1 ? '1 day ago' : `${diffDays} days ago`;
+
+            const jobId = job.job_id;
+            const shortDesc = (job.description || '').slice(0, 220) + ((job.description || '').length > 220 ? '…' : '');
+
+            return `
+                <div class="job-card" data-job-id="${jobId}" data-job-title="${title}">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">${title}</h3>
+                            <p class="job-company">${company}</p>
+                        </div>
+                        <div class="job-salary">${salary}</div>
+                    </div>
+                    <div class="job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${location}
+                    </div>
+                    <p class="job-description">${shortDesc}</p>
+                    <div class="job-tags">
+                        ${jobType ? `<span class="job-tag">${jobType}</span>` : ''}
+                        ${job.category ? `<span class=\"job-tag\">${job.category}</span>` : ''}
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn-apply" onclick="applyForJob('${jobId}', '${title}')">
+                            <i class="fas fa-paper-plane"></i> Apply Now
+                        </button>
+                        <button class="btn-save" onclick="saveJob('${jobId}', '${title}')">
+                            <i class="fas fa-bookmark"></i> Save
+                        </button>
+                    </div>
+                    <div class="job-meta">
+                        <span>Posted ${timeAgo}</span>
+                        <span>0 applicants</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize jobs on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJobsFromApi();
+        });
+
+        // Refresh jobs function (can be called manually)
+        function refreshJobs() {
+            loadJobsFromApi();
+        }
+
+        // Job search functionality with analytics
+        document.getElementById('job-search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('search-query').value;
+            const location = document.getElementById('location-filter').value;
+            // Track search
+            trackEvent('Job Search Performed', {
+                search_query: query,
+                location_filter: location,
+                search_page: 'job_browse'
+            });
+            // Load from API with filters
+            loadJobsFromApi({ search: query, location_city: location });
+        });
+
+        // Job interaction functions
+        function applyForJob(jobId, jobTitle) {
+            // Track job application
+            trackJobApply(jobId, jobTitle);
+            
+            // Track button click
+            trackEvent('Job Application Started', {
+                job_id: jobId,
+                job_title: jobTitle,
+                source: 'job_browse_page',
+                action: 'apply_button'
+            });
+            
+            // In real app, redirect to application page
+            alert(`Applying for ${jobTitle}. In a real app, this would redirect to the application form.`);
+            // window.location.href = `apply.html?job=${jobId}`;
+        }
+
+        function saveJob(jobId, jobTitle) {
+            // Track job save
+            trackEvent('Job Saved', {
+                job_id: jobId,
+                job_title: jobTitle,
+                source: 'job_browse_page',
+                action: 'save_button'
+            });
+            
+            // Simulate save functionality
+            alert(`Job "${jobTitle}" saved to your favorites!`);
+        }
+
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('search-query').value = '';
+            document.getElementById('location-filter').value = '';
+            loadJobsFromApi();
+        }
+
+        // Track page view with specific context
+        setTimeout(() => {
+            trackEvent('Job Browse Page Viewed', {
+                page_type: 'job_listings',
+                user_intent: 'job_search',
+                total_jobs_shown: 15
+            });
+        }, 1000);
+
+        // Track scroll depth to measure engagement
+        let maxScroll = 0;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+                maxScroll = scrollPercent;
+                trackEvent('Page Scroll', {
+                    scroll_depth: scrollPercent,
+                    page: 'job_browse',
+                    engagement_level: scrollPercent > 75 ? 'high' : scrollPercent > 50 ? 'medium' : 'low'
+                });
+            }
+        });
+
+        // Track time spent on page
+        const startTime = Date.now();
+        window.addEventListener('beforeunload', () => {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            trackEvent('Time on Job Browse Page', {
+                time_seconds: timeSpent,
+                engagement_level: timeSpent > 60 ? 'high' : timeSpent > 30 ? 'medium' : 'low'
+            });
+        });
+    </script>
+</body>
+</html>

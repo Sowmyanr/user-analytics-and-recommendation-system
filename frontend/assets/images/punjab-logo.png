@@ -1,0 +1,7 @@
+<!-- This is a placeholder SVG for Punjab logo -->
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#FF6600"/>
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">PUNJAB</text>
+  <text x="50" y="55" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">GOVERNMENT</text>
+  <text x="50" y="75" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">LOGO</text>
+</svg>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - Punjab Rozgar Portal</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .header .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .header .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .help-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .skills-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tag .remove-skill {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .preview-container {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .preview-container h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .job-preview {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .job-preview h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-preview .company-name {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .header .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('employer', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="../../index.html" class="logo">Punjab Rozgar</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../jobs/browse.html">Jobs</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#" onclick="authManager.logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Post a New Job</h1>
+            <p>Find the perfect candidate for your team by posting a detailed job listing</p>
+        </div>
+
+        <!-- Job Form -->
+        <div class="form-container">
+            <form id="jobForm">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title <span class="required">*</span></label>
+                        <input type="text" id="jobTitle" name="jobTitle" required placeholder="e.g. Senior Software Developer">
+                        <div class="help-text">Be specific and descriptive to attract the right candidates</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department" name="department">
+                                <option value="">Select Department</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="sales">Sales</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                                <option value="operations">Operations</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobType">Job Type <span class="required">*</span></label>
+                            <select id="jobType" name="jobType" required>
+                                <option value="">Select Job Type</option>
+                                <option value="full_time">Full-time</option>
+                                <option value="part_time">Part-time</option>
+                                <option value="contract">Contract</option>
+                                <option value="temporary">Temporary</option>
+                                <option value="internship">Internship</option>
+                                <option value="freelance">Freelance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobDescription">Job Description <span class="required">*</span></label>
+                        <textarea id="jobDescription" name="jobDescription" required placeholder="Describe the role, responsibilities, and what the candidate will be doing..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Location & Compensation -->
+                <div class="form-section">
+                    <h3>Location & Compensation</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Location <span class="required">*</span></label>
+                            <input type="text" id="location" name="location" required placeholder="e.g. Lahore, Punjab">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="workModel">Work Model</label>
+                            <select id="workModel" name="workModel">
+                                <option value="on-site">On-site</option>
+                                <option value="remote">Remote</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="salaryMin">Minimum Salary (PKR)</label>
+                            <input type="number" id="salaryMin" name="salaryMin" placeholder="50000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salaryMax">Maximum Salary (PKR)</label>
+                            <input type="number" id="salaryMax" name="salaryMax" placeholder="80000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="salaryNegotiable" name="salaryNegotiable">
+                            <label for="salaryNegotiable">Salary is negotiable</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements -->
+                <div class="form-section">
+                    <h3>Requirements</h3>
+                    
+                    <div class="form-group">
+                        <label for="experience">Experience Level <span class="required">*</span></label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select Experience Level</option>
+                            <option value="entry">Entry Level (0-2 years)</option>
+                            <option value="mid">Mid Level (3-5 years)</option>
+                            <option value="senior">Senior Level (6-10 years)</option>
+                            <option value="lead">Lead/Principal (10+ years)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education Requirements</label>
+                        <select id="education" name="education">
+                            <option value="">Select Education Level</option>
+                            <option value="high-school">High School</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="bachelors">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="professional">Professional Certification</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills">Required Skills</label>
+                        <input type="text" id="skillInput" placeholder="Type a skill and press Enter">
+                        <div class="skills-input" id="skillsList"></div>
+                        <div class="help-text">Add relevant skills one by one. Press Enter to add each skill.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requirements">Additional Requirements</label>
+                        <textarea id="requirements" name="requirements" placeholder="List any additional requirements, certifications, or qualifications..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Application Details -->
+                <div class="form-section">
+                    <h3>Application Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicationDeadline">Application Deadline</label>
+                            <input type="date" id="applicationDeadline" name="applicationDeadline">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="positionsAvailable">Positions Available</label>
+                            <input type="number" id="positionsAvailable" name="positionsAvailable" value="1" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicationInstructions">Application Instructions</label>
+                        <textarea id="applicationInstructions" name="applicationInstructions" placeholder="Provide specific instructions for applicants on how to apply..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="preview-container" id="previewContainer" style="display: none;">
+                    <h4>Job Preview</h4>
+                    <div class="job-preview" id="jobPreview">
+                        <!-- Preview content will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="showPreview()">Preview Job</button>
+                    <button type="button" class="btn" onclick="saveDraft()">Save as Draft</button>
+                    <button type="submit" class="btn btn-success">Publish Job</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Ensure user is logged in and has admin or employer role
+        if (!authManager.isLoggedIn()) {
+            window.location.href = '../auth/login.html';
+        }
+
+        const user = authManager.getCurrentUser();
+        if (!user || (user.role !== 'admin' && user.role !== 'employer')) {
+            alert('Access denied. Only admins and employers can post jobs.');
+            window.location.href = '../../index.html';
+        }
+
+        // Skills management
+        const skillInput = document.getElementById('skillInput');
+        const skillsList = document.getElementById('skillsList');
+        let skills = [];
+
+        skillInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addSkill();
+            }
+        });
+
+        function addSkill() {
+            const skill = skillInput.value.trim();
+            if (skill && !skills.includes(skill)) {
+                skills.push(skill);
+                renderSkills();
+                skillInput.value = '';
+            }
+        }
+
+        function removeSkill(skillToRemove) {
+            skills = skills.filter(skill => skill !== skillToRemove);
+            renderSkills();
+        }
+
+        function renderSkills() {
+            skillsList.innerHTML = skills.map(skill => 
+                `<span class="skill-tag">
+                    ${skill}
+                    <span class="remove-skill" onclick="removeSkill('${skill}')">&times;</span>
+                </span>`
+            ).join('');
+        }
+
+        // Preview functionality
+        function showPreview() {
+            const formData = new FormData(document.getElementById('jobForm'));
+            const jobData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                jobData[key] = value;
+            }
+            
+            jobData.skills = skills;
+            
+            generatePreview(jobData);
+            document.getElementById('previewContainer').style.display = 'block';
+            document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generatePreview(jobData) {
+            const preview = document.getElementById('jobPreview');
+            const salaryRange = jobData.salaryMin && jobData.salaryMax 
+                ? `PKR ${parseInt(jobData.salaryMin).toLocaleString()} - ${parseInt(jobData.salaryMax).toLocaleString()}` 
+                : jobData.salaryMin 
+                    ? `PKR ${parseInt(jobData.salaryMin).toLocaleString()}+`
+                    : 'Salary not specified';
+                    
+            preview.innerHTML = `
+                <h3>${jobData.jobTitle || 'Job Title'}</h3>
+                <div class="company-name">${user.company || user.name}</div>
+                <div class="job-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> ${jobData.location || 'Location not specified'}</span>
+                    <span><i class="fas fa-briefcase"></i> ${jobData.jobType || 'Type not specified'}</span>
+                    <span><i class="fas fa-clock"></i> ${jobData.experience || 'Experience not specified'}</span>
+                    <span><i class="fas fa-money-bill-wave"></i> ${salaryRange}</span>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <strong>Description:</strong>
+                    <p style="margin-top: 0.5rem;">${jobData.jobDescription || 'No description provided'}</p>
+                </div>
+                ${skills.length > 0 ? `
+                <div style="margin-top: 1rem;">
+                    <strong>Required Skills:</strong>
+                    <div style="margin-top: 0.5rem;">${skills.join(', ')}</div>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // Save draft functionality
+        function saveDraft() {
+            const formData = new FormData(document.getElementById('jobForm'));
+            const jobData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                jobData[key] = value;
+            }
+            
+            jobData.skills = skills;
+            jobData.status = 'draft';
+            jobData.createdBy = user.id;
+            jobData.createdAt = new Date().toISOString();
+            
+            // Save to localStorage (in a real app, this would be sent to a server)
+            let drafts = JSON.parse(localStorage.getItem('jobDrafts') || '[]');
+            drafts.push(jobData);
+            localStorage.setItem('jobDrafts', JSON.stringify(drafts));
+            
+            alert('Job saved as draft successfully!');
+        }
+
+        // Protect page: only employers can post jobs
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!authManager.requireRole('employer', '/pages/auth/login.html')) return;
+        });
+
+        // Form submission -> Backend API
+        document.getElementById('jobForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const payload = {
+                title: formData.get('jobTitle'),
+                description: formData.get('jobDescription'),
+                requirements: formData.get('requirements') || '',
+                responsibilities: '',
+                job_type: formData.get('jobType') || 'full_time',
+                category: formData.get('department') || 'general',
+                location_city: (formData.get('location') || '').split(',')[0]?.trim() || formData.get('location') || 'Lahore',
+                location_state: 'Punjab',
+                remote_allowed: (formData.get('workModel') || 'on_site') === 'remote',
+                salary_min: formData.get('salaryMin') ? parseInt(formData.get('salaryMin'), 10) : null,
+                salary_max: formData.get('salaryMax') ? parseInt(formData.get('salaryMax'), 10) : null,
+                education_level: formData.get('education') || null,
+                skills_required: skills,
+                application_deadline: formData.get('applicationDeadline') ? new Date(formData.get('applicationDeadline')).toISOString() : null,
+                application_method: formData.get('applicationMethod') || 'online',
+                contact_email: user.email
+            };
+
+            try {
+                // Use trailing slash to avoid FastAPI 307 redirect (which drops CORS headers)
+                const res = await fetch(`${authManager.apiBaseUrl}/jobs/`, {
+                    method: 'POST',
+                    headers: authManager.getAuthHeaders(),
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) {
+                    const msg = data.detail || data.message || 'Failed to create job';
+                    alert(`Error: ${msg}`);
+                    return;
+                }
+
+                alert('Job submitted successfully! It will be visible after admin approval.');
+                window.location.href = 'jobs.html';
+            } catch (err) {
+                console.error('Create job error', err);
+                alert('Network error while creating job');
+            }
+        });
+
+        // Set minimum date for application deadline to today
+        document.getElementById('applicationDeadline').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

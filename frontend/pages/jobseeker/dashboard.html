@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Dashboard - Punjab Rozgar Portal</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: #666;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-card .action-icon {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .action-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .action-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card.applications .stat-icon {
+            color: #ffc107;
+        }
+
+        .stat-card.interviews .stat-icon {
+            color: #28a745;
+        }
+
+        .stat-card.saved .stat-icon {
+            color: #17a2b8;
+        }
+
+        .stat-card.profile .stat-icon {
+            color: #dc3545;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .content-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        /* Job Cards */
+        .job-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .job-card {
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .job-card:hover {
+            border-color: #667eea;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-company {
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .job-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-applied {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-interview {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Recommendations */
+        .recommendation-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recommendation-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .recommendation-content p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .recommendation-match {
+            font-size: 0.8rem;
+            color: #28a745;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+        <script>
+            // Protect this page for job seekers only
+            document.addEventListener('DOMContentLoaded', function () {
+                if (!authManager.requireRole('job_seeker', '/pages/auth/login.html')) return;
+            });
+        </script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2><a href="../../index.html" style="color: white; text-decoration: none;">Punjab Rozgar</a></h2>
+                <p data-user-name>Loading...</p>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="../jobs/browse.html"><i class="fas fa-search"></i> Browse Jobs</a></li>
+                <li><a href="applications.html"><i class="fas fa-file-alt"></i> My Applications</a></li>
+                <li><a href="saved-jobs.html"><i class="fas fa-bookmark"></i> Saved Jobs</a></li>
+                <li><a href="../profile/view.html"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="resume.html"><i class="fas fa-file-pdf"></i> Resume</a></li>
+                <li><a href="job-alerts.html"><i class="fas fa-bell"></i> Job Alerts</a></li>
+            </ul>
+            
+                <button class="logout-btn" onclick="authManager.logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Welcome back!</h1>
+                <p>Track your job applications and discover new opportunities.</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-card" onclick="window.location.href='../jobs/browse.html'">
+                    <div class="action-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Browse Jobs</h3>
+                    <p>Find new opportunities</p>
+                </div>
+
+                <div class="action-card" onclick="window.location.href='applications.html'">
+                    <div class="action-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>My Applications</h3>
+                    <p>Track application status</p>
+                </div>
+
+                <div class="action-card" onclick="window.location.href='../profile/view.html'">
+                    <div class="action-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Update Profile</h3>
+                    <p>Keep your profile current</p>
+                </div>
+
+                <div class="action-card" onclick="window.location.href='resume.html'">
+                    <div class="action-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Upload Resume</h3>
+                    <p>Update your resume</p>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card applications">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Applications Sent</div>
+                </div>
+
+                <div class="stat-card interviews">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Interviews Scheduled</div>
+                </div>
+
+                <div class="stat-card saved">
+                    <div class="stat-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Saved Jobs</div>
+                </div>
+
+                <div class="stat-card profile">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Profile Complete</div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Recent Applications -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Recent Applications</h3>
+                        <a href="applications.html" class="btn">View All</a>
+                    </div>
+                    
+                    <div class="job-list">
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">Software Developer</div>
+                                    <div class="job-company">TechSoft Solutions</div>
+                                    <div class="job-meta">Applied 2 days ago • Lahore</div>
+                                </div>
+                                <span class="status-badge status-applied">Applied</span>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-sm">View Details</button>
+                                <button class="btn btn-sm">Withdraw</button>
+                            </div>
+                        </div>
+
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">Data Analyst</div>
+                                    <div class="job-company">Punjab Government</div>
+                                    <div class="job-meta">Applied 5 days ago • Islamabad</div>
+                                </div>
+                                <span class="status-badge status-interview">Interview</span>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-sm btn-success">View Interview</button>
+                                <button class="btn btn-sm">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">Marketing Assistant</div>
+                                    <div class="job-company">Creative Agency</div>
+                                    <div class="job-meta">Applied 1 week ago • Karachi</div>
+                                </div>
+                                <span class="status-badge status-rejected">Rejected</span>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-sm">View Feedback</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Recommendations -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Recommended Jobs</h3>
+                        <a href="../jobs/browse.html" class="btn">Browse All</a>
+                    </div>
+                    
+                    <div class="recommendations-list">
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Frontend Developer</h4>
+                                <p>Digital Solutions Ltd • Lahore</p>
+                            </div>
+                            <div class="recommendation-match">95% match</div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Business Analyst</h4>
+                                <p>Corporate Systems • Islamabad</p>
+                            </div>
+                            <div class="recommendation-match">88% match</div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Mobile App Developer</h4>
+                                <p>Innovation Hub • Karachi</p>
+                            </div>
+                            <div class="recommendation-match">82% match</div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Database Administrator</h4>
+                                <p>TechCorp • Faisalabad</p>
+                            </div>
+                            <div class="recommendation-match">79% match</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Ensure user is logged in and has job_seeker role
+        if (!authManager.requireRole('job_seeker')) {
+            // Will redirect if not job_seeker
+        }
+
+        // Update user name in sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = authManager.getCurrentUser();
+            if (user) {
+                document.querySelector('[data-user-name]').textContent = user.name;
+            }
+        });
+    </script>
+</body>
+</html>

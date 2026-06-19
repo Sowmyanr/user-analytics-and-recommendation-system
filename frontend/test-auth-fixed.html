@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Test - Punjab Rozgar Portal</title>
+    <script src="js/auth.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .user-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Punjab Rozgar Portal - Authentication Test</h1>
+    
+    <!-- API Test -->
+    <div class="container">
+        <h2>API Connection Test</h2>
+        <button onclick="testAPI()">Test Backend Connection</button>
+        <div id="apiStatus"></div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="container">
+        <h2>Register New User</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required minlength="8">
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role">
+                    <option value="job_seeker">Job Seeker</option>
+                    <option value="employer">Employer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div id="registerMessage"></div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <button type="submit">Login</button>
+            <button type="button" onclick="logout()">Logout</button>
+        </form>
+        <div id="loginMessage"></div>
+    </div>
+
+    <!-- Current User Status -->
+    <div class="container">
+        <h2>Current User Status</h2>
+        <div id="userStatus">
+            <p>Checking authentication status...</p>
+        </div>
+    </div>
+
+    <script>
+        // Helper to obtain auth manager regardless of how it's declared
+        function getAuth() {
+            if (window.authManager) return window.authManager;
+            try {
+                // eslint-disable-next-line no-undef
+                if (typeof authManager !== 'undefined') return authManager;
+            } catch(e) { /* ignore */ }
+            return null;
+        }
+
+        // Initialize when page loads (use global authManager from auth.js)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait briefly for auth.js to attach the global instance
+            function ensureAuthReady(attempt = 0) {
+                if (getAuth()) {
+                    updateUserStatus();
+                    testAPI();
+                    return;
+                }
+                if (attempt < 20) { // retry up to ~2s
+                    setTimeout(() => ensureAuthReady(attempt + 1), 100);
+                } else {
+                    console.error('authManager not loaded after waiting');
+                    const statusEl = document.getElementById('userStatus');
+                    if (statusEl) {
+                        statusEl.innerHTML = '<p>Error: Authentication system not loaded</p>';
+                    }
+                }
+            }
+            ensureAuthReady();
+        });
+
+        // Update user status display
+        function updateUserStatus() {
+            const am = getAuth();
+            if (!am) return;
+            
+            const statusDiv = document.getElementById('userStatus');
+            
+            if (am.isLoggedIn()) {
+                const user = am.getCurrentUser();
+                statusDiv.innerHTML = `
+                    <div class="user-info">
+                        <h3>Logged in as: ${user.name || user.email}</h3>
+                        <p><strong>Role:</strong> ${user.role}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        <p><strong>User ID:</strong> ${user.id || user.user_id}</p>
+                        <p><strong>Login Time:</strong> ${user.loginTime || 'N/A'}</p>
+                    </div>
+                `;
+            } else {
+                statusDiv.innerHTML = '<p>Not logged in</p>';
+            }
+        }
+
+        // Test API connection
+    async function testAPI() {
+            const statusDiv = document.getElementById('apiStatus');
+            statusDiv.innerHTML = '<p>Testing API connection...</p>';
+
+            try {
+                // Test basic connection
+                const response = await fetch('http://127.0.0.1:8000/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `<div class="message success">✅ Backend server is running! Response: ${JSON.stringify(data)}</div>`;
+                    
+                    // Test auth endpoint availability
+                    const authTest = await fetch('http://127.0.0.1:8000/api/docs');
+                    if (authTest.ok) {
+                        statusDiv.innerHTML += `<div class="message success">✅ API docs accessible!</div>`;
+                    }
+                } else {
+                    statusDiv.innerHTML = `<div class="message error">❌ Backend server responded with error: ${response.status}</div>`;
+                }
+            } catch (error) {
+                console.error('API Test Error:', error);
+                statusDiv.innerHTML = `<div class="message error">❌ Cannot connect to backend server: ${error.message}</div>`;
+            }
+    }
+
+    // Expose testAPI globally for inline onclick usage
+    window.testAPI = testAPI;
+
+        // Register form handler
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!getAuth()) {
+                document.getElementById('registerMessage').innerHTML = '<div class="message error">Authentication system not loaded</div>';
+                return;
+            }
+
+            const userData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value,
+                city: document.getElementById('city').value
+            };
+
+            const messageDiv = document.getElementById('registerMessage');
+            messageDiv.innerHTML = '<p>Registering...</p>';
+            
+            console.log('Sending registration data:', userData);
+
+            try {
+                const result = await getAuth().register(userData);
+                console.log('Registration result:', result);
+                
+                if (result.success) {
+                    messageDiv.innerHTML = `<div class="message success">Registration successful! Welcome ${result.user.name || result.user.email}</div>`;
+                    updateUserStatus();
+                    document.getElementById('registerForm').reset();
+                } else {
+                    messageDiv.innerHTML = `<div class="message error">Registration failed: ${result.error}</div>`;
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                messageDiv.innerHTML = `<div class="message error">Error: ${error.message}</div>`;
+            }
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!getAuth()) {
+                document.getElementById('loginMessage').innerHTML = '<div class="message error">Authentication system not loaded</div>';
+                return;
+            }
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const messageDiv = document.getElementById('loginMessage');
+            messageDiv.innerHTML = '<p>Logging in...</p>';
+
+            console.log('Attempting login with:', { email });
+
+            try {
+                const result = await getAuth().login(email, password);
+                console.log('Login result:', result);
+                
+                if (result.success) {
+                    messageDiv.innerHTML = `<div class="message success">Login successful! Welcome back ${result.user.name || result.user.email}</div>`;
+                    updateUserStatus();
+                    document.getElementById('loginForm').reset();
+                } else {
+                    messageDiv.innerHTML = `<div class="message error">Login failed: ${result.error}</div>`;
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                messageDiv.innerHTML = `<div class="message error">Error: ${error.message}</div>`;
+            }
+        });
+
+        // Logout function
+        function logout() {
+            const am = getAuth();
+            if (!am) return;
+            
+            am.logout();
+            updateUserStatus();
+            document.getElementById('loginMessage').innerHTML = '<div class="message success">Logged out successfully</div>';
+        }
+    </script>
+</body>
+</html>

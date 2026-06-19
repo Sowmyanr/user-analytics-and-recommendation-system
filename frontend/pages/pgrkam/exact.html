@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ਪੰਜਾਬ ਰੋਜ਼ਗਾਰ ਪੋਰਟਲ | Punjab Employment Portal</title>
+    <link rel="stylesheet" href="../../assets/css/themes/government.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <style>
+        /* PGRKAM Exact Page Specific Styles */
+        .gov-header {
+            background: linear-gradient(135deg, #ff6600, #ff8c00);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .gov-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .gov-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .gov-text h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .gov-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .gov-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .gov-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .gov-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(45, 85, 48, 0.9), rgba(74, 124, 89, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="punjab" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="rgba(255,255,255,0.02)"/><circle cx="20" cy="20" r="8" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23punjab)"/></svg>');
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 50px 0;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6600, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .portal-entry {
+            margin-top: 30px;
+        }
+
+        .portal-btn {
+            background: linear-gradient(135deg, #ff6600, #ff8c00);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.4);
+            transition: all 0.3s ease;
+            text-transform: none;
+        }
+
+        .portal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 102, 0, 0.5);
+        }
+
+        .btn-icon {
+            font-size: 24px;
+        }
+
+        .btn-text {
+            display: block;
+            font-size: 16px;
+        }
+
+        .btn-text-en {
+            display: block;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .gov-footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 24px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .portal-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            
+            .gov-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 🏛️ Government Header -->
+    <header class="gov-header">
+        <div class="container">
+            <div class="gov-logo">
+                <img src="../../assets/images/logos/punjab-logo.png" alt="Punjab Government">
+                <div class="gov-text">
+                    <h1>ਪੰਜਾਬ ਸਰਕਾਰ</h1>
+                    <p>Government of Punjab</p>
+                </div>
+            </div>
+            <nav class="gov-nav">
+                <a href="#about">ਬਾਰੇ</a>
+                <a href="#services">ਸੇਵਾਵਾਂ</a>
+                <a href="#contact">ਸੰਪਰਕ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 🎯 Main Content -->
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">ਪੰਜਾਬ ਰੋਜ਼ਗਾਰ ਪੋਰਟਲ</h1>
+                <h2 class="hero-subtitle">Punjab Rozgar Portal</h2>
+                <p class="hero-description">
+                    ਪੰਜਾਬ ਦੇ ਨੌਜਵਾਨਾਂ ਲਈ ਰੋਜ਼ਗਾਰ ਦੇ ਮੌਕੇ<br>
+                    Employment Opportunities for Punjab Youth
+                </p>
+                
+                <!-- 🚀 Portal Entry Button (as per user journey) -->
+                <div class="portal-entry">
+                    <button class="portal-btn" onclick="enterPortal()">
+                        <span class="btn-icon">🏛️</span>
+                        <div>
+                            <span class="btn-text">ਪੋਰਟਲ 'ਚ ਦਾਖਲ ਹੋਵੋ</span>
+                            <span class="btn-text-en">Enter Portal</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 📊 Quick Stats -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>50,000+</h3>
+                        <p>ਰਜਿਸਟਰਡ ਉਮੀਦਵਾਰ</p>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">Registered Candidates</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>15,000+</h3>
+                        <p>ਉਪਲਬਧ ਨੌਕਰੀਆਂ</p>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">Available Jobs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>85%</h3>
+                        <p>ਸਫਲਤਾ ਦਰ</p>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 🔒 Footer -->
+    <footer class="gov-footer">
+        <div class="container">
+            <p>&copy; 2024 ਪੰਜਾਬ ਸਰਕਾਰ | Government of Punjab</p>
+        </div>
+    </footer>
+
+    <script>
+        // Analytics Integration
+        class PGRKAMAnalytics {
+            constructor() {
+                this.sessionId = this.generateSessionId();
+                this.trackPageView();
+            }
+
+            generateSessionId() {
+                return 'pgrkam_' + Math.random().toString(36).substr(2, 9);
+            }
+
+            trackPageView() {
+                this.trackEvent('pgrkam_landing_view', {
+                    page: 'pgrkam_exact',
+                    language: 'punjabi',
+                    timestamp: new Date().toISOString()
+                });
+            }
+
+            trackEvent(eventName, data) {
+                // Send to analytics backend
+                fetch('/api/analytics/track', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        event: eventName,
+                        data: data,
+                        session_id: this.sessionId,
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(console.error);
+            }
+        }
+
+        // Initialize Analytics
+        const analytics = new PGRKAMAnalytics();
+
+        // 🚀 Portal Entry Function (User Journey Step 1)
+        function enterPortal() {
+            analytics.trackEvent('portal_entry_click', {
+                source: 'pgrkam_exact_page',
+                user_intent: 'enter_portal'
+            });
+
+            // Add loading animation
+            const btn = document.querySelector('.portal-btn');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ... Loading...';
+            btn.disabled = true;
+            
+            // Redirect to main portal (as per user journey diagram)
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 1500);
+        }
+
+        // 📱 Responsive Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize responsive features
+            initResponsiveFeatures();
+            
+            // Track page load completion
+            analytics.trackEvent('page_load_complete', {
+                load_time: performance.now()
+            });
+        });
+
+        function initResponsiveFeatures() {
+            // Mobile menu toggle
+            const nav = document.querySelector('.gov-nav');
+            if (window.innerWidth <= 768) {
+                nav.classList.add('mobile-nav');
+            }
+            
+            // Add resize listener
+            window.addEventListener('resize', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.add('mobile-nav');
+                } else {
+                    nav.classList.remove('mobile-nav');
+                }
+            });
+        }
+
+        // Track scroll depth for engagement analytics
+        let maxScrollDepth = 0;
+        window.addEventListener('scroll', () => {
+            const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            if (scrollDepth > maxScrollDepth) {
+                maxScrollDepth = scrollDepth;
+                
+                // Track milestone scroll depths
+                if (scrollDepth === 25 || scrollDepth === 50 || scrollDepth === 75 || scrollDepth === 100) {
+                    analytics.trackEvent('scroll_depth', {
+                        depth: scrollDepth,
+                        page: 'pgrkam_exact'
+                    });
+                }
+            }
+        });
+
+        // Track time on page
+        const startTime = Date.now();
+        window.addEventListener('beforeunload', () => {
+            const timeOnPage = Date.now() - startTime;
+            analytics.trackEvent('page_exit', {
+                time_on_page: timeOnPage,
+                max_scroll_depth: maxScrollDepth
+            });
+        });
+    </script>
+</body>
+</html>

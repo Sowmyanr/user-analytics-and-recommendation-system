@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Management - Admin Dashboard</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../js/punjab-analytics.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card.total .stat-icon { color: #667eea; }
+        .stat-card.pending .stat-icon { color: #ffc107; }
+        .stat-card.shortlisted .stat-icon { color: #17a2b8; }
+        .stat-card.hired .stat-icon { color: #28a745; }
+
+        .stat-card .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Controls */
+        .controls-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        /* Applications Table */
+        .applications-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .applications-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .applications-table th,
+        .applications-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .applications-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .applications-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .applicant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .applicant-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .applicant-details h4 {
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .applicant-details p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-name {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-shortlisted {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-interviewed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-hired {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .score {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .score.high { color: #28a745; }
+        .score.medium { color: #ffc107; }
+        .score.low { color: #dc3545; }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .pagination {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .pagination-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination-btn:hover:not(.disabled) {
+            background: #f8f9fa;
+        }
+
+        .pagination-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .logout-btn {
+                position: relative;
+                margin: 1rem 2rem 0;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .applications-table {
+                font-size: 0.85rem;
+            }
+
+            .applications-table th,
+            .applications-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('admin', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Punjab Rozgar Portal</p>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+                    <li><a href="applications.html" class="active"><i class="fas fa-file-alt"></i> Applications</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="../../index.html"><i class="fas fa-home"></i> Back to Portal</a></li>
+                </ul>
+            </nav>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Application Management</h1>
+                <p>Monitor and manage job applications across all postings</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="stat-number" id="totalApplications">3,456</div>
+                    <div class="stat-label">Total Applications</div>
+                </div>
+                <div class="stat-card pending">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-number" id="pendingApplications">892</div>
+                    <div class="stat-label">Pending Review</div>
+                </div>
+                <div class="stat-card shortlisted">
+                    <div class="stat-icon"><i class="fas fa-list"></i></div>
+                    <div class="stat-number" id="shortlistedApplications">567</div>
+                    <div class="stat-label">Shortlisted</div>
+                </div>
+                <div class="stat-card hired">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-number" id="hiredApplications">234</div>
+                    <div class="stat-label">Hired</div>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls-section">
+                <div class="controls-grid">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchApplications" placeholder="Search by applicant name, job title, or company...">
+                    </div>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="shortlisted">Shortlisted</option>
+                        <option value="interviewed">Interviewed</option>
+                        <option value="hired">Hired</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <select class="filter-select" id="dateFilter">
+                        <option value="">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                    <button class="btn btn-success" onclick="exportApplications()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Applications Table -->
+            <div class="applications-section">
+                <div class="section-header">
+                    <h3>All Applications</h3>
+                </div>
+                
+                <table class="applications-table">
+                    <thead>
+                        <tr>
+                            <th>Applicant</th>
+                            <th>Job & Company</th>
+                            <th>Status</th>
+                            <th>Score</th>
+                            <th>Applied Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicationsTableBody">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <div class="pagination-info">
+                        Showing <span id="showingStart">1</span> to <span id="showingEnd">20</span> of <span id="totalCount">3,456</span> applications
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" id="prevBtn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <button class="pagination-btn active" onclick="goToPage(1)">1</button>
+                        <button class="pagination-btn" onclick="goToPage(2)">2</button>
+                        <button class="pagination-btn" onclick="goToPage(3)">3</button>
+                        <span>...</span>
+                        <button class="pagination-btn" onclick="goToPage(173)">173</button>
+                        <button class="pagination-btn" id="nextBtn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sample application data
+        const sampleApplications = [
+            {
+                id: 1,
+                applicantName: "Rajesh Kumar",
+                applicantEmail: "rajesh.kumar@gmail.com",
+                applicantPhone: "+91 98765 43210",
+                jobTitle: "Software Engineer",
+                companyName: "Tech Punjab Solutions",
+                status: "shortlisted",
+                score: 8.5,
+                appliedDate: "2024-09-18",
+                avatar: "RK"
+            },
+            {
+                id: 2,
+                applicantName: "Priya Singh",
+                applicantEmail: "priya.singh@gmail.com",
+                applicantPhone: "+91 87654 32109",
+                jobTitle: "Registered Nurse",
+                companyName: "PGIMER Chandigarh",
+                status: "pending",
+                score: 7.2,
+                appliedDate: "2024-09-19",
+                avatar: "PS"
+            },
+            {
+                id: 3,
+                applicantName: "Amarjeet Singh",
+                applicantEmail: "amarjeet@email.com",
+                applicantPhone: "+91 76543 21098",
+                jobTitle: "Government Clerk",
+                companyName: "Punjab State Government",
+                status: "hired",
+                score: 9.1,
+                appliedDate: "2024-09-10",
+                avatar: "AS"
+            },
+            {
+                id: 4,
+                applicantName: "Simran Kaur",
+                applicantEmail: "simran.kaur@email.com",
+                applicantPhone: "+91 65432 10987",
+                jobTitle: "Primary School Teacher",
+                companyName: "Punjab Education Board",
+                status: "interviewed",
+                score: 8.8,
+                appliedDate: "2024-09-15",
+                avatar: "SK"
+            },
+            {
+                id: 5,
+                applicantName: "Harpreet Singh",
+                applicantEmail: "harpreet@email.com",
+                applicantPhone: "+91 54321 09876",
+                jobTitle: "Production Supervisor",
+                companyName: "Punjab Industries Ltd",
+                status: "rejected",
+                score: 5.3,
+                appliedDate: "2024-09-12",
+                avatar: "HS"
+            }
+        ];
+
+        let currentPage = 1;
+        let filteredApplications = [...sampleApplications];
+
+        function initializePage() {
+            // Check authentication
+            if (!authManager.isLoggedIn() || !authManager.isAdmin()) {
+                window.location.href = '../../pages/auth/login.html';
+                return;
+            }
+
+            // Track page view
+            trackEvent('Admin Applications Page Viewed', {
+                page_type: 'admin_applications',
+                total_applications: sampleApplications.length
+            });
+
+            // Load applications
+            renderApplications();
+            updateStats();
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            document.getElementById('searchApplications').addEventListener('input', filterApplications);
+            document.getElementById('statusFilter').addEventListener('change', filterApplications);
+            document.getElementById('dateFilter').addEventListener('change', filterApplications);
+        }
+
+        function filterApplications() {
+            const searchTerm = document.getElementById('searchApplications').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+
+            filteredApplications = sampleApplications.filter(application => {
+                const matchesSearch = application.applicantName.toLowerCase().includes(searchTerm) ||
+                                    application.jobTitle.toLowerCase().includes(searchTerm) ||
+                                    application.companyName.toLowerCase().includes(searchTerm);
+                const matchesStatus = !statusFilter || application.status === statusFilter;
+                
+                // Simple date filtering (in real app, would be more sophisticated)
+                let matchesDate = true;
+                if (dateFilter) {
+                    const appDate = new Date(application.appliedDate);
+                    const today = new Date();
+                    if (dateFilter === 'today') {
+                        matchesDate = appDate.toDateString() === today.toDateString();
+                    } else if (dateFilter === 'week') {
+                        const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                        matchesDate = appDate >= weekAgo;
+                    } else if (dateFilter === 'month') {
+                        const monthAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+                        matchesDate = appDate >= monthAgo;
+                    }
+                }
+
+                return matchesSearch && matchesStatus && matchesDate;
+            });
+
+            currentPage = 1;
+            renderApplications();
+
+            // Track search
+            if (searchTerm) {
+                trackEvent('Admin Application Search', {
+                    search_term: searchTerm,
+                    status_filter: statusFilter,
+                    date_filter: dateFilter,
+                    results_count: filteredApplications.length
+                });
+            }
+        }
+
+        function renderApplications() {
+            const tbody = document.getElementById('applicationsTableBody');
+            tbody.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * 20;
+            const endIndex = Math.min(startIndex + 20, filteredApplications.length);
+            const pageApplications = filteredApplications.slice(startIndex, endIndex);
+
+            pageApplications.forEach(application => {
+                const scoreClass = application.score >= 8 ? 'high' : 
+                                 application.score >= 6 ? 'medium' : 'low';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="applicant-info">
+                            <div class="applicant-avatar">${application.avatar}</div>
+                            <div class="applicant-details">
+                                <h4>${application.applicantName}</h4>
+                                <p>${application.applicantEmail}</p>
+                                <p>${application.applicantPhone}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="job-title">${application.jobTitle}</div>
+                        <div class="company-name">${application.companyName}</div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${application.status}">
+                            ${application.status.toUpperCase()}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="score ${scoreClass}">${application.score}/10</span>
+                    </td>
+                    <td>${formatDate(application.appliedDate)}</td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn-sm btn-primary" onclick="viewApplication(${application.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            ${application.status === 'pending' ? 
+                                `<button class="btn-sm btn-success" onclick="shortlistApplication(${application.id})">
+                                    <i class="fas fa-check"></i> Shortlist
+                                </button>` : ''
+                            }
+                            ${application.status === 'shortlisted' ? 
+                                `<button class="btn-sm btn-warning" onclick="scheduleInterview(${application.id})">
+                                    <i class="fas fa-calendar"></i> Interview
+                                </button>` : ''
+                            }
+                            <button class="btn-sm btn-danger" onclick="rejectApplication(${application.id})">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            updatePaginationInfo();
+        }
+
+        function updateStats() {
+            const pendingApplications = sampleApplications.filter(a => a.status === 'pending').length;
+            const shortlistedApplications = sampleApplications.filter(a => a.status === 'shortlisted').length;
+            const hiredApplications = sampleApplications.filter(a => a.status === 'hired').length;
+
+            document.getElementById('totalApplications').textContent = sampleApplications.length.toLocaleString();
+            document.getElementById('pendingApplications').textContent = pendingApplications.toLocaleString();
+            document.getElementById('shortlistedApplications').textContent = shortlistedApplications.toLocaleString();
+            document.getElementById('hiredApplications').textContent = hiredApplications.toLocaleString();
+        }
+
+        function updatePaginationInfo() {
+            const startIndex = (currentPage - 1) * 20 + 1;
+            const endIndex = Math.min(currentPage * 20, filteredApplications.length);
+            
+            document.getElementById('showingStart').textContent = startIndex;
+            document.getElementById('showingEnd').textContent = endIndex;
+            document.getElementById('totalCount').textContent = filteredApplications.length;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function viewApplication(applicationId) {
+            trackEvent('Admin View Application', { application_id: applicationId });
+            alert(`View application details for ID: ${applicationId}`);
+            // In real app: window.location.href = `application-detail.html?id=${applicationId}`;
+        }
+
+        function shortlistApplication(applicationId) {
+            if (confirm('Are you sure you want to shortlist this application?')) {
+                trackEvent('Admin Shortlist Application', { application_id: applicationId });
+                alert(`Application ${applicationId} shortlisted successfully!`);
+                // In real app: call API to shortlist application
+                location.reload();
+            }
+        }
+
+        function scheduleInterview(applicationId) {
+            trackEvent('Admin Schedule Interview', { application_id: applicationId });
+            alert(`Interview scheduled for application ${applicationId}!`);
+            // In real app: open interview scheduling modal or navigate to scheduling page
+        }
+
+        function rejectApplication(applicationId) {
+            if (confirm('Are you sure you want to reject this application?')) {
+                trackEvent('Admin Reject Application', { application_id: applicationId });
+                alert(`Application ${applicationId} rejected successfully!`);
+                // In real app: call API to reject application
+                location.reload();
+            }
+        }
+
+        function exportApplications() {
+            trackEvent('Admin Export Applications', {
+                total_applications: filteredApplications.length,
+                export_format: 'csv'
+            });
+            alert('Applications exported successfully! Download will start shortly.');
+            // In real app: generate and download CSV file
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderApplications();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(filteredApplications.length / 20);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderApplications();
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderApplications();
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+                window.location.href = '../../pages/auth/login.html';
+            }
+        }
+
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

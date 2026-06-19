@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates - Punjab Rozgar Portal</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            margin: 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: calc(100% - 4rem);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .search-filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-group select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .candidates-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .candidates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .candidate-card {
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .candidate-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .candidate-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .candidate-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .candidate-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .candidate-info .title {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .candidate-info .location {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .candidate-details {
+            margin-bottom: 1rem;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .detail-row i {
+            color: #667eea;
+            width: 16px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            background: #f0f2ff;
+            color: #667eea;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .candidate-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .match-score {
+            background: #e8f5e8;
+            color: #388e3c;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .saved-indicator {
+            color: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .candidates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .candidate-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('employer', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2><a href="../../index.html" style="color: white; text-decoration: none;">Punjab Rozgar</a></h2>
+                <p data-user-name>Loading...</p>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="jobs.html"><i class="fas fa-briefcase"></i> My Jobs</a></li>
+                <li><a href="add-job.html"><i class="fas fa-plus"></i> Post Job</a></li>
+                <li><a href="applications.html"><i class="fas fa-file-alt"></i> Applications</a></li>
+                <li><a href="#" class="active"><i class="fas fa-users"></i> Candidates</a></li>
+                <li><a href="company.html"><i class="fas fa-building"></i> Company Profile</a></li>
+                <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            </ul>
+            
+            <button class="logout-btn" onclick="authManager.logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Candidate Database</h1>
+                <p>Search and discover qualified candidates for your job openings</p>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="search-filters">
+                <div class="search-form">
+                    <input type="text" id="searchInput" class="search-input" 
+                           placeholder="Search by name, skills, or job title..." 
+                           onkeyup="searchCandidates()">
+                    <button class="btn" onclick="searchCandidates()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="locationFilter">Location</label>
+                        <select id="locationFilter" onchange="filterCandidates()">
+                            <option value="">All Locations</option>
+                            <option value="lahore">Lahore</option>
+                            <option value="karachi">Karachi</option>
+                            <option value="islamabad">Islamabad</option>
+                            <option value="rawalpindi">Rawalpindi</option>
+                            <option value="faisalabad">Faisalabad</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="experienceFilter">Experience</label>
+                        <select id="experienceFilter" onchange="filterCandidates()">
+                            <option value="">All Experience</option>
+                            <option value="0-2">0-2 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="6-10">6-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="skillFilter">Skills</label>
+                        <select id="skillFilter" onchange="filterCandidates()">
+                            <option value="">All Skills</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="react">React</option>
+                            <option value="nodejs">Node.js</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="sales">Sales</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-warning" onclick="clearFilters()">
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidates Section -->
+            <div class="candidates-section">
+                <div class="section-header">
+                    <h3>Available Candidates (<span id="candidateCount">0</span>)</h3>
+                    <div>
+                        <button class="btn btn-sm" onclick="exportCandidates()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="candidates-grid" id="candidatesContainer">
+                    <!-- Candidates will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Ensure user is logged in and is an employer/admin
+        if (!authManager.isLoggedIn()) {
+            window.location.href = '../auth/login.html';
+        }
+
+        const user = authManager.getCurrentUser();
+        if (!user || (user.role !== 'employer' && user.role !== 'admin')) {
+            alert('Access denied. This page is only for employers and admins.');
+            window.location.href = '../../index.html';
+        }
+
+        // Display user name
+        document.querySelector('[data-user-name]').textContent = user.name;
+
+        // Mock candidates data
+        const mockCandidates = [
+            {
+                id: 'cand_001',
+                name: 'Ahmed Ali',
+                title: 'Senior Software Developer',
+                location: 'Lahore, Punjab',
+                experience: '5 years',
+                education: 'BS Computer Science',
+                email: 'ahmed.ali@email.com',
+                phone: '+92 300 1234567',
+                skills: ['JavaScript', 'React', 'Node.js', 'Python'],
+                matchScore: 95,
+                lastActive: '2024-01-20',
+                saved: false,
+                resume: '#'
+            },
+            {
+                id: 'cand_002',
+                name: 'Fatima Khan',
+                title: 'Digital Marketing Manager',
+                location: 'Karachi, Sindh',
+                experience: '3 years',
+                education: 'MBA Marketing',
+                email: 'fatima.khan@email.com',
+                phone: '+92 321 9876543',
+                skills: ['Digital Marketing', 'SEO', 'Social Media', 'Analytics'],
+                matchScore: 88,
+                lastActive: '2024-01-18',
+                saved: true,
+                resume: '#'
+            },
+            {
+                id: 'cand_003',
+                name: 'Mohammad Hassan',
+                title: 'Data Analyst',
+                location: 'Islamabad, ICT',
+                experience: '2 years',
+                education: 'MS Statistics',
+                email: 'm.hassan@email.com',
+                phone: '+92 333 5555555',
+                skills: ['Python', 'SQL', 'Tableau', 'Statistics'],
+                matchScore: 82,
+                lastActive: '2024-01-15',
+                saved: false,
+                resume: '#'
+            },
+            {
+                id: 'cand_004',
+                name: 'Ayesha Malik',
+                title: 'Full Stack Developer',
+                location: 'Lahore, Punjab',
+                experience: '7 years',
+                education: 'MS Computer Science',
+                email: 'ayesha.malik@email.com',
+                phone: '+92 315 7777777',
+                skills: ['JavaScript', 'React', 'Node.js', 'MongoDB'],
+                matchScore: 92,
+                lastActive: '2024-01-12',
+                saved: true,
+                resume: '#'
+            },
+            {
+                id: 'cand_005',
+                name: 'Ali Raza',
+                title: 'Sales Manager',
+                location: 'Rawalpindi, Punjab',
+                experience: '4 years',
+                education: 'BBA Marketing',
+                email: 'ali.raza@email.com',
+                phone: '+92 301 8888888',
+                skills: ['Sales', 'Customer Relations', 'Team Management', 'Negotiation'],
+                matchScore: 76,
+                lastActive: '2024-01-10',
+                saved: false,
+                resume: '#'
+            },
+            {
+                id: 'cand_006',
+                name: 'Sara Ahmed',
+                title: 'UI/UX Designer',
+                location: 'Karachi, Sindh',
+                experience: '3 years',
+                education: 'BS Design',
+                email: 'sara.ahmed@email.com',
+                phone: '+92 320 9999999',
+                skills: ['Figma', 'Adobe XD', 'Prototyping', 'User Research'],
+                matchScore: 85,
+                lastActive: '2024-01-08',
+                saved: false,
+                resume: '#'
+            }
+        ];
+
+        let allCandidates = [...mockCandidates];
+        let filteredCandidates = [...allCandidates];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCandidates();
+        });
+
+        function renderCandidates() {
+            const container = document.getElementById('candidatesContainer');
+            document.getElementById('candidateCount').textContent = filteredCandidates.length;
+            
+            if (filteredCandidates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-users"></i>
+                        <h3>No candidates found</h3>
+                        <p>Try adjusting your search criteria or filters to find more candidates.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredCandidates.map(candidate => createCandidateCard(candidate)).join('');
+        }
+
+        function createCandidateCard(candidate) {
+            const initials = candidate.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            const lastActiveDate = new Date(candidate.lastActive).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric'
+            });
+
+            return `
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <div class="candidate-avatar">${initials}</div>
+                        <div class="candidate-info">
+                            <h4>${candidate.name} ${candidate.saved ? '<i class="fas fa-star saved-indicator"></i>' : ''}</h4>
+                            <div class="title">${candidate.title}</div>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> ${candidate.location}
+                            </div>
+                        </div>
+                        <div class="match-score">${candidate.matchScore}% match</div>
+                    </div>
+                    
+                    <div class="candidate-details">
+                        <div class="detail-row">
+                            <i class="fas fa-briefcase"></i>
+                            <span>${candidate.experience} experience</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>${candidate.education}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-clock"></i>
+                            <span>Active ${lastActiveDate}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-list">
+                        ${candidate.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                    
+                    <div class="candidate-actions">
+                        <button class="btn btn-sm" onclick="viewProfile('${candidate.id}')">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                        <button class="btn btn-sm btn-success" onclick="contactCandidate('${candidate.email}')">
+                            <i class="fas fa-envelope"></i> Contact
+                        </button>
+                        <button class="btn btn-sm ${candidate.saved ? 'btn-warning' : ''}" onclick="toggleSaveCandidate('${candidate.id}')">
+                            <i class="fas fa-${candidate.saved ? 'star' : 'star-o'}"></i> ${candidate.saved ? 'Saved' : 'Save'}
+                        </button>
+                        <button class="btn btn-sm" onclick="viewResume('${candidate.resume}')">
+                            <i class="fas fa-file-pdf"></i> Resume
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function searchCandidates() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!query) {
+                filterCandidates();
+                return;
+            }
+            
+            filteredCandidates = allCandidates.filter(candidate => 
+                candidate.name.toLowerCase().includes(query) ||
+                candidate.title.toLowerCase().includes(query) ||
+                candidate.skills.some(skill => skill.toLowerCase().includes(query))
+            );
+            
+            // Apply other filters
+            applyFilters();
+            renderCandidates();
+        }
+
+        function filterCandidates() {
+            filteredCandidates = [...allCandidates];
+            applyFilters();
+            renderCandidates();
+        }
+
+        function applyFilters() {
+            const location = document.getElementById('locationFilter').value;
+            const experience = document.getElementById('experienceFilter').value;
+            const skill = document.getElementById('skillFilter').value;
+            
+            if (location) {
+                filteredCandidates = filteredCandidates.filter(candidate => 
+                    candidate.location.toLowerCase().includes(location)
+                );
+            }
+            
+            if (experience) {
+                filteredCandidates = filteredCandidates.filter(candidate => {
+                    const expYears = parseInt(candidate.experience);
+                    switch(experience) {
+                        case '0-2': return expYears >= 0 && expYears <= 2;
+                        case '3-5': return expYears >= 3 && expYears <= 5;
+                        case '6-10': return expYears >= 6 && expYears <= 10;
+                        case '10+': return expYears >= 10;
+                        default: return true;
+                    }
+                });
+            }
+            
+            if (skill) {
+                filteredCandidates = filteredCandidates.filter(candidate => 
+                    candidate.skills.some(s => s.toLowerCase().includes(skill.toLowerCase()))
+                );
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('locationFilter').value = '';
+            document.getElementById('experienceFilter').value = '';
+            document.getElementById('skillFilter').value = '';
+            filteredCandidates = [...allCandidates];
+            renderCandidates();
+        }
+
+        function viewProfile(candidateId) {
+            const candidate = allCandidates.find(c => c.id === candidateId);
+            if (candidate) {
+                alert(`Viewing full profile for ${candidate.name}. In a real app, this would open a detailed candidate profile.`);
+            }
+        }
+
+        function contactCandidate(email) {
+            window.location.href = `mailto:${email}?subject=Job Opportunity`;
+        }
+
+        function toggleSaveCandidate(candidateId) {
+            const candidateIndex = allCandidates.findIndex(c => c.id === candidateId);
+            if (candidateIndex !== -1) {
+                allCandidates[candidateIndex].saved = !allCandidates[candidateIndex].saved;
+                
+                // Update filtered candidates too
+                const filteredIndex = filteredCandidates.findIndex(c => c.id === candidateId);
+                if (filteredIndex !== -1) {
+                    filteredCandidates[filteredIndex].saved = allCandidates[candidateIndex].saved;
+                }
+                
+                renderCandidates();
+                
+                const action = allCandidates[candidateIndex].saved ? 'saved' : 'removed from saved';
+                alert(`Candidate ${action}!`);
+            }
+        }
+
+        function viewResume(resumeUrl) {
+            if (resumeUrl && resumeUrl !== '#') {
+                window.open(resumeUrl, '_blank');
+            } else {
+                alert('Resume not available for this candidate.');
+            }
+        }
+
+        function exportCandidates() {
+            // In a real app, this would export to CSV/Excel
+            alert('Exporting candidate data... In a real app, this would download a CSV file with candidate information.');
+        }
+    </script>
+</body>
+</html>

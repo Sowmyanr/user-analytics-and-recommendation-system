@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Alerts - Punjab Rozgar Portal</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .header .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .header .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .alert-list {
+            padding: 1.5rem;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            padding: 1rem;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .alert-item:hover {
+            background: #f8f9fa;
+        }
+
+        .alert-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .alert-details {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-criteria {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .alert-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-paused {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .alert-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .frequency-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .frequency-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .frequency-option input[type="radio"] {
+            width: auto;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .recent-matches {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .match-item:last-child {
+            border-bottom: none;
+        }
+
+        .match-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .match-company {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .match-date {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .header .nav-links {
+                display: none;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .frequency-options {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .alert-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .alert-status {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('job_seeker', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="../../index.html" class="logo">Punjab Rozgar</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../jobs/browse.html">Jobs</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#" onclick="authManager.logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Job Alerts</h1>
+            <p>Set up personalized job alerts to get notified about relevant opportunities</p>
+        </div>
+
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Active Alerts -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3>My Job Alerts</h3>
+                        <button class="btn btn-sm" onclick="showCreateForm()">
+                            <i class="fas fa-plus"></i> Create Alert
+                        </button>
+                    </div>
+                    <div class="alert-list" id="alertsList">
+                        <!-- Alerts will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Create New Alert Form -->
+                <div class="section-card" id="createAlertForm" style="display: none;">
+                    <div class="section-header">
+                        <h3>Create Job Alert</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="hideCreateForm()">Cancel</button>
+                    </div>
+                    <div class="form-section">
+                        <form id="alertForm">
+                            <div class="form-group">
+                                <label for="alertTitle">Alert Name</label>
+                                <input type="text" id="alertTitle" placeholder="e.g., Software Developer Jobs in Lahore" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keywords">Keywords</label>
+                                <input type="text" id="keywords" placeholder="e.g., software developer, programmer, web developer">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <select id="location">
+                                        <option value="">Any Location</option>
+                                        <option value="lahore">Lahore</option>
+                                        <option value="karachi">Karachi</option>
+                                        <option value="islamabad">Islamabad</option>
+                                        <option value="faisalabad">Faisalabad</option>
+                                        <option value="rawalpindi">Rawalpindi</option>
+                                        <option value="multan">Multan</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jobType">Job Type</label>
+                                    <select id="jobType">
+                                        <option value="">Any Type</option>
+                                        <option value="full-time">Full-time</option>
+                                        <option value="part-time">Part-time</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="temporary">Temporary</option>
+                                        <option value="internship">Internship</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="minSalary">Minimum Salary (PKR)</label>
+                                    <input type="number" id="minSalary" placeholder="50000">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="experience">Experience Level</label>
+                                    <select id="experience">
+                                        <option value="">Any Experience</option>
+                                        <option value="entry">Entry Level (0-2 years)</option>
+                                        <option value="mid">Mid Level (3-5 years)</option>
+                                        <option value="senior">Senior Level (6-10 years)</option>
+                                        <option value="lead">Lead/Principal (10+ years)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Notification Frequency</label>
+                                <div class="frequency-options">
+                                    <div class="frequency-option">
+                                        <input type="radio" id="immediate" name="frequency" value="immediate" checked>
+                                        <label for="immediate">Immediate</label>
+                                    </div>
+                                    <div class="frequency-option">
+                                        <input type="radio" id="daily" name="frequency" value="daily">
+                                        <label for="daily">Daily</label>
+                                    </div>
+                                    <div class="frequency-option">
+                                        <input type="radio" id="weekly" name="frequency" value="weekly">
+                                        <label for="weekly">Weekly</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <label for="emailNotifications">Email notifications</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="smsNotifications">
+                                    <label for="smsNotifications">SMS notifications</label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                                <button type="button" class="btn btn-secondary" onclick="hideCreateForm()">Cancel</button>
+                                <button type="submit" class="btn btn-success">Create Alert</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Stats -->
+                <div class="stats-card">
+                    <div class="stats-number" id="activeAlertsCount">3</div>
+                    <div class="stats-label">Active Alerts</div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-number" id="totalMatchesCount">27</div>
+                    <div class="stats-label">Total Matches This Week</div>
+                </div>
+
+                <!-- Recent Matches -->
+                <div class="recent-matches">
+                    <div class="section-header">
+                        <h3>Recent Matches</h3>
+                    </div>
+                    <div id="recentMatches">
+                        <!-- Recent matches will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ensure user is logged in and is a job seeker
+        if (!authManager.isLoggedIn()) {
+            window.location.href = '../auth/login.html';
+        }
+
+        const user = authManager.getCurrentUser();
+        if (!user || user.role !== 'job_seeker') {
+            alert('Access denied. This page is only for job seekers.');
+            window.location.href = '../../index.html';
+        }
+
+        // Mock job alerts data
+        let jobAlerts = [
+            {
+                id: 1,
+                title: "Software Developer Jobs in Lahore",
+                keywords: "software developer, programmer, web developer",
+                location: "lahore",
+                jobType: "full-time",
+                minSalary: 80000,
+                experience: "mid",
+                frequency: "immediate",
+                emailNotifications: true,
+                smsNotifications: false,
+                status: "active",
+                created: "2024-01-20",
+                lastMatch: "2024-01-25",
+                totalMatches: 15
+            },
+            {
+                id: 2,
+                title: "Data Analyst Remote Jobs",
+                keywords: "data analyst, business analyst, analytics",
+                location: "",
+                jobType: "full-time",
+                minSalary: 60000,
+                experience: "entry",
+                frequency: "daily",
+                emailNotifications: true,
+                smsNotifications: true,
+                status: "active",
+                created: "2024-01-18",
+                lastMatch: "2024-01-24",
+                totalMatches: 8
+            },
+            {
+                id: 3,
+                title: "UI/UX Designer Opportunities",
+                keywords: "ui designer, ux designer, graphic designer",
+                location: "karachi",
+                jobType: "",
+                minSalary: 50000,
+                experience: "",
+                frequency: "weekly",
+                emailNotifications: true,
+                smsNotifications: false,
+                status: "paused",
+                created: "2024-01-15",
+                lastMatch: "2024-01-22",
+                totalMatches: 4
+            }
+        ];
+
+        // Mock recent matches
+        const recentMatches = [
+            {
+                title: "Senior Software Engineer",
+                company: "TechSoft Solutions",
+                date: "2024-01-25",
+                alertId: 1
+            },
+            {
+                title: "Full Stack Developer",
+                company: "Digital Innovation",
+                date: "2024-01-25",
+                alertId: 1
+            },
+            {
+                title: "Data Analyst",
+                company: "Analytics Pro",
+                date: "2024-01-24",
+                alertId: 2
+            },
+            {
+                title: "Business Intelligence Analyst",
+                company: "Corp Systems",
+                date: "2024-01-24",
+                alertId: 2
+            },
+            {
+                title: "UX Designer",
+                company: "Creative Studio",
+                date: "2024-01-22",
+                alertId: 3
+            }
+        ];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAlerts();
+            renderRecentMatches();
+            updateStats();
+            setupForm();
+        });
+
+        function setupForm() {
+            document.getElementById('alertForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                createAlert();
+            });
+        }
+
+        function renderAlerts() {
+            const container = document.getElementById('alertsList');
+            
+            if (jobAlerts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-bell"></i>
+                        <h3>No job alerts yet</h3>
+                        <p>Create your first job alert to get notified about relevant opportunities.</p>
+                        <button class="btn" onclick="showCreateForm()">Create Alert</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = jobAlerts.map(alert => `
+                <div class="alert-item">
+                    <div class="alert-details">
+                        <div class="alert-title">${alert.title}</div>
+                        <div class="alert-criteria">
+                            ${formatCriteria(alert)}
+                        </div>
+                        <div class="alert-meta">
+                            <span>Created: ${formatDate(alert.created)}</span>
+                            <span>Last match: ${formatDate(alert.lastMatch)}</span>
+                            <span>${alert.totalMatches} matches</span>
+                            <span>Frequency: ${alert.frequency}</span>
+                        </div>
+                    </div>
+                    <div class="alert-status">
+                        <span class="status-badge status-${alert.status}">${alert.status.toUpperCase()}</span>
+                        <div class="alert-actions">
+                            <button class="btn btn-sm" onclick="editAlert(${alert.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm ${alert.status === 'active' ? 'btn-secondary' : 'btn-success'}" 
+                                    onclick="toggleAlert(${alert.id})">
+                                <i class="fas fa-${alert.status === 'active' ? 'pause' : 'play'}"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteAlert(${alert.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function formatCriteria(alert) {
+            const criteria = [];
+            
+            if (alert.keywords) criteria.push(`Keywords: ${alert.keywords}`);
+            if (alert.location) criteria.push(`Location: ${alert.location}`);
+            if (alert.jobType) criteria.push(`Type: ${alert.jobType}`);
+            if (alert.minSalary) criteria.push(`Min salary: PKR ${alert.minSalary.toLocaleString()}`);
+            if (alert.experience) criteria.push(`Experience: ${alert.experience}`);
+            
+            return criteria.join(' • ');
+        }
+
+        function renderRecentMatches() {
+            const container = document.getElementById('recentMatches');
+            
+            container.innerHTML = recentMatches.slice(0, 5).map(match => `
+                <div class="match-item">
+                    <div class="match-title">${match.title}</div>
+                    <div class="match-company">${match.company}</div>
+                    <div class="match-date">${formatDate(match.date)}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            const activeCount = jobAlerts.filter(alert => alert.status === 'active').length;
+            const totalMatches = recentMatches.length;
+            
+            document.getElementById('activeAlertsCount').textContent = activeCount;
+            document.getElementById('totalMatchesCount').textContent = totalMatches;
+        }
+
+        function showCreateForm() {
+            document.getElementById('createAlertForm').style.display = 'block';
+            document.getElementById('createAlertForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideCreateForm() {
+            document.getElementById('createAlertForm').style.display = 'none';
+            document.getElementById('alertForm').reset();
+        }
+
+        function createAlert() {
+            const formData = new FormData(document.getElementById('alertForm'));
+            const alertData = {
+                id: Date.now(),
+                title: formData.get('alertTitle') || document.getElementById('alertTitle').value,
+                keywords: document.getElementById('keywords').value,
+                location: document.getElementById('location').value,
+                jobType: document.getElementById('jobType').value,
+                minSalary: document.getElementById('minSalary').value ? parseInt(document.getElementById('minSalary').value) : null,
+                experience: document.getElementById('experience').value,
+                frequency: document.querySelector('input[name="frequency"]:checked').value,
+                emailNotifications: document.getElementById('emailNotifications').checked,
+                smsNotifications: document.getElementById('smsNotifications').checked,
+                status: 'active',
+                created: new Date().toISOString().split('T')[0],
+                lastMatch: null,
+                totalMatches: 0
+            };
+
+            jobAlerts.push(alertData);
+            renderAlerts();
+            updateStats();
+            hideCreateForm();
+            
+            alert('Job alert created successfully!');
+        }
+
+        function editAlert(id) {
+            const alert = jobAlerts.find(a => a.id === id);
+            if (alert) {
+                // Populate form with alert data
+                document.getElementById('alertTitle').value = alert.title;
+                document.getElementById('keywords').value = alert.keywords;
+                document.getElementById('location').value = alert.location;
+                document.getElementById('jobType').value = alert.jobType;
+                document.getElementById('minSalary').value = alert.minSalary || '';
+                document.getElementById('experience').value = alert.experience;
+                document.querySelector(`input[name="frequency"][value="${alert.frequency}"]`).checked = true;
+                document.getElementById('emailNotifications').checked = alert.emailNotifications;
+                document.getElementById('smsNotifications').checked = alert.smsNotifications;
+                
+                showCreateForm();
+                
+                // Update form submit to edit instead of create
+                const form = document.getElementById('alertForm');
+                form.onsubmit = function(e) {
+                    e.preventDefault();
+                    updateAlert(id);
+                };
+            }
+        }
+
+        function updateAlert(id) {
+            const alert = jobAlerts.find(a => a.id === id);
+            if (alert) {
+                alert.title = document.getElementById('alertTitle').value;
+                alert.keywords = document.getElementById('keywords').value;
+                alert.location = document.getElementById('location').value;
+                alert.jobType = document.getElementById('jobType').value;
+                alert.minSalary = document.getElementById('minSalary').value ? parseInt(document.getElementById('minSalary').value) : null;
+                alert.experience = document.getElementById('experience').value;
+                alert.frequency = document.querySelector('input[name="frequency"]:checked').value;
+                alert.emailNotifications = document.getElementById('emailNotifications').checked;
+                alert.smsNotifications = document.getElementById('smsNotifications').checked;
+                
+                renderAlerts();
+                hideCreateForm();
+                
+                // Reset form submit
+                document.getElementById('alertForm').onsubmit = function(e) {
+                    e.preventDefault();
+                    createAlert();
+                };
+                
+                alert('Job alert updated successfully!');
+            }
+        }
+
+        function toggleAlert(id) {
+            const alert = jobAlerts.find(a => a.id === id);
+            if (alert) {
+                alert.status = alert.status === 'active' ? 'paused' : 'active';
+                renderAlerts();
+                updateStats();
+                
+                const action = alert.status === 'active' ? 'activated' : 'paused';
+                alert(`Job alert ${action} successfully!`);
+            }
+        }
+
+        function deleteAlert(id) {
+            const alert = jobAlerts.find(a => a.id === id);
+            if (alert && confirm(`Are you sure you want to delete the alert "${alert.title}"?`)) {
+                const index = jobAlerts.findIndex(a => a.id === id);
+                jobAlerts.splice(index, 1);
+                renderAlerts();
+                updateStats();
+                alert('Job alert deleted successfully!');
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Never';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+    </script>
+</body>
+</html>

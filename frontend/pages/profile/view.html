@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Punjab Rozgar Portal</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .header .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .header .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .profile-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .profile-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .profile-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .section-header h3 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .experience-item,
+        .education-item {
+            border-left: 3px solid #667eea;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-item h4,
+        .education-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-company,
+        .education-institution {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-duration,
+        .education-duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-section h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .contact-info i {
+            width: 20px;
+            color: #667eea;
+        }
+
+        .progress-bar {
+            background: #e1e5e9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            background: #667eea;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .edit-mode {
+            display: none;
+        }
+
+        .edit-mode.active {
+            display: block;
+        }
+
+        .view-mode.editing {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+
+            .header .nav-links {
+                display: none;
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireAuth('/pages/auth/login.html')) return;
+        });
+    </script>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="../../index.html" class="logo">Punjab Rozgar</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../jobs/browse.html">Jobs</a></li>
+                    <li><a href="view.html">Profile</a></li>
+                    <li><a href="#" onclick="authManager.logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">
+                <!-- User initials will be inserted here -->
+            </div>
+            <div class="profile-info">
+                <h1 id="profileName">Loading...</h1>
+                <div class="profile-role" id="profileRole"></div>
+                <div class="profile-meta">
+                    <span><i class="fas fa-calendar"></i> Member since <span id="memberSince"></span></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <span id="profileLocation">Not specified</span></span>
+                    <span><i class="fas fa-envelope"></i> <span id="profileEmail"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- About Section -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>About</h3>
+                        <button class="btn btn-sm" onclick="toggleEdit('about')">Edit</button>
+                    </div>
+                    
+                    <div class="view-mode" id="aboutView">
+                        <p id="aboutText">Professional with experience in various fields, passionate about contributing to Punjab's growth and development.</p>
+                    </div>
+                    
+                    <div class="edit-mode" id="aboutEdit">
+                        <div class="form-group">
+                            <label for="aboutTextarea">About Me</label>
+                            <textarea id="aboutTextarea" placeholder="Tell us about yourself, your goals, and what you're passionate about..."></textarea>
+                        </div>
+                        <button class="btn btn-sm" onclick="saveSection('about')">Save</button>
+                        <button class="btn btn-sm" onclick="cancelEdit('about')" style="background: #6c757d; margin-left: 0.5rem;">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Skills</h3>
+                        <button class="btn btn-sm" onclick="toggleEdit('skills')">Edit</button>
+                    </div>
+                    
+                    <div class="view-mode" id="skillsView">
+                        <div class="skills-list" id="skillsList">
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Team Work</span>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-mode" id="skillsEdit">
+                        <div class="form-group">
+                            <label for="skillInput">Add Skills</label>
+                            <input type="text" id="skillInput" placeholder="Type a skill and press Enter">
+                            <div class="skills-list" id="editSkillsList" style="margin-top: 1rem;"></div>
+                        </div>
+                        <button class="btn btn-sm" onclick="saveSection('skills')">Save</button>
+                        <button class="btn btn-sm" onclick="cancelEdit('skills')" style="background: #6c757d; margin-left: 0.5rem;">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Experience</h3>
+                        <button class="btn btn-sm" onclick="toggleEdit('experience')">Edit</button>
+                    </div>
+                    
+                    <div class="view-mode" id="experienceView">
+                        <div id="experienceList">
+                            <div class="experience-item">
+                                <h4>Professional Experience</h4>
+                                <div class="experience-company">Various Organizations</div>
+                                <div class="experience-duration">Building career experience</div>
+                                <div class="experience-description">Gaining valuable experience across different sectors and roles.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-mode" id="experienceEdit">
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" placeholder="e.g. Software Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" placeholder="e.g. TechSoft Solutions">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration</label>
+                            <input type="text" id="duration" placeholder="e.g. Jan 2020 - Present">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" placeholder="Describe your role and achievements..."></textarea>
+                        </div>
+                        <button class="btn btn-sm" onclick="saveSection('experience')">Save</button>
+                        <button class="btn btn-sm" onclick="cancelEdit('experience')" style="background: #6c757d; margin-left: 0.5rem;">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Education</h3>
+                        <button class="btn btn-sm" onclick="toggleEdit('education')">Edit</button>
+                    </div>
+                    
+                    <div class="view-mode" id="educationView">
+                        <div id="educationList">
+                            <div class="education-item">
+                                <h4>Education Background</h4>
+                                <div class="education-institution">Educational Institution</div>
+                                <div class="education-duration">Academic journey</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-mode" id="educationEdit">
+                        <div class="form-group">
+                            <label for="degree">Degree</label>
+                            <input type="text" id="degree" placeholder="e.g. Bachelor of Science">
+                        </div>
+                        <div class="form-group">
+                            <label for="institution">Institution</label>
+                            <input type="text" id="institution" placeholder="e.g. University of Punjab">
+                        </div>
+                        <div class="form-group">
+                            <label for="eduDuration">Duration</label>
+                            <input type="text" id="eduDuration" placeholder="e.g. 2018 - 2022">
+                        </div>
+                        <button class="btn btn-sm" onclick="saveSection('education')">Save</button>
+                        <button class="btn btn-sm" onclick="cancelEdit('education')" style="background: #6c757d; margin-left: 0.5rem;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Quick Stats -->
+                <div class="sidebar-section">
+                    <h4>Profile Strength</h4>
+                    <div class="stat-card">
+                        <div class="stat-number">75%</div>
+                        <div class="stat-label">Complete</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="sidebar-section">
+                    <h4>Contact Information</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> <span id="sidebarEmail">Loading...</span></li>
+                        <li><i class="fas fa-phone"></i> <span id="sidebarPhone">Not provided</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span id="sidebarLocation">Not specified</span></li>
+                        <li><i class="fas fa-linkedin"></i> <span id="sidebarLinkedIn">Not connected</span></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="sidebar-section">
+                    <h4>Quick Actions</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <a href="#" class="btn btn-sm" onclick="downloadCV()">Download CV</a>
+                        <a href="../jobs/browse.html" class="btn btn-sm">Browse Jobs</a>
+                        <a href="#" class="btn btn-sm" onclick="shareProfile()">Share Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userSkills = ['Communication', 'Problem Solving', 'Team Work'];
+        let editingSkills = [...userSkills];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+            setupSkillInput();
+        });
+
+        function loadUserProfile() {
+            const user = authManager.getCurrentUser();
+            if (user) {
+                // Update profile header
+                document.getElementById('profileName').textContent = user.name;
+                document.getElementById('profileRole').textContent = getRoleDisplayName(user.role);
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('sidebarEmail').textContent = user.email;
+                
+                // Set user initials in avatar
+                const initials = user.name.split(' ').map(name => name.charAt(0)).join('').toUpperCase();
+                document.getElementById('profileAvatar').textContent = initials;
+                
+                // Set member since date
+                document.getElementById('memberSince').textContent = 'January 2024';
+            }
+        }
+
+        function getRoleDisplayName(role) {
+            const roleMap = {
+                'job_seeker': 'Job Seeker',
+                'employer': 'Employer',
+                'admin': 'Administrator'
+            };
+            return roleMap[role] || role;
+        }
+
+        function setupSkillInput() {
+            const skillInput = document.getElementById('skillInput');
+            skillInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addSkillToEdit();
+                }
+            });
+        }
+
+        function addSkillToEdit() {
+            const skillInput = document.getElementById('skillInput');
+            const skill = skillInput.value.trim();
+            
+            if (skill && !editingSkills.includes(skill)) {
+                editingSkills.push(skill);
+                renderEditSkills();
+                skillInput.value = '';
+            }
+        }
+
+        function removeSkillFromEdit(skill) {
+            editingSkills = editingSkills.filter(s => s !== skill);
+            renderEditSkills();
+        }
+
+        function renderEditSkills() {
+            const container = document.getElementById('editSkillsList');
+            container.innerHTML = editingSkills.map(skill => 
+                `<span class="skill-tag">
+                    ${skill}
+                    <span onclick="removeSkillFromEdit('${skill}')" style="margin-left: 0.5rem; cursor: pointer;">&times;</span>
+                </span>`
+            ).join('');
+        }
+
+        function toggleEdit(section) {
+            const viewMode = document.getElementById(section + 'View');
+            const editMode = document.getElementById(section + 'Edit');
+            
+            viewMode.classList.add('editing');
+            editMode.classList.add('active');
+            
+            // Pre-populate edit fields with current data
+            if (section === 'skills') {
+                editingSkills = [...userSkills];
+                renderEditSkills();
+            }
+        }
+
+        function cancelEdit(section) {
+            const viewMode = document.getElementById(section + 'View');
+            const editMode = document.getElementById(section + 'Edit');
+            
+            viewMode.classList.remove('editing');
+            editMode.classList.remove('active');
+            
+            // Reset editing data
+            if (section === 'skills') {
+                editingSkills = [...userSkills];
+            }
+        }
+
+        function saveSection(section) {
+            if (section === 'skills') {
+                userSkills = [...editingSkills];
+                const skillsList = document.getElementById('skillsList');
+                skillsList.innerHTML = userSkills.map(skill => 
+                    `<span class="skill-tag">${skill}</span>`
+                ).join('');
+            } else if (section === 'about') {
+                const aboutText = document.getElementById('aboutTextarea').value;
+                document.getElementById('aboutText').textContent = aboutText;
+            }
+            // Add more save logic for other sections as needed
+            
+            cancelEdit(section);
+            
+            // Show success message
+            alert('Profile updated successfully!');
+        }
+
+        function downloadCV() {
+            alert('CV download feature coming soon!');
+        }
+
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Punjab Rozgar Profile',
+                    text: 'Check out my profile on Punjab Rozgar Portal',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy URL to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('Profile URL copied to clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>

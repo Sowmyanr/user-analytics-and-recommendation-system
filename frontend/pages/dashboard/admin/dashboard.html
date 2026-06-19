@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Rozgar Portal - Admin Dashboard</title>
+    <link rel="stylesheet" href="responsive-system.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Admin Dashboard Specific Styles */
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-4);
+        }
+
+        .admin-header {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .admin-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .admin-title h1 {
+            font-family: var(--font-family-heading);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            background: var(--success-color);
+            color: white;
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Real-time Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-4);
+        }
+
+        .metric-title {
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: white;
+        }
+
+        .metric-icon.users { background: var(--primary-color); }
+        .metric-icon.jobs { background: var(--secondary-color); }
+        .metric-icon.applications { background: var(--warning-color); }
+        .metric-icon.documents { background: var(--error-color); }
+
+        .metric-value {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-2);
+            line-height: 1;
+        }
+
+        .metric-change {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--text-sm);
+        }
+
+        .metric-change.positive {
+            color: var(--success-color);
+        }
+
+        .metric-change.negative {
+            color: var(--error-color);
+        }
+
+        /* Dashboard Layout */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .main-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .activity-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .activity-header h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: var(--space-4) var(--space-6);
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            transition: background-color var(--transition-fast);
+        }
+
+        .activity-item:hover {
+            background-color: var(--gray-50);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.user { background: var(--primary-color); }
+        .activity-icon.job { background: var(--secondary-color); }
+        .activity-icon.application { background: var(--warning-color); }
+        .activity-icon.document { background: var(--error-color); }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: var(--text-sm);
+            color: var(--gray-700);
+            margin-bottom: var(--space-1);
+        }
+
+        .activity-time {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .quick-actions h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+
+        @media (min-width: 640px) {
+            .action-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--gray-700);
+            transition: all var(--transition-fast);
+        }
+
+        .action-item:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(30, 64, 175, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            font-size: var(--text-xl);
+        }
+
+        .action-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        /* Charts Container */
+        .charts-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-4);
+        }
+
+        .chart-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .chart-control {
+            padding: var(--space-2) var(--space-3);
+            font-size: var(--text-sm);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: white;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .chart-control.active,
+        .chart-control:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            margin-top: var(--space-4);
+        }
+
+        /* System Status */
+        .system-status {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .system-status h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .status-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+        }
+
+        .status-label {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .status-value {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .status-indicator-small {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: var(--space-2);
+        }
+
+        .status-indicator-small.good { background: var(--success-color); }
+        .status-indicator-small.warning { background: var(--warning-color); }
+        .status-indicator-small.error { background: var(--error-color); }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            color: var(--gray-500);
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gray-200);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary-color);
+            max-width: 400px;
+            transform: translateX(100%);
+            transition: transform var(--transition-normal);
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+
+        .notification-icon {
+            font-size: var(--text-lg);
+            color: var(--primary-color);
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-1);
+        }
+
+        .notification-message {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            font-size: var(--text-lg);
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <div class="admin-title">
+                <div>
+                    <h1>🏛️ Punjab Rozgar Portal - Admin Dashboard</h1>
+                    <p style="margin: var(--space-2) 0 0 0; color: var(--gray-600); font-size: var(--text-sm);">
+                        Real-time monitoring and management system
+                    </p>
+                </div>
+                <div class="admin-actions">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>System Online</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportData()">📊 Export Report</button>
+                    <button class="btn btn-secondary" onclick="refreshDashboard()">🔄 Refresh</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-time Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card" id="users-metric">
+                <div class="metric-header">
+                    <span class="metric-title">Total Users</span>
+                    <div class="metric-icon users">👥</div>
+                </div>
+                <div class="metric-value" id="total-users">0</div>
+                <div class="metric-change positive" id="users-change">
+                    <span>↗</span>
+                    <span>+0% from yesterday</span>
+                </div>
+            </div>
+
+            <div class="metric-card" id="jobs-metric">
+                <div class="metric-header">
+                    <span class="metric-title">Active Jobs</span>
+                    <div class="metric-icon jobs">💼</div>
+                </div>
+                <div class="metric-value" id="total-jobs">0</div>
+                <div class="metric-change positive" id="jobs-change">
+                    <span>↗</span>
+                    <span>+0% from yesterday</span>
+                </div>
+            </div>
+
+            <div class="metric-card" id="applications-metric">
+                <div class="metric-header">
+                    <span class="metric-title">Pending Applications</span>
+                    <div class="metric-icon applications">📋</div>
+                </div>
+                <div class="metric-value" id="pending-applications">0</div>
+                <div class="metric-change" id="applications-change">
+                    <span>→</span>
+                    <span>0 new today</span>
+                </div>
+            </div>
+
+            <div class="metric-card" id="documents-metric">
+                <div class="metric-header">
+                    <span class="metric-title">Documents to Verify</span>
+                    <div class="metric-icon documents">📄</div>
+                </div>
+                <div class="metric-value" id="pending-documents">0</div>
+                <div class="metric-change" id="documents-change">
+                    <span>→</span>
+                    <span>0 pending</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Layout -->
+        <div class="dashboard-layout">
+            <!-- Main Panel -->
+            <div class="main-panel">
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">User Registration Trends</h3>
+                        <div class="chart-controls">
+                            <button class="chart-control active" onclick="updateChart('24h')">24H</button>
+                            <button class="chart-control" onclick="updateChart('7d')">7D</button>
+                            <button class="chart-control" onclick="updateChart('30d')">30D</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="registrationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Activity Feed -->
+                <div class="activity-feed">
+                    <div class="activity-header">
+                        <h3>📊 Real-time Activity Feed</h3>
+                    </div>
+                    <div class="activity-list" id="activity-list">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <span style="margin-left: var(--space-3);">Loading activities...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Panel -->
+            <div class="side-panel">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>⚡ Quick Actions</h3>
+                    <div class="action-grid">
+                        <a href="#users" class="action-item">
+                            <span class="action-icon">👥</span>
+                            <span class="action-text">Manage Users</span>
+                        </a>
+                        <a href="#jobs" class="action-item">
+                            <span class="action-icon">💼</span>
+                            <span class="action-text">Review Jobs</span>
+                        </a>
+                        <a href="#documents" class="action-item">
+                            <span class="action-icon">📄</span>
+                            <span class="action-text">Verify Documents</span>
+                        </a>
+                        <a href="#analytics" class="action-item">
+                            <span class="action-icon">📊</span>
+                            <span class="action-text">Analytics</span>
+                        </a>
+                        <a href="#settings" class="action-item">
+                            <span class="action-icon">⚙️</span>
+                            <span class="action-text">Settings</span>
+                        </a>
+                        <a href="#reports" class="action-item">
+                            <span class="action-icon">📈</span>
+                            <span class="action-text">Reports</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="system-status">
+                    <h3>🖥️ System Status</h3>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-label">Server Status</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="server-status">Online</span>
+                                <div class="status-indicator-small good"></div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Database</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="database-status">Connected</span>
+                                <div class="status-indicator-small good"></div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Active Sessions</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="active-sessions">0</span>
+                                <div class="status-indicator-small good"></div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">System Load</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="system-load">0%</span>
+                                <div class="status-indicator-small good" id="load-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Storage Used</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="storage-used">0%</span>
+                                <div class="status-indicator-small good" id="storage-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Last Backup</span>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-value" id="last-backup">Never</span>
+                                <div class="status-indicator-small warning"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Template -->
+    <div class="notification" id="notification-template" style="display: none;">
+        <div class="notification-content">
+            <div class="notification-icon">🔔</div>
+            <div class="notification-text">
+                <div class="notification-title"></div>
+                <div class="notification-message"></div>
+            </div>
+            <button class="notification-close" onclick="closeNotification()">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Simple admin dashboard without socket.io dependency
+        let registrationChart;
+        let activityBuffer = [];
+        let currentMetrics = {
+            totalUsers: 0,
+            totalJobs: 0,
+            pendingApplications: 0,
+            pendingDocuments: 0
+        };
+
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSocket();
+            initializeChart();
+            loadDashboardData();
+            startRealtimeUpdates();
+            
+            // Join analytics room for real-time updates
+            socket.emit('join-analytics-dashboard', {
+                role: 'admin',
+                page: 'admin-dashboard'
+            });
+        });
+
+        // Socket.IO Event Handlers
+        function initializeSocket() {
+            // Real-time metric updates
+            socket.on('realtime-update', (data) => {
+                updateMetrics(data);
+            });
+
+            // Activity updates
+            socket.on('user-activity-update', (activity) => {
+                addActivityItem(activity);
+            });
+
+            socket.on('new-user-registration', (data) => {
+                addActivityItem({
+                    type: 'user',
+                    action: 'User Registered',
+                    details: `${data.fullName} registered as ${data.userType}`,
+                    timestamp: data.timestamp
+                });
+                incrementMetric('totalUsers');
+                showNotification('New Registration', `${data.fullName} has registered`);
+            });
+
+            socket.on('new-job-application', (data) => {
+                addActivityItem({
+                    type: 'application',
+                    action: 'Job Application',
+                    details: `New application for ${data.jobTitle}`,
+                    timestamp: data.timestamp
+                });
+                incrementMetric('pendingApplications');
+                showNotification('New Application', `Application received for ${data.jobTitle}`);
+            });
+
+            socket.on('system-metrics', (data) => {
+                updateSystemStatus(data);
+            });
+
+            socket.on('error-alert', (error) => {
+                showNotification('System Error', error.message, 'error');
+            });
+
+            // Connection status
+            socket.on('connect', () => {
+                updateConnectionStatus(true);
+            });
+
+            socket.on('disconnect', () => {
+                updateConnectionStatus(false);
+            });
+        }
+
+        // Initialize Chart
+        function initializeChart() {
+            const ctx = document.getElementById('registrationChart').getContext('2d');
+            registrationChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Registrations',
+                        data: [],
+                        borderColor: 'rgb(30, 64, 175)',
+                        backgroundColor: 'rgba(30, 64, 175, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Load Dashboard Data
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/analytics/dashboard', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    updateMetrics(data.realtime);
+                    updateChart('24h');
+                    loadRecentActivities();
+                } else {
+                    console.error('Failed to load dashboard data');
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showNotification('Loading Error', 'Failed to load dashboard data', 'error');
+            }
+        }
+
+        // Update Metrics
+        function updateMetrics(data) {
+            currentMetrics = { ...currentMetrics, ...data };
+            
+            // Update metric values with animation
+            animateMetricUpdate('total-users', data.totalUsers || currentMetrics.totalUsers);
+            animateMetricUpdate('total-jobs', data.totalJobs || currentMetrics.totalJobs);
+            animateMetricUpdate('pending-applications', data.pendingApplications || currentMetrics.pendingApplications);
+            animateMetricUpdate('pending-documents', data.pendingDocuments || currentMetrics.pendingDocuments);
+
+            // Update change indicators (simplified for demo)
+            updateChangeIndicator('users-change', data.userGrowth || 0);
+            updateChangeIndicator('jobs-change', data.jobGrowth || 0);
+        }
+
+        function animateMetricUpdate(elementId, newValue) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const currentValue = parseInt(element.textContent) || 0;
+            const difference = newValue - currentValue;
+            
+            if (difference === 0) return;
+
+            const duration = 1000; // 1 second
+            const steps = 30;
+            const stepValue = difference / steps;
+            const stepDuration = duration / steps;
+
+            let step = 0;
+            const interval = setInterval(() => {
+                step++;
+                const value = Math.round(currentValue + (stepValue * step));
+                element.textContent = value.toLocaleString();
+                
+                if (step >= steps) {
+                    clearInterval(interval);
+                    element.textContent = newValue.toLocaleString();
+                }
+            }, stepDuration);
+        }
+
+        function updateChangeIndicator(elementId, growth) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const arrow = growth > 0 ? '↗' : growth < 0 ? '↘' : '→';
+            const sign = growth > 0 ? '+' : '';
+            const className = growth > 0 ? 'positive' : growth < 0 ? 'negative' : '';
+            
+            element.className = `metric-change ${className}`;
+            element.innerHTML = `
+                <span>${arrow}</span>
+                <span>${sign}${growth}% from yesterday</span>
+            `;
+        }
+
+        function incrementMetric(metricName) {
+            currentMetrics[metricName] = (currentMetrics[metricName] || 0) + 1;
+            updateMetrics(currentMetrics);
+        }
+
+        // Activity Feed
+        function loadRecentActivities() {
+            // Simulate loading recent activities
+            const activities = [
+                {
+                    type: 'user',
+                    action: 'User Registered',
+                    details: 'New job seeker joined the platform',
+                    timestamp: new Date(Date.now() - 5 * 60 * 1000).toISOString()
+                },
+                {
+                    type: 'job',
+                    action: 'Job Posted',
+                    details: 'Software Developer position added',
+                    timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString()
+                },
+                {
+                    type: 'application',
+                    action: 'Application Submitted',
+                    details: 'Application for Teaching position',
+                    timestamp: new Date(Date.now() - 30 * 60 * 1000).toISOString()
+                }
+            ];
+
+            const activityList = document.getElementById('activity-list');
+            activityList.innerHTML = '';
+            
+            activities.forEach(activity => {
+                addActivityItem(activity);
+            });
+        }
+
+        function addActivityItem(activity) {
+            const activityList = document.getElementById('activity-list');
+            
+            // Remove loading indicator if present
+            const loading = activityList.querySelector('.loading');
+            if (loading) {
+                loading.remove();
+            }
+
+            const activityItem = document.createElement('div');
+            activityItem.className = 'activity-item';
+            activityItem.style.opacity = '0';
+            activityItem.style.transform = 'translateY(-10px)';
+            
+            const timeAgo = getTimeAgo(activity.timestamp);
+            const iconClass = activity.type || 'user';
+            
+            activityItem.innerHTML = `
+                <div class="activity-icon ${iconClass}">
+                    ${getActivityIcon(activity.type)}
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">${activity.action}: ${activity.details}</div>
+                    <div class="activity-time">${timeAgo}</div>
+                </div>
+            `;
+            
+            // Insert at the beginning
+            activityList.insertBefore(activityItem, activityList.firstChild);
+            
+            // Animate in
+            setTimeout(() => {
+                activityItem.style.opacity = '1';
+                activityItem.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Keep only last 20 items
+            const items = activityList.querySelectorAll('.activity-item');
+            if (items.length > 20) {
+                items[items.length - 1].remove();
+            }
+        }
+
+        function getActivityIcon(type) {
+            const icons = {
+                'user': '👤',
+                'job': '💼',
+                'application': '📋',
+                'document': '📄',
+                'system': '⚙️'
+            };
+            return icons[type] || '📊';
+        }
+
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diffMs = now - time;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return `${diffDays}d ago`;
+        }
+
+        // System Status Updates
+        function updateSystemStatus(data) {
+            document.getElementById('active-sessions').textContent = data.activeUsers || 0;
+            document.getElementById('system-load').textContent = `${data.systemLoad || 0}%`;
+            
+            // Update load indicator color
+            const loadIndicator = document.getElementById('load-indicator');
+            const loadValue = data.systemLoad || 0;
+            if (loadValue < 50) {
+                loadIndicator.className = 'status-indicator-small good';
+            } else if (loadValue < 80) {
+                loadIndicator.className = 'status-indicator-small warning';
+            } else {
+                loadIndicator.className = 'status-indicator-small error';
+            }
+
+            // Update storage (simulated)
+            const storageUsed = Math.min(Math.round(data.memoryUsage?.heapUsed / data.memoryUsage?.heapTotal * 100) || 0, 100);
+            document.getElementById('storage-used').textContent = `${storageUsed}%`;
+            
+            const storageIndicator = document.getElementById('storage-indicator');
+            if (storageUsed < 70) {
+                storageIndicator.className = 'status-indicator-small good';
+            } else if (storageUsed < 90) {
+                storageIndicator.className = 'status-indicator-small warning';
+            } else {
+                storageIndicator.className = 'status-indicator-small error';
+            }
+        }
+
+        function updateConnectionStatus(connected) {
+            const statusElement = document.querySelector('.status-indicator span');
+            const dotElement = document.querySelector('.status-dot');
+            
+            if (connected) {
+                statusElement.textContent = 'System Online';
+                dotElement.style.animationPlayState = 'running';
+                document.getElementById('server-status').textContent = 'Online';
+                document.getElementById('database-status').textContent = 'Connected';
+            } else {
+                statusElement.textContent = 'System Offline';
+                dotElement.style.animationPlayState = 'paused';
+                document.getElementById('server-status').textContent = 'Offline';
+                document.getElementById('database-status').textContent = 'Disconnected';
+            }
+        }
+
+        // Chart Updates
+        function updateChart(period) {
+            // Remove active class from all controls
+            document.querySelectorAll('.chart-control').forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked control
+            event.target.classList.add('active');
+            
+            // Generate sample data based on period
+            const data = generateChartData(period);
+            
+            registrationChart.data.labels = data.labels;
+            registrationChart.data.datasets[0].data = data.values;
+            registrationChart.update();
+        }
+
+        function generateChartData(period) {
+            const now = new Date();
+            const data = { labels: [], values: [] };
+            
+            switch (period) {
+                case '24h':
+                    for (let i = 23; i >= 0; i--) {
+                        const time = new Date(now.getTime() - i * 60 * 60 * 1000);
+                        data.labels.push(time.getHours() + ':00');
+                        data.values.push(Math.floor(Math.random() * 10) + 1);
+                    }
+                    break;
+                case '7d':
+                    for (let i = 6; i >= 0; i--) {
+                        const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+                        data.labels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+                        data.values.push(Math.floor(Math.random() * 50) + 10);
+                    }
+                    break;
+                case '30d':
+                    for (let i = 29; i >= 0; i--) {
+                        const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+                        data.labels.push(date.getDate().toString());
+                        data.values.push(Math.floor(Math.random() * 100) + 20);
+                    }
+                    break;
+            }
+            
+            return data;
+        }
+
+        // Notifications
+        function showNotification(title, message, type = 'info') {
+            const notification = document.getElementById('notification-template').cloneNode(true);
+            notification.id = 'notification-' + Date.now();
+            notification.style.display = 'block';
+            
+            notification.querySelector('.notification-title').textContent = title;
+            notification.querySelector('.notification-message').textContent = message;
+            
+            // Update styling based on type
+            if (type === 'error') {
+                notification.style.borderLeftColor = 'var(--error-color)';
+                notification.querySelector('.notification-icon').textContent = '❌';
+            } else if (type === 'success') {
+                notification.style.borderLeftColor = 'var(--success-color)';
+                notification.querySelector('.notification-icon').textContent = '✅';
+            } else if (type === 'warning') {
+                notification.style.borderLeftColor = 'var(--warning-color)';
+                notification.querySelector('.notification-icon').textContent = '⚠️';
+            }
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                hideNotification(notification);
+            }, 5000);
+        }
+
+        function hideNotification(notification) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }
+
+        function closeNotification() {
+            const notification = event.target.closest('.notification');
+            hideNotification(notification);
+        }
+
+        // Utility Functions
+        function refreshDashboard() {
+            location.reload();
+        }
+
+        function exportData() {
+            // Simulate data export
+            showNotification('Export Started', 'Dashboard data is being exported...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Export Complete', 'Dashboard data has been exported successfully', 'success');
+            }, 2000);
+        }
+
+        // Start real-time updates
+        function startRealtimeUpdates() {
+            // Simulate periodic updates for demo
+            setInterval(() => {
+                // Simulate random activity
+                if (Math.random() > 0.7) {
+                    const activities = [
+                        { type: 'user', action: 'User Login', details: 'User accessed dashboard' },
+                        { type: 'job', action: 'Job View', details: 'Job listing viewed' },
+                        { type: 'application', action: 'Application Update', details: 'Application status changed' }
+                    ];
+                    
+                    const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+                    randomActivity.timestamp = new Date().toISOString();
+                    addActivityItem(randomActivity);
+                }
+                
+                // Update time displays
+                document.querySelectorAll('.activity-time').forEach(timeEl => {
+                    const activityItem = timeEl.closest('.activity-item');
+                    const timestamp = activityItem.dataset.timestamp;
+                    if (timestamp) {
+                        timeEl.textContent = getTimeAgo(timestamp);
+                    }
+                });
+            }, 10000); // Update every 10 seconds
+        }
+
+        // Track admin dashboard usage
+        socket.emit('track-page-view', {
+            page: 'admin-dashboard',
+            title: 'Admin Dashboard',
+            url: window.location.href,
+            timestamp: new Date().toISOString()
+        });
+    </script>
+</body>
+</html>

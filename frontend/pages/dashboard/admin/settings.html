@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Dashboard</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../../js/punjab-analytics.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Settings Navigation */
+        .settings-nav {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .settings-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .settings-tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .settings-tab:hover,
+        .settings-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Settings Content */
+        .settings-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .settings-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .settings-section p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-checkbox input {
+            margin: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background: #667eea;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .logout-btn {
+                position: relative;
+                margin: 1rem 2rem 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-tabs {
+                flex-direction: column;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Punjab Rozgar Portal</p>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="../../admin/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="../../../index.html"><i class="fas fa-home"></i> Back to Portal</a></li>
+                </ul>
+            </nav>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>System Settings</h1>
+                <p>Configure portal settings, security options, and system preferences</p>
+            </div>
+
+            <!-- Settings Navigation -->
+            <div class="settings-nav">
+                <div class="settings-tabs">
+                    <button class="settings-tab active" onclick="showSection('general')">
+                        <i class="fas fa-cog"></i> General
+                    </button>
+                    <button class="settings-tab" onclick="showSection('security')">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </button>
+                    <button class="settings-tab" onclick="showSection('analytics')">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                    <button class="settings-tab" onclick="showSection('notifications')">
+                        <i class="fas fa-bell"></i> Notifications
+                    </button>
+                    <button class="settings-tab" onclick="showSection('maintenance')">
+                        <i class="fas fa-tools"></i> Maintenance
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="settings-content">
+                <!-- General Settings -->
+                <div id="general-section" class="settings-section">
+                    <h3>General Settings</h3>
+                    <p>Configure basic portal settings and preferences</p>
+                    
+                    <form class="settings-form" onsubmit="saveGeneralSettings(event)">
+                        <div class="form-group">
+                            <label class="form-label">Portal Name</label>
+                            <input type="text" class="form-input" value="Punjab Rozgar Portal" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-input" value="admin@punjabrozgar.gov.in" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Support Phone</label>
+                                <input type="tel" class="form-input" value="+91 161 2222222">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Portal Description</label>
+                            <textarea class="form-textarea" required>Official employment portal for Punjab state providing job opportunities for job seekers and recruitment platform for employers.</textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Default Language</label>
+                                <select class="form-select">
+                                    <option value="en">English</option>
+                                    <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                                    <option value="hi">Hindi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Timezone</label>
+                                <select class="form-select">
+                                    <option value="Asia/Kolkata" selected>Asia/Kolkata (IST)</option>
+                                    <option value="UTC">UTC</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Enable user registrations</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Require email verification for new users</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Security Settings -->
+                <div id="security-section" class="settings-section" style="display: none;">
+                    <h3>Security Settings</h3>
+                    <p>Configure security policies and access controls</p>
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Changes to security settings will affect all users. Make sure to test thoroughly.
+                    </div>
+
+                    <form class="settings-form" onsubmit="saveSecuritySettings(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Session Timeout (minutes)</label>
+                                <input type="number" class="form-input" value="60" min="15" max="480">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password Minimum Length</label>
+                                <input type="number" class="form-input" value="8" min="6" max="20">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Require strong passwords (uppercase, lowercase, numbers, symbols)</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Enable two-factor authentication</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Log failed login attempts</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Maximum login attempts before lockout</label>
+                            <input type="number" class="form-input" value="5" min="3" max="10">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Analytics Settings -->
+                <div id="analytics-section" class="settings-section" style="display: none;">
+                    <h3>Analytics Settings</h3>
+                    <p>Configure data collection and reporting preferences</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">47.2 GB</div>
+                            <div class="stat-label">Analytics Data</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">30 days</div>
+                            <div class="stat-label">Data Retention</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1.2M</div>
+                            <div class="stat-label">Events Tracked</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Active</div>
+                            <div class="stat-label">Collection Status</div>
+                        </div>
+                    </div>
+
+                    <form class="settings-form" onsubmit="saveAnalyticsSettings(event)">
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Enable analytics tracking</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Track user behavior</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Track job interactions</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Data Retention Period</label>
+                            <select class="form-select">
+                                <option value="7">7 days</option>
+                                <option value="30" selected>30 days</option>
+                                <option value="90">90 days</option>
+                                <option value="365">1 year</option>
+                                <option value="0">Indefinite</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Anonymous Analytics</label>
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Remove personally identifiable information from analytics</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-danger">Clear All Data</button>
+                            <button type="button" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Notifications Settings -->
+                <div id="notifications-section" class="settings-section" style="display: none;">
+                    <h3>Notification Settings</h3>
+                    <p>Configure email notifications and system alerts</p>
+                    
+                    <form class="settings-form" onsubmit="saveNotificationSettings(event)">
+                        <h4>Email Notifications</h4>
+                        
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Send welcome emails to new users</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Send job application confirmations</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Send weekly job recommendations</label>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 2rem;">Admin Alerts</h4>
+                        
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Alert on new job postings requiring approval</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <label class="form-label">Alert on system errors</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Admin Alert Email</label>
+                            <input type="email" class="form-input" value="admin@punjabrozgar.gov.in">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Maintenance Settings -->
+                <div id="maintenance-section" class="settings-section" style="display: none;">
+                    <h3>Maintenance & System</h3>
+                    <p>System maintenance, backups, and administrative tools</p>
+                    
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Maintenance operations may temporarily affect portal availability.
+                    </div>
+
+                    <div class="settings-form">
+                        <h4>System Status</h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number" style="color: #28a745;">Online</div>
+                                <div class="stat-label">Portal Status</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">Uptime (30 days)</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2.3 GB</div>
+                                <div class="stat-label">Database Size</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12 hours ago</div>
+                                <div class="stat-label">Last Backup</div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 2rem;">Maintenance Actions</h4>
+                        
+                        <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                            <button class="btn" onclick="performMaintenance('backup')">
+                                <i class="fas fa-database"></i> Create Backup
+                            </button>
+                            <button class="btn btn-warning" onclick="performMaintenance('cache')">
+                                <i class="fas fa-broom"></i> Clear Cache
+                            </button>
+                            <button class="btn btn-secondary" onclick="performMaintenance('optimize')">
+                                <i class="fas fa-cogs"></i> Optimize Database
+                            </button>
+                            <button class="btn btn-danger" onclick="performMaintenance('maintenance')">
+                                <i class="fas fa-tools"></i> Maintenance Mode
+                            </button>
+                        </div>
+
+                        <h4 style="margin-top: 2rem;">System Information</h4>
+                        <div class="form-group">
+                            <label class="form-label">Server Version</label>
+                            <input type="text" class="form-input" value="Punjab Rozgar Portal v2.1.0" readonly>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Last Updated</label>
+                                <input type="text" class="form-input" value="September 15, 2024" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Environment</label>
+                                <input type="text" class="form-input" value="Production" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function initializePage() {
+            // Check authentication
+            if (!authManager.isLoggedIn() || !authManager.isAdmin()) {
+                window.location.href = '../../../pages/auth/login.html';
+                return;
+            }
+
+            // Track page view
+            trackEvent('Admin Settings Page Viewed', {
+                page_type: 'admin_settings'
+            });
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.settings-section');
+            sections.forEach(section => section.style.display = 'none');
+
+            // Show selected section
+            document.getElementById(sectionName + '-section').style.display = 'block';
+
+            // Update active tab
+            const tabs = document.querySelectorAll('.settings-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Track section view
+            trackEvent('Admin Settings Section Viewed', {
+                section: sectionName
+            });
+        }
+
+        function saveGeneralSettings(event) {
+            event.preventDefault();
+            trackEvent('Admin General Settings Saved');
+            alert('General settings saved successfully!');
+        }
+
+        function saveSecuritySettings(event) {
+            event.preventDefault();
+            trackEvent('Admin Security Settings Saved');
+            alert('Security settings saved successfully!');
+        }
+
+        function saveAnalyticsSettings(event) {
+            event.preventDefault();
+            trackEvent('Admin Analytics Settings Saved');
+            alert('Analytics settings saved successfully!');
+        }
+
+        function saveNotificationSettings(event) {
+            event.preventDefault();
+            trackEvent('Admin Notification Settings Saved');
+            alert('Notification settings saved successfully!');
+        }
+
+        function performMaintenance(action) {
+            if (confirm(`Are you sure you want to perform: ${action}?`)) {
+                trackEvent('Admin Maintenance Action', { action });
+                alert(`${action} operation started. Check system logs for progress.`);
+            }
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+                window.location.href = '../../../pages/auth/login.html';
+            }
+        }
+
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

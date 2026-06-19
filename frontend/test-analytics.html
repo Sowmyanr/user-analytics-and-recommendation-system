@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Rozgar - Analytics Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .job-card { border: 1px solid #ddd; padding: 20px; margin: 10px 0; border-radius: 8px; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        .stats { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Punjab Rozgar Analytics Test</h1>
+    
+    <div class="stats">
+        <h3>Analytics Status</h3>
+        <div id="analytics-status">Loading...</div>
+        <div id="event-count">Events sent: 0</div>
+    </div>
+
+    <h2>Test Analytics Tracking</h2>
+    
+    <!-- Test Buttons -->
+    <button class="btn" onclick="testCustomEvent()">Test Custom Event</button>
+    <button class="btn" onclick="testJobView()">Test Job View</button>
+    <button class="btn" onclick="testJobApply()">Test Job Apply</button>
+    <button class="btn" onclick="testSearch()">Test Search</button>
+    
+    <!-- Job Card Example -->
+    <div class="job-card" data-job-id="test_job_001" data-job-title="Test Software Developer">
+        <h3>Test Software Developer</h3>
+        <p>Test Company • Lahore</p>
+        <p>Rs. 50,000 - 80,000</p>
+        <button class="btn" onclick="trackJobApply('test_job_001', 'Test Software Developer')">Apply Now</button>
+        <button class="btn" onclick="saveTestJob()">Save Job</button>
+    </div>
+
+    <!-- Search Form -->
+    <form id="test-search-form" style="margin: 20px 0;">
+        <h3>Test Search</h3>
+        <input type="text" id="test-search-query" placeholder="Enter search term..." style="padding: 10px; width: 200px;">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    <!-- Dashboard Link -->
+    <div style="margin: 30px 0;">
+        <h3>View Analytics Dashboard</h3>
+        <a href="http://localhost:8000/api/v1/analytics/dashboard/overview" target="_blank" class="btn">Dashboard Overview</a>
+        <a href="http://localhost:8000/api/v1/analytics/dashboard/realtime" target="_blank" class="btn">Real-time Dashboard</a>
+        <a href="http://localhost:8000/api/v1/analytics/admin/stats" target="_blank" class="btn">Admin Stats</a>
+        <a href="http://localhost:8000/api/docs" target="_blank" class="btn">API Docs</a>
+    </div>
+
+    <!-- Punjab Rozgar Analytics Library -->
+    <script src="js/punjab-analytics.js"></script>
+    
+    <script>
+        let eventsSent = 0;
+
+        // Test functions
+        function testCustomEvent() {
+            trackEvent('Test Button Clicked', {
+                test_type: 'custom_event',
+                button_id: 'test_custom',
+                timestamp: new Date().toISOString()
+            });
+            updateEventCount();
+            showStatus('Custom event tracked!', 'success');
+        }
+
+        function testJobView() {
+            trackJobView('test_job_001', 'Test Software Developer');
+            updateEventCount();
+            showStatus('Job view tracked!', 'success');
+        }
+
+        function testJobApply() {
+            trackJobApply('test_job_001', 'Test Software Developer');
+            updateEventCount();
+            showStatus('Job application tracked!', 'success');
+        }
+
+        function testSearch() {
+            trackSearch('test search query', 5, {
+                location: 'lahore',
+                test_mode: true
+            });
+            updateEventCount();
+            showStatus('Search tracked!', 'success');
+        }
+
+        function saveTestJob() {
+            trackEvent('Job Saved', {
+                job_id: 'test_job_001',
+                job_title: 'Test Software Developer',
+                source: 'test_page'
+            });
+            updateEventCount();
+            showStatus('Job save tracked!', 'success');
+        }
+
+        // Search form handler
+        document.getElementById('test-search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('test-search-query').value;
+            if (query) {
+                trackSearch(query, Math.floor(Math.random() * 20), {
+                    source: 'test_form',
+                    location: 'test'
+                });
+                updateEventCount();
+                showStatus(`Search "${query}" tracked!`, 'success');
+                document.getElementById('test-search-query').value = '';
+            }
+        });
+
+        // Update event counter
+        function updateEventCount() {
+            eventsSent++;
+            document.getElementById('event-count').textContent = `Events sent: ${eventsSent}`;
+        }
+
+        // Show status messages
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('analytics-status');
+            statusDiv.innerHTML = `<span class="${type}">${message}</span>`;
+            setTimeout(() => {
+                statusDiv.innerHTML = '<span class="success">Analytics Active</span>';
+            }, 3000);
+        }
+
+        // Check analytics status
+        function checkAnalyticsStatus() {
+            if (window.punjabAnalytics) {
+                showStatus('Analytics Active', 'success');
+                
+                // Track page view for test
+                trackEvent('Test Page Loaded', {
+                    page_type: 'analytics_test',
+                    load_time: Date.now()
+                });
+                updateEventCount();
+            } else {
+                showStatus('Analytics Not Loaded', 'error');
+            }
+        }
+
+        // Check backend connectivity
+        async function checkBackendStatus() {
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                const data = await response.json();
+                if (response.ok) {
+                    console.log('Backend is running:', data);
+                } else {
+                    console.error('Backend error:', data);
+                }
+            } catch (error) {
+                console.error('Cannot connect to backend:', error);
+                showStatus('Backend connection failed', 'error');
+            }
+        }
+
+        // Initialize
+        setTimeout(() => {
+            checkAnalyticsStatus();
+            checkBackendStatus();
+        }, 1000);
+
+        // Track some automatic events
+        setTimeout(() => {
+            trackEvent('User Engaged', {
+                engagement_time: 5,
+                page: 'test'
+            });
+            updateEventCount();
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1686 @@
+2025-09-22 17:37:42 - uvicorn.error - INFO - server - serve:76 - Started server process [15744]
+2025-09-22 17:37:42 - uvicorn.error - INFO - on - startup:46 - Waiting for application startup.
+2025-09-22 17:37:42 - app.main - INFO - main - lifespan:44 - Starting Punjab Rozgar Portal Backend...
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("users")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("users")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_profiles")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_profiles")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_activities")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_activities")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_preferences")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_preferences")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_verifications")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_verifications")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("jobs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("jobs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_applications")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("job_applications")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("saved_jobs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("saved_jobs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_alerts")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("job_alerts")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_views")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("job_views")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_categories")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("job_categories")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("analytics_events")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("analytics_events")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("page_views")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("page_views")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_sessions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_sessions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_interactions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("job_interactions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_behavior_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("user_behavior_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("daily_analytics_summary")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("daily_analytics_summary")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("realtime_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("realtime_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("conversion_funnels")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("conversion_funnels")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_users")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("admin_users")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_logs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("system_logs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_actions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("admin_actions")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("system_metrics")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("content_moderation")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("content_moderation")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("backup_logs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("backup_logs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_configs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA temp.table_info("system_configs")
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE users (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	email VARCHAR(255) NOT NULL, 
+	phone VARCHAR(20), 
+	hashed_password VARCHAR(255) NOT NULL, 
+	role VARCHAR(10), 
+	status VARCHAR(20), 
+	first_name VARCHAR(100) NOT NULL, 
+	last_name VARCHAR(100) NOT NULL, 
+	date_of_birth DATETIME, 
+	gender VARCHAR(10), 
+	address TEXT, 
+	city VARCHAR(100), 
+	state VARCHAR(100), 
+	pincode VARCHAR(10), 
+	education_level VARCHAR(100), 
+	experience_years INTEGER, 
+	current_job_title VARCHAR(200), 
+	skills JSON, 
+	preferred_job_categories JSON, 
+	preferred_locations JSON, 
+	created_at DATETIME NOT NULL, 
+	updated_at DATETIME, 
+	last_login DATETIME, 
+	email_verified BOOLEAN, 
+	phone_verified BOOLEAN, 
+	signup_source VARCHAR(100), 
+	utm_source VARCHAR(100), 
+	utm_medium VARCHAR(100), 
+	utm_campaign VARCHAR(100), 
+	profile_completion_score INTEGER, 
+	resume_uploaded BOOLEAN, 
+	photo_uploaded BOOLEAN, 
+	profile_public BOOLEAN, 
+	email_notifications BOOLEAN, 
+	sms_notifications BOOLEAN, 
+	company_name VARCHAR(200), 
+	company_size VARCHAR(50), 
+	industry VARCHAR(100), 
+	company_description TEXT, 
+	company_website VARCHAR(255), 
+	total_applications INTEGER, 
+	total_job_views INTEGER, 
+	total_searches INTEGER, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_users_email ON users (email)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00044s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_phone ON users (phone)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_role ON users (role)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00051s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_role_status ON users (role, status)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_location ON users (city, state)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_company_name ON users (company_name)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_status ON users (status)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_education_exp ON users (education_level, experience_years)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_created ON users (created_at)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00051s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_employer ON users (role, company_name)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_industry ON users (industry)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_city ON users (city)
+2025-09-22 17:37:42 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_state ON users (state)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_pincode ON users (pincode)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_education_level ON users (education_level)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_experience_years ON users (experience_years)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_id ON users (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_users_last_login ON users (last_login)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_users_user_id ON users (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_profiles (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	about TEXT, 
+	resume_url VARCHAR(500), 
+	portfolio_url VARCHAR(500), 
+	linkedin_url VARCHAR(500), 
+	photo_url VARCHAR(500), 
+	work_experience JSON, 
+	education_details JSON, 
+	certifications JSON, 
+	languages JSON, 
+	expected_salary_min INTEGER, 
+	expected_salary_max INTEGER, 
+	preferred_job_type VARCHAR(50), 
+	willing_to_relocate BOOLEAN, 
+	notice_period VARCHAR(50), 
+	hobbies JSON, 
+	achievements JSON, 
+	"references" JSON, 
+	profile_visibility VARCHAR(20), 
+	allow_recruiter_contact BOOLEAN, 
+	show_salary_expectations BOOLEAN, 
+	created_at DATETIME, 
+	updated_at DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_profiles_id ON user_profiles (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_profile_visibility ON user_profiles (profile_visibility)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_user_profiles_user_id ON user_profiles (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_activities (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	activity_type VARCHAR(100) NOT NULL, 
+	activity_data JSON, 
+	timestamp DATETIME NOT NULL, 
+	session_id VARCHAR(100), 
+	ip_address VARCHAR(45), 
+	user_agent TEXT, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_activity_daily ON user_activities (date(timestamp), activity_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_activities_id ON user_activities (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_activities_timestamp ON user_activities (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00028s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_activity_user_type_time ON user_activities (user_id, activity_type, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_activities_activity_type ON user_activities (activity_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_activities_user_id ON user_activities (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_activities_session_id ON user_activities (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_preferences (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	job_alerts_enabled BOOLEAN, 
+	alert_frequency VARCHAR(20), 
+	alert_keywords JSON, 
+	alert_locations JSON, 
+	alert_categories JSON, 
+	email_job_matches BOOLEAN, 
+	email_application_updates BOOLEAN, 
+	email_newsletter BOOLEAN, 
+	sms_urgent_notifications BOOLEAN, 
+	profile_searchable BOOLEAN, 
+	contact_info_visible BOOLEAN, 
+	allow_analytics_tracking BOOLEAN, 
+	preferred_language VARCHAR(10), 
+	timezone VARCHAR(50), 
+	currency VARCHAR(10), 
+	updated_at DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_user_preferences_user_id ON user_preferences (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_preferences_id ON user_preferences (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_verifications (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	verification_type VARCHAR(50) NOT NULL, 
+	verification_token VARCHAR(255), 
+	verified BOOLEAN, 
+	created_at DATETIME, 
+	verified_at DATETIME, 
+	expires_at DATETIME, 
+	verification_data JSON, 
+	PRIMARY KEY (id), 
+	UNIQUE (verification_token)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_verifications_expires_at ON user_verifications (expires_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_verifications_verification_type ON user_verifications (verification_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_verifications_id ON user_verifications (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_verifications_user_id ON user_verifications (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_verification_token ON user_verifications (verification_token)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_verifications_verified ON user_verifications (verified)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_verification_user_type ON user_verifications (user_id, verification_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE jobs (
+	id INTEGER NOT NULL, 
+	job_id VARCHAR(50) NOT NULL, 
+	title VARCHAR(200) NOT NULL, 
+	description TEXT NOT NULL, 
+	requirements TEXT, 
+	responsibilities TEXT, 
+	job_type VARCHAR(10) NOT NULL, 
+	category VARCHAR(100) NOT NULL, 
+	subcategory VARCHAR(100), 
+	location_city VARCHAR(100) NOT NULL, 
+	location_state VARCHAR(100), 
+	location_area VARCHAR(200), 
+	remote_allowed BOOLEAN, 
+	salary_min INTEGER, 
+	salary_max INTEGER, 
+	salary_currency VARCHAR(10), 
+	salary_period VARCHAR(20), 
+	experience_min INTEGER, 
+	experience_max INTEGER, 
+	education_level VARCHAR(100), 
+	skills_required JSON, 
+	skills_preferred JSON, 
+	employer_id VARCHAR(50) NOT NULL, 
+	employer_name VARCHAR(200) NOT NULL, 
+	employer_type VARCHAR(13) NOT NULL, 
+	company_size VARCHAR(50), 
+	application_deadline DATETIME, 
+	application_method VARCHAR(50), 
+	application_url VARCHAR(500), 
+	contact_email VARCHAR(255), 
+	contact_phone VARCHAR(20), 
+	status VARCHAR(7), 
+	created_at DATETIME NOT NULL, 
+	updated_at DATETIME, 
+	published_at DATETIME, 
+	expires_at DATETIME, 
+	views_count INTEGER, 
+	applications_count INTEGER, 
+	shares_count INTEGER, 
+	saves_count INTEGER, 
+	slug VARCHAR(300), 
+	meta_description VARCHAR(500), 
+	featured BOOLEAN, 
+	urgent BOOLEAN, 
+	government_scheme VARCHAR(100), 
+	reservation_category JSON, 
+	age_limit_min INTEGER, 
+	age_limit_max INTEGER, 
+	benefits JSON, 
+	working_hours VARCHAR(100), 
+	interview_process TEXT, 
+	additional_info JSON, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00041s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_created_at ON jobs (created_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_remote_allowed ON jobs (remote_allowed)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_published_at ON jobs (published_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_location_state ON jobs (location_state)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_status ON jobs (status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_location_city ON jobs (location_city)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_search ON jobs (title, category, location_city)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00047s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_expires_at ON jobs (expires_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_analytics ON jobs (views_count, applications_count)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00047s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_published ON jobs (published_at, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_subcategory ON jobs (subcategory)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_employer_status ON jobs (employer_id, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_views_count ON jobs (views_count)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00041s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_application_deadline ON jobs (application_deadline)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_category ON jobs (category)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_category_status ON jobs (category, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_employer_type ON jobs (employer_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_applications_count ON jobs (applications_count)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_jobs_slug ON jobs (slug)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_location_type ON jobs (location_city, job_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_employer_name ON jobs (employer_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_job_type ON jobs (job_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_featured ON jobs (featured)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_title ON jobs (title)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_employer_id ON jobs (employer_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00046s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_jobs_job_id ON jobs (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_education_level ON jobs (education_level)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_urgent ON jobs (urgent)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_experience_max ON jobs (experience_max)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_government_scheme ON jobs (government_scheme)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_experience_min ON jobs (experience_min)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_id ON jobs (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_salary_max ON jobs (salary_max)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_jobs_salary_min ON jobs (salary_min)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE job_applications (
+	id INTEGER NOT NULL, 
+	application_id VARCHAR(50) NOT NULL, 
+	job_id VARCHAR(50) NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	status VARCHAR(19), 
+	applied_at DATETIME NOT NULL, 
+	updated_at DATETIME, 
+	resume_url VARCHAR(500), 
+	cover_letter TEXT, 
+	portfolio_url VARCHAR(500), 
+	additional_documents JSON, 
+	applicant_name VARCHAR(200) NOT NULL, 
+	applicant_email VARCHAR(255) NOT NULL, 
+	applicant_phone VARCHAR(20), 
+	applicant_experience INTEGER, 
+	applicant_location VARCHAR(100), 
+	applicant_skills JSON, 
+	viewed_by_employer BOOLEAN, 
+	employer_notes TEXT, 
+	rating INTEGER, 
+	interview_scheduled BOOLEAN, 
+	interview_date DATETIME, 
+	interview_mode VARCHAR(50), 
+	interview_location VARCHAR(200), 
+	interview_notes TEXT, 
+	selected BOOLEAN, 
+	rejection_reason VARCHAR(100), 
+	feedback TEXT, 
+	source VARCHAR(100), 
+	time_to_apply INTEGER, 
+	session_id VARCHAR(100), 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_application_job_status ON job_applications (job_id, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00042s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_application_user_status ON job_applications (user_id, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_status ON job_applications (status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_application_employer ON job_applications (job_id, viewed_by_employer)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_application_timeline ON job_applications (applied_at, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_job_id ON job_applications (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_applied_at ON job_applications (applied_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_viewed_by_employer ON job_applications (viewed_by_employer)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_selected ON job_applications (selected)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_job_applications_application_id ON job_applications (application_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_id ON job_applications (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_applications_user_id ON job_applications (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE saved_jobs (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	job_id VARCHAR(50) NOT NULL, 
+	saved_at DATETIME NOT NULL, 
+	notes TEXT, 
+	applied BOOLEAN, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_saved_jobs_job_id ON saved_jobs (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_saved_jobs_applied ON saved_jobs (applied)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_saved_user_job ON saved_jobs (user_id, job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_saved_jobs_id ON saved_jobs (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_saved_jobs_user_id ON saved_jobs (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_saved_applied ON saved_jobs (user_id, applied)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE job_alerts (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	alert_name VARCHAR(100) NOT NULL, 
+	keywords JSON, 
+	categories JSON, 
+	locations JSON, 
+	job_types JSON, 
+	salary_min INTEGER, 
+	experience_min INTEGER, 
+	experience_max INTEGER, 
+	remote_only BOOLEAN, 
+	frequency VARCHAR(20), 
+	active BOOLEAN, 
+	created_at DATETIME, 
+	last_sent DATETIME, 
+	total_sent INTEGER, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_alert_user_active ON job_alerts (user_id, active)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_alerts_active ON job_alerts (active)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_alerts_user_id ON job_alerts (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_alerts_id ON job_alerts (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE job_views (
+	id INTEGER NOT NULL, 
+	job_id VARCHAR(50) NOT NULL, 
+	user_id VARCHAR(50), 
+	session_id VARCHAR(100), 
+	viewed_at DATETIME NOT NULL, 
+	time_spent INTEGER, 
+	referrer VARCHAR(500), 
+	search_query VARCHAR(200), 
+	ip_address VARCHAR(45), 
+	user_agent TEXT, 
+	device_type VARCHAR(20), 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_jobview_user_time ON job_views (user_id, viewed_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_views_id ON job_views (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_jobview_job_time ON job_views (job_id, viewed_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_jobview_daily ON job_views (date(viewed_at), job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_views_session_id ON job_views (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_views_job_id ON job_views (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_views_viewed_at ON job_views (viewed_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_views_user_id ON job_views (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE job_categories (
+	id INTEGER NOT NULL, 
+	name VARCHAR(100) NOT NULL, 
+	slug VARCHAR(100) NOT NULL, 
+	description TEXT, 
+	parent_id INTEGER, 
+	level INTEGER, 
+	icon VARCHAR(100), 
+	color VARCHAR(20), 
+	"order" INTEGER, 
+	jobs_count INTEGER, 
+	popular BOOLEAN, 
+	active BOOLEAN, 
+	created_at DATETIME, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(parent_id) REFERENCES job_categories (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_category_parent_order ON job_categories (parent_id, "order")
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_category_active_popular ON job_categories (active, popular)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_popular ON job_categories (popular)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_job_categories_slug ON job_categories (slug)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_order ON job_categories ("order")
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_active ON job_categories (active)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_parent_id ON job_categories (parent_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_job_categories_name ON job_categories (name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00050s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_id ON job_categories (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_level ON job_categories (level)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_categories_jobs_count ON job_categories (jobs_count)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE analytics_events (
+	id INTEGER NOT NULL, 
+	event_name VARCHAR(100) NOT NULL, 
+	user_id VARCHAR(50), 
+	session_id VARCHAR(100) NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	properties JSON, 
+	page_url TEXT, 
+	referrer TEXT, 
+	user_agent TEXT, 
+	ip_address VARCHAR(45), 
+	created_at DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_analytics_events_user_id ON analytics_events (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_analytics_events_session_id ON analytics_events (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_analytics_events_id ON analytics_events (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00028s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_analytics_session_time ON analytics_events (session_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_analytics_daily ON analytics_events (event_name, date(timestamp))
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_analytics_event_time ON analytics_events (event_name, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_analytics_user_time ON analytics_events (user_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00073s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_analytics_events_timestamp ON analytics_events (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00041s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_analytics_events_event_name ON analytics_events (event_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE page_views (
+	id INTEGER NOT NULL, 
+	session_id VARCHAR(100) NOT NULL, 
+	user_id VARCHAR(50), 
+	page_path VARCHAR(500) NOT NULL, 
+	page_title VARCHAR(200), 
+	page_type VARCHAR(50), 
+	timestamp DATETIME NOT NULL, 
+	load_time FLOAT, 
+	time_on_page FLOAT, 
+	referrer TEXT, 
+	utm_source VARCHAR(100), 
+	utm_medium VARCHAR(100), 
+	utm_campaign VARCHAR(100), 
+	device_type VARCHAR(20), 
+	browser VARCHAR(50), 
+	os VARCHAR(50), 
+	country VARCHAR(50), 
+	region VARCHAR(100), 
+	city VARCHAR(100), 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00045s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_page_type ON page_views (page_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00045s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_session_id ON page_views (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00042s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_pageview_user_time ON page_views (user_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_id ON page_views (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_user_id ON page_views (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00042s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_timestamp ON page_views (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_pageview_daily ON page_views (date(timestamp), page_path)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_page_views_page_path ON page_views (page_path)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_pageview_path_time ON page_views (page_path, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_sessions (
+	id INTEGER NOT NULL, 
+	session_id VARCHAR(100) NOT NULL, 
+	user_id VARCHAR(50), 
+	started_at DATETIME NOT NULL, 
+	ended_at DATETIME, 
+	last_activity DATETIME, 
+	duration FLOAT, 
+	page_views INTEGER, 
+	events_count INTEGER, 
+	pages_visited JSON, 
+	landing_page VARCHAR(500), 
+	exit_page VARCHAR(500), 
+	referrer TEXT, 
+	user_agent TEXT, 
+	ip_address VARCHAR(45), 
+	country VARCHAR(50), 
+	city VARCHAR(100), 
+	converted BOOLEAN, 
+	conversion_type VARCHAR(50), 
+	conversion_value FLOAT, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00054s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_session_daily ON user_sessions (date(started_at))
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_sessions_last_activity ON user_sessions (last_activity)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_user_sessions_session_id ON user_sessions (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_sessions_user_id ON user_sessions (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_sessions_id ON user_sessions (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_session_user_started ON user_sessions (user_id, started_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_session_activity ON user_sessions (last_activity)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE job_interactions (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50), 
+	session_id VARCHAR(100), 
+	job_id INTEGER, 
+	interaction_type VARCHAR(50) NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	job_title VARCHAR(200), 
+	job_category VARCHAR(100), 
+	job_location VARCHAR(100), 
+	job_type VARCHAR(50), 
+	employer_type VARCHAR(50), 
+	user_experience_level VARCHAR(50), 
+	user_education VARCHAR(100), 
+	user_location VARCHAR(100), 
+	funnel_stage VARCHAR(50), 
+	conversion_path JSON, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_timestamp ON job_interactions (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_session_id ON job_interactions (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_interaction_user ON job_interactions (user_id, job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_interaction_type_time ON job_interactions (interaction_type, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_job_category ON job_interactions (job_category)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_user_id ON job_interactions (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00042s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_job_id ON job_interactions (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_id ON job_interactions (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_job_location ON job_interactions (job_location)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_job_interactions_interaction_type ON job_interactions (interaction_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_job_interaction_category ON job_interactions (job_category, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE user_behavior_metrics (
+	id INTEGER NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
+	total_sessions INTEGER, 
+	total_page_views INTEGER, 
+	total_events INTEGER, 
+	avg_session_duration FLOAT, 
+	jobs_viewed INTEGER, 
+	jobs_applied INTEGER, 
+	jobs_saved INTEGER, 
+	search_queries INTEGER, 
+	first_visit DATETIME, 
+	last_visit DATETIME, 
+	days_active INTEGER, 
+	retention_score FLOAT, 
+	conversions INTEGER, 
+	conversion_rate FLOAT, 
+	lifetime_value FLOAT, 
+	age_group VARCHAR(20), 
+	gender VARCHAR(10), 
+	education_level VARCHAR(50), 
+	location VARCHAR(100), 
+	preferred_job_categories JSON, 
+	preferred_locations JSON, 
+	preferred_job_types JSON, 
+	updated_at DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00045s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_metrics_conversion ON user_behavior_metrics (conversion_rate, conversions)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_user_metrics_activity ON user_behavior_metrics (last_visit, total_sessions)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_behavior_metrics_last_visit ON user_behavior_metrics (last_visit)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_user_behavior_metrics_user_id ON user_behavior_metrics (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_behavior_metrics_id ON user_behavior_metrics (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_user_behavior_metrics_first_visit ON user_behavior_metrics (first_visit)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE daily_analytics_summary (
+	id INTEGER NOT NULL, 
+	date DATETIME NOT NULL, 
+	unique_visitors INTEGER, 
+	new_users INTEGER, 
+	returning_users INTEGER, 
+	total_sessions INTEGER, 
+	total_page_views INTEGER, 
+	avg_session_duration FLOAT, 
+	bounce_rate FLOAT, 
+	job_searches INTEGER, 
+	job_views INTEGER, 
+	job_applications INTEGER, 
+	new_job_postings INTEGER, 
+	top_pages JSON, 
+	top_search_terms JSON, 
+	top_job_categories JSON, 
+	direct_traffic INTEGER, 
+	search_traffic INTEGER, 
+	social_traffic INTEGER, 
+	referral_traffic INTEGER, 
+	top_countries JSON, 
+	top_cities JSON, 
+	desktop_users INTEGER, 
+	mobile_users INTEGER, 
+	tablet_users INTEGER, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00044s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_daily_analytics_summary_id ON daily_analytics_summary (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_daily_analytics_summary_date ON daily_analytics_summary (date)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_daily_summary_date ON daily_analytics_summary (date)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE realtime_metrics (
+	id INTEGER NOT NULL, 
+	metric_name VARCHAR(100) NOT NULL, 
+	metric_value FLOAT NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	metric_type VARCHAR(50), 
+	dimensions JSON, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_realtime_metrics_timestamp ON realtime_metrics (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_realtime_name_time ON realtime_metrics (metric_name, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_realtime_metrics_metric_name ON realtime_metrics (metric_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_realtime_metrics_id ON realtime_metrics (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE conversion_funnels (
+	id INTEGER NOT NULL, 
+	funnel_name VARCHAR(100) NOT NULL, 
+	user_id VARCHAR(50), 
+	session_id VARCHAR(100), 
+	step_name VARCHAR(100) NOT NULL, 
+	step_order INTEGER NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	job_id INTEGER, 
+	conversion_value FLOAT, 
+	completed BOOLEAN, 
+	time_to_convert FLOAT, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_user_id ON conversion_funnels (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_funnel_name_step ON conversion_funnels (funnel_name, step_order)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_session_id ON conversion_funnels (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_timestamp ON conversion_funnels (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_job_id ON conversion_funnels (job_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_funnel_name ON conversion_funnels (funnel_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_step_name ON conversion_funnels (step_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00031s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_id ON conversion_funnels (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00028s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_funnel_completion ON conversion_funnels (funnel_name, completed)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_conversion_funnels_completed ON conversion_funnels (completed)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00058s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE admin_users (
+	id INTEGER NOT NULL, 
+	admin_id VARCHAR(50) NOT NULL, 
+	email VARCHAR(255) NOT NULL, 
+	hashed_password VARCHAR(255) NOT NULL, 
+	role VARCHAR(11) NOT NULL, 
+	first_name VARCHAR(100) NOT NULL, 
+	last_name VARCHAR(100) NOT NULL, 
+	phone VARCHAR(20), 
+	permissions JSON, 
+	can_manage_users BOOLEAN, 
+	can_manage_jobs BOOLEAN, 
+	can_view_analytics BOOLEAN, 
+	can_moderate_content BOOLEAN, 
+	can_access_system_logs BOOLEAN, 
+	active BOOLEAN, 
+	created_at DATETIME NOT NULL, 
+	last_login DATETIME, 
+	created_by VARCHAR(50), 
+	failed_login_attempts INTEGER, 
+	account_locked BOOLEAN, 
+	last_password_change DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_users_created_by ON admin_users (created_by)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_users_role ON admin_users (role)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_users_active ON admin_users (active)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_admin_users_email ON admin_users (email)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00042s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_users_id ON admin_users (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_admin_role_active ON admin_users (role, active)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00048s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_users_last_login ON admin_users (last_login)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_admin_users_admin_id ON admin_users (admin_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00035s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE system_logs (
+	id INTEGER NOT NULL, 
+	level VARCHAR(8) NOT NULL, 
+	message TEXT NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	module VARCHAR(100), 
+	function VARCHAR(100), 
+	line_number INTEGER, 
+	user_id VARCHAR(50), 
+	admin_id VARCHAR(50), 
+	session_id VARCHAR(100), 
+	request_id VARCHAR(100), 
+	ip_address VARCHAR(45), 
+	user_agent TEXT, 
+	request_method VARCHAR(10), 
+	request_path VARCHAR(500), 
+	extra_data JSON, 
+	exception_type VARCHAR(100), 
+	exception_traceback TEXT, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00052s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_log_module_time ON system_logs (module, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_id ON system_logs (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_request_id ON system_logs (request_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_session_id ON system_logs (session_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_module ON system_logs (module)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00085s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_log_level_time ON system_logs (level, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00067s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_admin_id ON system_logs (admin_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00056s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_timestamp ON system_logs (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00051s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_log_daily ON system_logs (date(timestamp), level)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00053s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_level ON system_logs (level)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00067s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_logs_user_id ON system_logs (user_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00073s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_log_user_time ON system_logs (user_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00092s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE admin_actions (
+	id INTEGER NOT NULL, 
+	admin_id VARCHAR(50) NOT NULL, 
+	action_type VARCHAR(100) NOT NULL, 
+	action_description TEXT NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	target_type VARCHAR(50), 
+	target_id VARCHAR(50), 
+	ip_address VARCHAR(45), 
+	user_agent TEXT, 
+	session_id VARCHAR(100), 
+	before_data JSON, 
+	after_data JSON, 
+	success BOOLEAN, 
+	error_message TEXT, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00091s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_target_id ON admin_actions (target_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00090s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_admin_action_target ON admin_actions (target_type, target_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00054s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_target_type ON admin_actions (target_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00067s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_admin_action_admin_time ON admin_actions (admin_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00059s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_success ON admin_actions (success)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00060s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_admin_action_type_time ON admin_actions (action_type, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00085s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_admin_id ON admin_actions (admin_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00041s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_id ON admin_actions (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_timestamp ON admin_actions (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00045s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_admin_actions_action_type ON admin_actions (action_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00039s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE system_metrics (
+	id INTEGER NOT NULL, 
+	metric_name VARCHAR(100) NOT NULL, 
+	metric_value VARCHAR(500) NOT NULL, 
+	timestamp DATETIME NOT NULL, 
+	category VARCHAR(50), 
+	severity VARCHAR(20), 
+	metrics_metadata JSON, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00040s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_metrics_severity ON system_metrics (severity)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00044s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_metrics_category_severity ON system_metrics (category, severity)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00045s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_metrics_category ON system_metrics (category)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00038s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_metrics_name_time ON system_metrics (metric_name, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00044s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_metrics_id ON system_metrics (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00053s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_metrics_timestamp ON system_metrics (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00056s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_metrics_metric_name ON system_metrics (metric_name)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00060s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE content_moderation (
+	id INTEGER NOT NULL, 
+	moderator_id VARCHAR(50) NOT NULL, 
+	content_type VARCHAR(50) NOT NULL, 
+	content_id VARCHAR(50) NOT NULL, 
+	action VARCHAR(50) NOT NULL, 
+	reason VARCHAR(200), 
+	notes TEXT, 
+	timestamp DATETIME NOT NULL, 
+	automated BOOLEAN, 
+	confidence_score INTEGER, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00061s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_moderation_action_time ON content_moderation (action, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00050s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_content_type ON content_moderation (content_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00050s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_timestamp ON content_moderation (timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00073s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_id ON content_moderation (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00074s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_moderator_id ON content_moderation (moderator_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00043s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_content_id ON content_moderation (content_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00063s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_moderation_content ON content_moderation (content_type, content_id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00044s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_moderation_moderator_time ON content_moderation (moderator_id, timestamp)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00041s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_automated ON content_moderation (automated)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00050s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_content_moderation_action ON content_moderation (action)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00034s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE backup_logs (
+	id INTEGER NOT NULL, 
+	backup_type VARCHAR(50) NOT NULL, 
+	status VARCHAR(20) NOT NULL, 
+	started_at DATETIME NOT NULL, 
+	completed_at DATETIME, 
+	backup_size INTEGER, 
+	backup_location VARCHAR(500), 
+	tables_backed_up INTEGER, 
+	records_backed_up INTEGER, 
+	error_message TEXT, 
+	triggered_by VARCHAR(50), 
+	backup_metadata JSON, 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00037s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_backup_logs_backup_type ON backup_logs (backup_type)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00049s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_backup_started ON backup_logs (started_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX idx_backup_type_status ON backup_logs (backup_type, status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00033s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_backup_logs_started_at ON backup_logs (started_at)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_backup_logs_status ON backup_logs (status)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_backup_logs_id ON backup_logs (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00032s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - 
+CREATE TABLE system_configs (
+	id INTEGER NOT NULL, 
+	"key" VARCHAR(100) NOT NULL, 
+	value TEXT NOT NULL, 
+	description TEXT, 
+	config_type VARCHAR(50), 
+	created_at DATETIME, 
+	updated_at DATETIME, 
+	updated_by VARCHAR(50), 
+	PRIMARY KEY (id)
+)
+
+
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00036s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE UNIQUE INDEX ix_system_configs_key ON system_configs ("key")
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00029s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - CREATE INDEX ix_system_configs_id ON system_configs (id)
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [no key 0.00030s] ()
+2025-09-22 17:37:43 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:37:43 - app.core.database - INFO - database - create_tables:136 - Database tables created successfully
+2025-09-22 17:37:43 - app.main - INFO - main - lifespan:48 - Database tables created/verified
+2025-09-22 17:37:43 - app.main - INFO - main - lifespan:53 - Analytics system initialized
+2025-09-22 17:37:43 - uvicorn.error - INFO - on - startup:60 - Application startup complete.
+2025-09-22 17:37:58 - uvicorn.error - INFO - server - shutdown:264 - Shutting down
+2025-09-22 17:37:58 - uvicorn.error - INFO - on - shutdown:65 - Waiting for application shutdown.
+2025-09-22 17:37:58 - app.main - INFO - main - lifespan:58 - Shutting down Punjab Rozgar Portal Backend...
+2025-09-22 17:37:58 - uvicorn.error - INFO - on - shutdown:76 - Application shutdown complete.
+2025-09-22 17:37:58 - uvicorn.error - INFO - server - serve:86 - Finished server process [15744]
+2025-09-22 17:38:09 - uvicorn.error - INFO - server - serve:76 - Started server process [3372]
+2025-09-22 17:38:09 - uvicorn.error - INFO - on - startup:46 - Waiting for application startup.
+2025-09-22 17:38:09 - app.main - INFO - main - lifespan:44 - Starting Punjab Rozgar Portal Backend...
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("users")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_profiles")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_activities")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_preferences")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_verifications")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("jobs")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_applications")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("saved_jobs")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_alerts")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_views")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_categories")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("analytics_events")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("page_views")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_sessions")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_interactions")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_behavior_metrics")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("daily_analytics_summary")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("realtime_metrics")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("conversion_funnels")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_users")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_logs")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_actions")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_metrics")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("content_moderation")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("backup_logs")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_configs")
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:38:09 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:38:09 - app.core.database - INFO - database - create_tables:136 - Database tables created successfully
+2025-09-22 17:38:09 - app.main - INFO - main - lifespan:48 - Database tables created/verified
+2025-09-22 17:38:09 - app.main - INFO - main - lifespan:53 - Analytics system initialized
+2025-09-22 17:38:09 - uvicorn.error - INFO - on - startup:60 - Application startup complete.
+2025-09-22 17:38:23 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51436 - "GET /health HTTP/1.1" 200
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00056s] ('emp_e2e@example.com',)
+2025-09-22 17:38:23 - passlib.handlers.bcrypt - WARNING - bcrypt - _load_backend_mixin:622 - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - INSERT INTO users (user_id, email, phone, hashed_password, role, status, first_name, last_name, date_of_birth, gender, address, city, state, pincode, education_level, experience_years, current_job_title, skills, preferred_job_categories, preferred_locations, created_at, updated_at, last_login, email_verified, phone_verified, signup_source, utm_source, utm_medium, utm_campaign, profile_completion_score, resume_uploaded, photo_uploaded, profile_public, email_notifications, sms_notifications, company_name, company_size, industry, company_description, company_website, total_applications, total_job_views, total_searches) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00111s] ('user_78b3865c0560', 'emp_e2e@example.com', None, '$2b$12$gK7MwYcW/nWCB0xyqK19PuraTqAdAFmxa0Cqxo94qdPAiBbq3VUGq', 'EMPLOYER', 'PENDING_VERIFICATION', 'Emp', 'Loyer', None, None, None, 'Lahore', 'Punjab', None, None, None, None, '[]', '[]', '[]', '2025-09-22 12:08:23.436289', '2025-09-22 12:08:23.436289', None, 0, 0, None, None, None, None, 0, 0, 0, 1, 1, 0, None, None, None, None, None, 0, 0, 0)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.id = ?
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00056s] (1,)
+2025-09-22 17:38:23 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51437 - "POST /api/v1/auth/register HTTP/1.1" 200
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.2464s ago] ('emp_e2e@example.com',)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - UPDATE users SET updated_at=?, last_login=? WHERE users.id = ?
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00038s] ('2025-09-22 12:08:23.695374', '2025-09-22 12:08:23.694375', 1)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:38:23 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51438 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.user_id = ?
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00034s] ('user_78b3865c0560',)
+2025-09-22 17:38:23 - app.core.database - ERROR - database - get_database:105 - Database session error: no running event loop
+2025-09-22 17:38:23 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:38:23 - app.main - ERROR - main - general_exception_handler:198 - Unhandled exception: no running event loop
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 98, in receive
+    return self.receive_nowait()
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 93, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 78, in call_next
+    message = await recv_stream.receive()
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 118, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "d:\capstone-analytics\backend\app\middleware\analytics.py", line 25, in dispatch
+    response = await call_next(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 84, in call_next
+    raise app_exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "d:\capstone-analytics\backend\app\middleware\security.py", line 71, in dispatch
+    response = await call_next(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 84, in call_next
+    raise app_exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\trustedhost.py", line 34, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\routing.py", line 264, in app
+    solved_result = await solve_dependencies(
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\dependencies\utils.py", line 594, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\_backends\_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\_backends\_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "d:\capstone-analytics\backend\app\analytics\tracker.py", line 466, in get_analytics_tracker
+    _analytics_tracker = AnalyticsTracker()
+  File "d:\capstone-analytics\backend\app\analytics\tracker.py", line 61, in __init__
+    asyncio.create_task(self._background_processor())
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 360, in create_task
+    loop = events.get_running_loop()
+RuntimeError: no running event loop
+2025-09-22 17:38:23 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51439 - "POST /api/v1/jobs/ HTTP/1.1" 500
+2025-09-22 17:38:23 - uvicorn.error - ERROR - httptools_impl - run_asgi:431 - Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 98, in receive
+    return self.receive_nowait()
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 93, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 78, in call_next
+    message = await recv_stream.receive()
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 118, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "d:\capstone-analytics\backend\app\middleware\analytics.py", line 25, in dispatch
+    response = await call_next(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 84, in call_next
+    raise app_exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "d:\capstone-analytics\backend\app\middleware\security.py", line 71, in dispatch
+    response = await call_next(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 84, in call_next
+    raise app_exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\trustedhost.py", line 34, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 20, in __call__
+    raise e
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\routing.py", line 264, in app
+    solved_result = await solve_dependencies(
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\dependencies\utils.py", line 594, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\_backends\_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\_backends\_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "d:\capstone-analytics\backend\app\analytics\tracker.py", line 466, in get_analytics_tracker
+    _analytics_tracker = AnalyticsTracker()
+  File "d:\capstone-analytics\backend\app\analytics\tracker.py", line 61, in __init__
+    asyncio.create_task(self._background_processor())
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 360, in create_task
+    loop = events.get_running_loop()
+RuntimeError: no running event loop
+2025-09-22 17:39:05 - uvicorn.error - INFO - server - shutdown:264 - Shutting down
+2025-09-22 17:39:06 - uvicorn.error - INFO - on - shutdown:65 - Waiting for application shutdown.
+2025-09-22 17:39:06 - app.main - INFO - main - lifespan:58 - Shutting down Punjab Rozgar Portal Backend...
+2025-09-22 17:39:06 - uvicorn.error - INFO - on - shutdown:76 - Application shutdown complete.
+2025-09-22 17:39:06 - uvicorn.error - INFO - server - serve:86 - Finished server process [3372]
+2025-09-22 17:39:07 - uvicorn.error - INFO - server - serve:76 - Started server process [7336]
+2025-09-22 17:39:07 - uvicorn.error - INFO - on - startup:46 - Waiting for application startup.
+2025-09-22 17:39:07 - app.main - INFO - main - lifespan:44 - Starting Punjab Rozgar Portal Backend...
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("users")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_profiles")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_activities")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_preferences")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_verifications")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("jobs")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_applications")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("saved_jobs")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_alerts")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_views")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_categories")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("analytics_events")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("page_views")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_sessions")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_interactions")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_behavior_metrics")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("daily_analytics_summary")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("realtime_metrics")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("conversion_funnels")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_users")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_logs")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_actions")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_metrics")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("content_moderation")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("backup_logs")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_configs")
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:39:07 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:39:07 - app.core.database - INFO - database - create_tables:136 - Database tables created successfully
+2025-09-22 17:39:07 - app.main - INFO - main - lifespan:48 - Database tables created/verified
+2025-09-22 17:39:07 - app.main - INFO - main - lifespan:53 - Analytics system initialized
+2025-09-22 17:39:07 - uvicorn.error - INFO - on - startup:60 - Application startup complete.
+2025-09-22 17:39:43 - uvicorn.error - INFO - server - shutdown:264 - Shutting down
+2025-09-22 17:39:43 - uvicorn.error - INFO - on - shutdown:65 - Waiting for application shutdown.
+2025-09-22 17:39:43 - app.main - INFO - main - lifespan:58 - Shutting down Punjab Rozgar Portal Backend...
+2025-09-22 17:39:43 - uvicorn.error - INFO - on - shutdown:76 - Application shutdown complete.
+2025-09-22 17:39:43 - uvicorn.error - INFO - server - serve:86 - Finished server process [7336]
+2025-09-22 17:42:20 - uvicorn.error - INFO - server - serve:76 - Started server process [17036]
+2025-09-22 17:42:20 - uvicorn.error - INFO - on - startup:46 - Waiting for application startup.
+2025-09-22 17:42:20 - app.main - INFO - main - lifespan:44 - Starting Punjab Rozgar Portal Backend...
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("users")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_profiles")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_activities")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_preferences")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_verifications")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("jobs")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_applications")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("saved_jobs")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_alerts")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_views")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_categories")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("analytics_events")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("page_views")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_sessions")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("job_interactions")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("user_behavior_metrics")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("daily_analytics_summary")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("realtime_metrics")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("conversion_funnels")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_users")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_logs")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("admin_actions")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_metrics")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("content_moderation")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("backup_logs")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - PRAGMA main.table_info("system_configs")
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [raw sql] ()
+2025-09-22 17:42:20 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:20 - app.core.database - INFO - database - create_tables:136 - Database tables created successfully
+2025-09-22 17:42:20 - app.main - INFO - main - lifespan:48 - Database tables created/verified
+2025-09-22 17:42:20 - app.main - INFO - main - lifespan:53 - Analytics system initialized
+2025-09-22 17:42:20 - uvicorn.error - INFO - on - startup:60 - Application startup complete.
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51681 - "GET /health HTTP/1.1" 200
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00052s] ('emp_e2e@example.com',)
+2025-09-22 17:42:43 - app.core.database - ERROR - database - get_database:105 - Database session error: 
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51682 - "POST /api/v1/auth/register HTTP/1.1" 400
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.009566s ago] ('emp_e2e@example.com',)
+2025-09-22 17:42:43 - passlib.handlers.bcrypt - WARNING - bcrypt - _load_backend_mixin:622 - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anwin\AppData\Local\Programs\Python\Python39\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - UPDATE users SET updated_at=?, last_login=? WHERE users.id = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00049s] ('2025-09-22 12:12:43.496820', '2025-09-22 12:12:43.495819', 1)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51683 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.user_id = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00034s] ('user_78b3865c0560',)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - INSERT INTO jobs (job_id, title, description, requirements, responsibilities, job_type, category, subcategory, location_city, location_state, location_area, remote_allowed, salary_min, salary_max, salary_currency, salary_period, experience_min, experience_max, education_level, skills_required, skills_preferred, employer_id, employer_name, employer_type, company_size, application_deadline, application_method, application_url, contact_email, contact_phone, status, created_at, updated_at, published_at, expires_at, views_count, applications_count, shares_count, saves_count, slug, meta_description, featured, urgent, government_scheme, reservation_category, age_limit_min, age_limit_max, benefits, working_hours, interview_process, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00064s] ('job_763addbae746', 'E2E Test Engineer', 'Automate and validate flows', None, None, 'FULL_TIME', 'Engineering', None, 'Lahore', 'Punjab', None, 0, None, None, 'INR', 'monthly', 0, None, None, '[]', '[]', 'user_78b3865c0560', 'Emp Loyer', 'PRIVATE', None, '2025-09-29 12:12:43.505822', 'online', None, 'emp_e2e@example.com', None, 'DRAFT', '2025-09-22 12:12:43.516824', '2025-09-22 12:12:43.516824', None, None, 0, 0, 0, 0, None, None, 0, 0, None, '[]', None, None, '[]', None, None, '{}')
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT jobs.id, jobs.job_id, jobs.title, jobs.description, jobs.requirements, jobs.responsibilities, jobs.job_type, jobs.category, jobs.subcategory, jobs.location_city, jobs.location_state, jobs.location_area, jobs.remote_allowed, jobs.salary_min, jobs.salary_max, jobs.salary_currency, jobs.salary_period, jobs.experience_min, jobs.experience_max, jobs.education_level, jobs.skills_required, jobs.skills_preferred, jobs.employer_id, jobs.employer_name, jobs.employer_type, jobs.company_size, jobs.application_deadline, jobs.application_method, jobs.application_url, jobs.contact_email, jobs.contact_phone, jobs.status, jobs.created_at, jobs.updated_at, jobs.published_at, jobs.expires_at, jobs.views_count, jobs.applications_count, jobs.shares_count, jobs.saves_count, jobs.slug, jobs.meta_description, jobs.featured, jobs.urgent, jobs.government_scheme, jobs.reservation_category, jobs.age_limit_min, jobs.age_limit_max, jobs.benefits, jobs.working_hours, jobs.interview_process, jobs.additional_info 
+FROM jobs 
+WHERE jobs.id = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00051s] (1,)
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51684 - "POST /api/v1/jobs/ HTTP/1.1" 200
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.294s ago] ('admin_e2e@example.com',)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - INSERT INTO users (user_id, email, phone, hashed_password, role, status, first_name, last_name, date_of_birth, gender, address, city, state, pincode, education_level, experience_years, current_job_title, skills, preferred_job_categories, preferred_locations, created_at, updated_at, last_login, email_verified, phone_verified, signup_source, utm_source, utm_medium, utm_campaign, profile_completion_score, resume_uploaded, photo_uploaded, profile_public, email_notifications, sms_notifications, company_name, company_size, industry, company_description, company_website, total_applications, total_job_views, total_searches) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00067s] ('user_bb1ea4a9521a', 'admin_e2e@example.com', None, '$2b$12$ZuGzzQuC861sQXvKg4vnqula5mUv.JQcpwtZODfY8SLlr108C6CJa', 'JOB_SEEKER', 'PENDING_VERIFICATION', 'Ad', 'Min', None, None, None, 'Lahore', 'Punjab', None, None, None, None, '[]', '[]', '[]', '2025-09-22 12:12:43.741876', '2025-09-22 12:12:43.741876', None, 0, 0, None, None, None, None, 0, 0, 0, 1, 1, 0, None, None, None, None, None, 0, 0, 0)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.id = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [generated in 0.00029s] (2,)
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51685 - "POST /api/v1/auth/register HTTP/1.1" 200
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.515s ago] ('admin_e2e@example.com',)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - UPDATE users SET updated_at=?, last_login=? WHERE users.id = ?
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.4719s ago] ('2025-09-22 12:12:43.968925', '2025-09-22 12:12:43.967925', 2)
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:43 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51687 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-22 17:42:43 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.email = ?
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.7595s ago] ('admin_e2e@example.com',)
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - UPDATE users SET updated_at=?, last_login=? WHERE users.id = ?
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.7138s ago] ('2025-09-22 12:12:44.209981', '2025-09-22 12:12:44.209981', 2)
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _commit_impl:1134 - COMMIT
+2025-09-22 17:42:44 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51688 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _begin_impl:1091 - BEGIN (implicit)
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1901 - SELECT users.id, users.user_id, users.email, users.phone, users.hashed_password, users.role, users.status, users.first_name, users.last_name, users.date_of_birth, users.gender, users.address, users.city, users.state, users.pincode, users.education_level, users.experience_years, users.current_job_title, users.skills, users.preferred_job_categories, users.preferred_locations, users.created_at, users.updated_at, users.last_login, users.email_verified, users.phone_verified, users.signup_source, users.utm_source, users.utm_medium, users.utm_campaign, users.profile_completion_score, users.resume_uploaded, users.photo_uploaded, users.profile_public, users.email_notifications, users.sms_notifications, users.company_name, users.company_size, users.industry, users.company_description, users.company_website, users.total_applications, users.total_job_views, users.total_searches 
+FROM users 
+WHERE users.user_id = ?
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _exec_single_context:1906 - [cached since 0.7122s ago] ('user_bb1ea4a9521a',)
+2025-09-22 17:42:44 - app.core.database - ERROR - database - get_database:105 - Database session error: 
+2025-09-22 17:42:44 - sqlalchemy.engine.Engine - INFO - base - _rollback_impl:1117 - ROLLBACK
+2025-09-22 17:42:44 - uvicorn.access - INFO - httptools_impl - send:496 - 127.0.0.1:51689 - "PUT /api/v1/admin/jobs/job_763addbae746/status HTTP/1.1" 403
+2025-09-22 17:43:01 - uvicorn.error - INFO - server - shutdown:264 - Shutting down
+2025-09-22 17:43:01 - uvicorn.error - INFO - on - shutdown:65 - Waiting for application shutdown.
+2025-09-22 17:43:01 - app.main - INFO - main - lifespan:58 - Shutting down Punjab Rozgar Portal Backend...
+2025-09-22 17:43:01 - uvicorn.error - INFO - on - shutdown:76 - Application shutdown complete.
+2025-09-22 17:43:01 - uvicorn.error - INFO - server - serve:86 - Finished server process [17036]

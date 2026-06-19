@@ -1,0 +1,44 @@
+# FastAPI and ASGI server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database
+sqlalchemy[asyncio]==2.0.23
+aiosqlite==0.19.0
+alembic==1.12.1
+
+# Authentication and Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+bcrypt==4.1.2
+
+# Data validation and serialization
+pydantic[email]==2.5.0
+pydantic-settings==2.1.0
+
+# HTTP client (for external APIs if needed)
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Background tasks and async utilities
+asyncio-mqtt==0.14.0  # if MQTT needed for real-time features
+celery==5.3.4  # for background job processing
+redis==5.0.1  # for caching and sessions
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+
+# Production deployment
+gunicorn==21.2.0
+
+# Additional utilities
+python-dotenv==1.0.0  # for environment variables
+pillow==10.1.0  # for image processing if needed
+jinja2==3.1.2  # for email templates
+email-validator==2.1.0  # for email validation

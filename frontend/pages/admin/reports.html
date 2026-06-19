@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Admin Dashboard</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../js/punjab-analytics.js"></script>
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Controls */
+        .controls-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: auto auto auto 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            margin-bottom: 1rem;
+        }
+
+        .chart-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Full width charts */
+        .chart-full {
+            grid-column: 1 / -1;
+        }
+
+        .chart-full .chart-container {
+            height: 400px;
+        }
+
+        /* Summary Stats */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .summary-card .summary-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-card.users .summary-icon { color: #667eea; }
+        .summary-card.jobs .summary-icon { color: #28a745; }
+        .summary-card.companies .summary-icon { color: #ffc107; }
+        .summary-card.applications .summary-icon { color: #17a2b8; }
+
+        .summary-card .summary-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card .summary-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card .summary-change {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .summary-change.positive {
+            color: #28a745;
+        }
+
+        .summary-change.negative {
+            color: #dc3545;
+        }
+
+        /* Tables */
+        .table-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            background: #f8f9fa;
+        }
+
+        .section-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .metric-value {
+            font-weight: 600;
+        }
+
+        .metric-positive {
+            color: #28a745;
+        }
+
+        .metric-negative {
+            color: #dc3545;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .logout-btn {
+                position: relative;
+                margin: 1rem 2rem 0;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('admin', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Punjab Rozgar Portal</p>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+                    <li><a href="applications.html"><i class="fas fa-file-alt"></i> Applications</a></li>
+                    <li><a href="reports.html" class="active"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="../../index.html"><i class="fas fa-home"></i> Back to Portal</a></li>
+                </ul>
+            </nav>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Reports & Analytics</h1>
+                <p>Comprehensive insights and analytics for Punjab Rozgar Portal</p>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls-section">
+                <div class="controls-grid">
+                    <select class="filter-select" id="timeRangeFilter">
+                        <option value="7">Last 7 Days</option>
+                        <option value="30" selected>Last 30 Days</option>
+                        <option value="90">Last 3 Months</option>
+                        <option value="365">Last Year</option>
+                    </select>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="users">Users</option>
+                        <option value="jobs">Jobs</option>
+                        <option value="companies">Companies</option>
+                        <option value="applications">Applications</option>
+                    </select>
+                    <select class="filter-select" id="regionFilter">
+                        <option value="all">All Regions</option>
+                        <option value="chandigarh">Chandigarh</option>
+                        <option value="ludhiana">Ludhiana</option>
+                        <option value="amritsar">Amritsar</option>
+                        <option value="jalandhar">Jalandhar</option>
+                    </select>
+                    <div></div> <!-- Spacer -->
+                    <button class="btn btn-success" onclick="exportReport()">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="summary-grid">
+                <div class="summary-card users">
+                    <div class="summary-icon"><i class="fas fa-users"></i></div>
+                    <div class="summary-number" id="totalUsers">1,247</div>
+                    <div class="summary-label">Total Users</div>
+                    <div class="summary-change positive">+12% from last month</div>
+                </div>
+                <div class="summary-card jobs">
+                    <div class="summary-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="summary-number" id="totalJobs">2,156</div>
+                    <div class="summary-label">Total Jobs</div>
+                    <div class="summary-change positive">+8% from last month</div>
+                </div>
+                <div class="summary-card companies">
+                    <div class="summary-icon"><i class="fas fa-building"></i></div>
+                    <div class="summary-number" id="totalCompanies">487</div>
+                    <div class="summary-label">Total Companies</div>
+                    <div class="summary-change positive">+15% from last month</div>
+                </div>
+                <div class="summary-card applications">
+                    <div class="summary-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="summary-number" id="totalApplications">3,456</div>
+                    <div class="summary-label">Total Applications</div>
+                    <div class="summary-change positive">+23% from last month</div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- User Registration Trends -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h3>User Registration Trends</h3>
+                        <p>New user registrations over time</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="userTrendsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Job Application Status -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h3>Application Status Distribution</h3>
+                        <p>Current status of all job applications</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="applicationStatusChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Industry Distribution -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h3>Jobs by Industry</h3>
+                        <p>Distribution of job postings across industries</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="industryChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Regional Distribution -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h3>Regional Distribution</h3>
+                        <p>User and job distribution across Punjab regions</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="regionalChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Monthly Activity -->
+                <div class="chart-section chart-full">
+                    <div class="chart-header">
+                        <h3>Monthly Activity Overview</h3>
+                        <p>Comprehensive view of platform activity over the last 12 months</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="monthlyActivityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Performers Table -->
+            <div class="table-section">
+                <div class="section-header">
+                    <h3>Top Performing Companies</h3>
+                    <p>Companies with highest application rates and successful hires</p>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Active Jobs</th>
+                            <th>Total Applications</th>
+                            <th>Hire Rate</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tech Punjab Solutions</td>
+                            <td class="metric-value">12</td>
+                            <td class="metric-value">234</td>
+                            <td class="metric-value metric-positive">18.5%</td>
+                            <td class="metric-value">4.7/5</td>
+                        </tr>
+                        <tr>
+                            <td>PGIMER Chandigarh</td>
+                            <td class="metric-value">8</td>
+                            <td class="metric-value">189</td>
+                            <td class="metric-value metric-positive">22.3%</td>
+                            <td class="metric-value">4.9/5</td>
+                        </tr>
+                        <tr>
+                            <td>Punjab Education Board</td>
+                            <td class="metric-value">23</td>
+                            <td class="metric-value">456</td>
+                            <td class="metric-value metric-positive">15.2%</td>
+                            <td class="metric-value">4.5/5</td>
+                        </tr>
+                        <tr>
+                            <td>Punjab Industries Ltd</td>
+                            <td class="metric-value">5</td>
+                            <td class="metric-value">67</td>
+                            <td class="metric-value metric-positive">12.7%</td>
+                            <td class="metric-value">4.2/5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Key Metrics Table -->
+            <div class="table-section">
+                <div class="section-header">
+                    <h3>Key Performance Indicators</h3>
+                    <p>Important metrics tracking portal performance</p>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Current Value</th>
+                            <th>Previous Period</th>
+                            <th>Change</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User Engagement Rate</td>
+                            <td class="metric-value">73.2%</td>
+                            <td>68.5%</td>
+                            <td class="metric-positive">+4.7%</td>
+                            <td>75%</td>
+                        </tr>
+                        <tr>
+                            <td>Job Application Success Rate</td>
+                            <td class="metric-value">16.8%</td>
+                            <td>15.2%</td>
+                            <td class="metric-positive">+1.6%</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>Company Verification Rate</td>
+                            <td class="metric-value">87.3%</td>
+                            <td>84.1%</td>
+                            <td class="metric-positive">+3.2%</td>
+                            <td>90%</td>
+                        </tr>
+                        <tr>
+                            <td>Average Time to Hire</td>
+                            <td class="metric-value">18.5 days</td>
+                            <td>21.2 days</td>
+                            <td class="metric-positive">-2.7 days</td>
+                            <td>15 days</td>
+                        </tr>
+                        <tr>
+                            <td>Platform Uptime</td>
+                            <td class="metric-value">99.7%</td>
+                            <td>99.4%</td>
+                            <td class="metric-positive">+0.3%</td>
+                            <td>99.9%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function initializePage() {
+            // Check authentication
+            if (!authManager.isLoggedIn() || !authManager.isAdmin()) {
+                window.location.href = '../../pages/auth/login.html';
+                return;
+            }
+
+            // Track page view
+            trackEvent('Admin Reports Page Viewed', {
+                page_type: 'admin_reports'
+            });
+
+            // Initialize charts
+            initializeCharts();
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            document.getElementById('timeRangeFilter').addEventListener('change', updateCharts);
+            document.getElementById('categoryFilter').addEventListener('change', updateCharts);
+            document.getElementById('regionFilter').addEventListener('change', updateCharts);
+        }
+
+        function initializeCharts() {
+            // User Trends Chart
+            const userTrendsCtx = document.getElementById('userTrendsChart').getContext('2d');
+            new Chart(userTrendsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [45, 67, 82, 91],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Application Status Chart
+            const applicationStatusCtx = document.getElementById('applicationStatusChart').getContext('2d');
+            new Chart(applicationStatusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Pending', 'Shortlisted', 'Interviewed', 'Hired', 'Rejected'],
+                    datasets: [{
+                        data: [892, 567, 234, 234, 1529],
+                        backgroundColor: [
+                            '#ffc107',
+                            '#17a2b8',
+                            '#6f42c1',
+                            '#28a745',
+                            '#dc3545'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Industry Chart
+            const industryCtx = document.getElementById('industryChart').getContext('2d');
+            new Chart(industryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Technology', 'Healthcare', 'Education', 'Manufacturing', 'Government'],
+                    datasets: [{
+                        label: 'Jobs',
+                        data: [456, 378, 234, 189, 123],
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Regional Chart
+            const regionalCtx = document.getElementById('regionalChart').getContext('2d');
+            new Chart(regionalCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Chandigarh', 'Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala'],
+                    datasets: [{
+                        label: 'Users',
+                        data: [85, 72, 68, 45, 39],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.2)'
+                    }, {
+                        label: 'Jobs',
+                        data: [78, 65, 58, 42, 35],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.2)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Monthly Activity Chart
+            const monthlyActivityCtx = document.getElementById('monthlyActivityChart').getContext('2d');
+            new Chart(monthlyActivityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [145, 167, 182, 191, 234, 267, 289, 312, 345, 378, 401, 423],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                    }, {
+                        label: 'Job Postings',
+                        data: [78, 89, 95, 112, 134, 145, 167, 189, 201, 223, 234, 245],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)'
+                    }, {
+                        label: 'Applications',
+                        data: [234, 267, 289, 334, 378, 423, 467, 512, 567, 612, 645, 689],
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            const timeRange = document.getElementById('timeRangeFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            const region = document.getElementById('regionFilter').value;
+
+            trackEvent('Admin Update Report Filters', {
+                time_range: timeRange,
+                category: category,
+                region: region
+            });
+
+            // In real app, would fetch new data and update charts
+            console.log('Updating charts with filters:', { timeRange, category, region });
+        }
+
+        function exportReport() {
+            const timeRange = document.getElementById('timeRangeFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            const region = document.getElementById('regionFilter').value;
+
+            trackEvent('Admin Export Report', {
+                time_range: timeRange,
+                category: category,
+                region: region,
+                export_format: 'pdf'
+            });
+
+            alert('Report exported successfully! Download will start shortly.');
+            // In real app: generate and download PDF/Excel report
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+                window.location.href = '../../pages/auth/login.html';
+            }
+        }
+
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

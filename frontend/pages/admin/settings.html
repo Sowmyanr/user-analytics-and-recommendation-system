@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings - Admin Dashboard</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../js/punjab-analytics.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Settings Sections */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .settings-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            background: #f8f9fa;
+        }
+
+        .section-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .section-content {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #667eea;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        /* System Status */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-card .status-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-online .status-icon { color: #28a745; }
+        .status-warning .status-icon { color: #ffc107; }
+        .status-error .status-icon { color: #dc3545; }
+
+        .status-card .status-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .status-card .status-value {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Logs Section */
+        .logs-section {
+            grid-column: 1 / -1;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e1e5e9;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-entry.info {
+            background: #f8f9fa;
+        }
+
+        .log-entry.warning {
+            background: #fff3cd;
+        }
+
+        .log-entry.error {
+            background: #f8d7da;
+        }
+
+        .log-timestamp {
+            color: #666;
+            margin-right: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .logout-btn {
+                position: relative;
+                margin: 1rem 2rem 0;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!authManager.requireRole('admin', '/pages/auth/login.html')) return;
+        });
+    </script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Punjab Rozgar Portal</p>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+                    <li><a href="applications.html"><i class="fas fa-file-alt"></i> Applications</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="../../index.html"><i class="fas fa-home"></i> Back to Portal</a></li>
+                </ul>
+            </nav>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>System Settings</h1>
+                <p>Configure system-wide settings and monitor portal health</p>
+            </div>
+
+            <!-- Settings Grid -->
+            <div class="settings-grid">
+                <!-- General Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-cog"></i> General Settings</h3>
+                        <p>Basic portal configuration</p>
+                    </div>
+                    <div class="section-content">
+                        <form id="generalSettingsForm">
+                            <div class="form-group">
+                                <label for="portalName">Portal Name</label>
+                                <input type="text" id="portalName" value="Punjab Rozgar Portal">
+                            </div>
+                            <div class="form-group">
+                                <label for="portalDescription">Portal Description</label>
+                                <textarea id="portalDescription">Official employment portal for Punjab state providing job opportunities and career services to citizens.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Contact Email</label>
+                                <input type="email" id="contactEmail" value="contact@punjabrozgar.gov.in">
+                            </div>
+                            <div class="form-group">
+                                <label for="supportPhone">Support Phone</label>
+                                <input type="tel" id="supportPhone" value="+91-172-2740000">
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save General Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Email Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-envelope"></i> Email Settings</h3>
+                        <p>Configure email notifications</p>
+                    </div>
+                    <div class="section-content">
+                        <form id="emailSettingsForm">
+                            <div class="form-group">
+                                <label for="smtpServer">SMTP Server</label>
+                                <input type="text" id="smtpServer" value="smtp.punjab.gov.in">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpPort">SMTP Port</label>
+                                <input type="number" id="smtpPort" value="587">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpUsername">SMTP Username</label>
+                                <input type="text" id="smtpUsername" value="noreply@punjabrozgar.gov.in">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpPassword">SMTP Password</label>
+                                <input type="password" id="smtpPassword" value="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="emailEnabled" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="emailEnabled">Enable Email Notifications</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save Email Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                        <p>Configure security policies</p>
+                    </div>
+                    <div class="section-content">
+                        <form id="securitySettingsForm">
+                            <div class="form-group">
+                                <label for="sessionTimeout">Session Timeout (minutes)</label>
+                                <input type="number" id="sessionTimeout" value="30" min="5" max="240">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxLoginAttempts">Max Login Attempts</label>
+                                <input type="number" id="maxLoginAttempts" value="5" min="3" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordPolicy">Password Policy</label>
+                                <select id="passwordPolicy">
+                                    <option value="basic">Basic (8+ characters)</option>
+                                    <option value="medium" selected>Medium (8+ chars, numbers, symbols)</option>
+                                    <option value="strong">Strong (12+ chars, mixed case, numbers, symbols)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="twoFactorAuth" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="twoFactorAuth">Enable Two-Factor Authentication</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="auditLogging" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="auditLogging">Enable Audit Logging</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save Security Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Analytics Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-chart-line"></i> Analytics Settings</h3>
+                        <p>Configure analytics and tracking</p>
+                    </div>
+                    <div class="section-content">
+                        <form id="analyticsSettingsForm">
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="analyticsEnabled" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="analyticsEnabled">Enable Analytics Tracking</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="performanceTracking" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="performanceTracking">Enable Performance Tracking</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dataRetention">Data Retention (days)</label>
+                                <input type="number" id="dataRetention" value="365" min="30" max="2555">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="anonymizeData" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label for="anonymizeData">Anonymize User Data</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save Analytics Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-server"></i> System Status</h3>
+                        <p>Monitor system health and performance</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="status-grid">
+                            <div class="status-card status-online">
+                                <div class="status-icon"><i class="fas fa-server"></i></div>
+                                <div class="status-label">Server Status</div>
+                                <div class="status-value">Online</div>
+                            </div>
+                            <div class="status-card status-online">
+                                <div class="status-icon"><i class="fas fa-database"></i></div>
+                                <div class="status-label">Database</div>
+                                <div class="status-value">Connected</div>
+                            </div>
+                            <div class="status-card status-warning">
+                                <div class="status-icon"><i class="fas fa-memory"></i></div>
+                                <div class="status-label">Memory Usage</div>
+                                <div class="status-value">78%</div>
+                            </div>
+                            <div class="status-card status-online">
+                                <div class="status-icon"><i class="fas fa-hdd"></i></div>
+                                <div class="status-label">Disk Space</div>
+                                <div class="status-value">42% Used</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="btn btn-primary" onclick="refreshSystemStatus()">
+                                <i class="fas fa-sync-alt"></i> Refresh Status
+                            </button>
+                            <button class="btn btn-warning" onclick="clearCache()">
+                                <i class="fas fa-trash"></i> Clear Cache
+                            </button>
+                            <button class="btn btn-danger" onclick="restartServices()">
+                                <i class="fas fa-power-off"></i> Restart Services
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Logs -->
+                <div class="settings-section logs-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-file-alt"></i> System Logs</h3>
+                        <p>Recent system activity and errors</p>
+                    </div>
+                    <div class="section-content">
+                        <div id="systemLogs">
+                            <div class="log-entry info">
+                                <span class="log-timestamp">2024-09-20 14:30:25</span>
+                                <span class="log-message">INFO: User authentication successful for admin@punjabrozgar.gov.in</span>
+                            </div>
+                            <div class="log-entry info">
+                                <span class="log-timestamp">2024-09-20 14:28:15</span>
+                                <span class="log-message">INFO: Daily backup completed successfully</span>
+                            </div>
+                            <div class="log-entry warning">
+                                <span class="log-timestamp">2024-09-20 14:25:02</span>
+                                <span class="log-message">WARN: High memory usage detected (78%)</span>
+                            </div>
+                            <div class="log-entry info">
+                                <span class="log-timestamp">2024-09-20 14:20:45</span>
+                                <span class="log-message">INFO: Analytics data processing completed</span>
+                            </div>
+                            <div class="log-entry error">
+                                <span class="log-timestamp">2024-09-20 14:15:30</span>
+                                <span class="log-message">ERROR: Failed to send email notification to user123@gmail.com</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="btn btn-secondary" onclick="downloadLogs()">
+                                <i class="fas fa-download"></i> Download Full Logs
+                            </button>
+                            <button class="btn btn-warning" onclick="clearLogs()">
+                                <i class="fas fa-trash"></i> Clear Logs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function initializePage() {
+            // Check authentication
+            if (!authManager.isLoggedIn() || !authManager.isAdmin()) {
+                window.location.href = '../../pages/auth/login.html';
+                return;
+            }
+
+            // Track page view
+            trackEvent('Admin Settings Page Viewed', {
+                page_type: 'admin_settings'
+            });
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            document.getElementById('generalSettingsForm').addEventListener('submit', saveGeneralSettings);
+            document.getElementById('emailSettingsForm').addEventListener('submit', saveEmailSettings);
+            document.getElementById('securitySettingsForm').addEventListener('submit', saveSecuritySettings);
+            document.getElementById('analyticsSettingsForm').addEventListener('submit', saveAnalyticsSettings);
+        }
+
+        function saveGeneralSettings(e) {
+            e.preventDefault();
+            
+            const settings = {
+                portalName: document.getElementById('portalName').value,
+                portalDescription: document.getElementById('portalDescription').value,
+                contactEmail: document.getElementById('contactEmail').value,
+                supportPhone: document.getElementById('supportPhone').value
+            };
+
+            trackEvent('Admin Save General Settings', settings);
+            alert('General settings saved successfully!');
+            // In real app: call API to save settings
+        }
+
+        function saveEmailSettings(e) {
+            e.preventDefault();
+            
+            const settings = {
+                smtpServer: document.getElementById('smtpServer').value,
+                smtpPort: document.getElementById('smtpPort').value,
+                smtpUsername: document.getElementById('smtpUsername').value,
+                emailEnabled: document.getElementById('emailEnabled').checked
+            };
+
+            trackEvent('Admin Save Email Settings', {
+                smtp_server: settings.smtpServer,
+                email_enabled: settings.emailEnabled
+            });
+            alert('Email settings saved successfully!');
+            // In real app: call API to save settings
+        }
+
+        function saveSecuritySettings(e) {
+            e.preventDefault();
+            
+            const settings = {
+                sessionTimeout: document.getElementById('sessionTimeout').value,
+                maxLoginAttempts: document.getElementById('maxLoginAttempts').value,
+                passwordPolicy: document.getElementById('passwordPolicy').value,
+                twoFactorAuth: document.getElementById('twoFactorAuth').checked,
+                auditLogging: document.getElementById('auditLogging').checked
+            };
+
+            trackEvent('Admin Save Security Settings', {
+                session_timeout: settings.sessionTimeout,
+                password_policy: settings.passwordPolicy,
+                two_factor_enabled: settings.twoFactorAuth
+            });
+            alert('Security settings saved successfully!');
+            // In real app: call API to save settings
+        }
+
+        function saveAnalyticsSettings(e) {
+            e.preventDefault();
+            
+            const settings = {
+                analyticsEnabled: document.getElementById('analyticsEnabled').checked,
+                performanceTracking: document.getElementById('performanceTracking').checked,
+                dataRetention: document.getElementById('dataRetention').value,
+                anonymizeData: document.getElementById('anonymizeData').checked
+            };
+
+            trackEvent('Admin Save Analytics Settings', {
+                analytics_enabled: settings.analyticsEnabled,
+                performance_tracking: settings.performanceTracking,
+                data_retention_days: settings.dataRetention
+            });
+            alert('Analytics settings saved successfully!');
+            // In real app: call API to save settings
+        }
+
+        function refreshSystemStatus() {
+            trackEvent('Admin Refresh System Status');
+            alert('System status refreshed!');
+            // In real app: call API to get latest system status
+        }
+
+        function clearCache() {
+            if (confirm('Are you sure you want to clear the system cache?')) {
+                trackEvent('Admin Clear Cache');
+                alert('System cache cleared successfully!');
+                // In real app: call API to clear cache
+            }
+        }
+
+        function restartServices() {
+            if (confirm('Are you sure you want to restart system services? This may cause temporary downtime.')) {
+                trackEvent('Admin Restart Services');
+                alert('System services restart initiated. Please wait...');
+                // In real app: call API to restart services
+            }
+        }
+
+        function downloadLogs() {
+            trackEvent('Admin Download Logs');
+            alert('Downloading system logs...');
+            // In real app: generate and download log file
+        }
+
+        function clearLogs() {
+            if (confirm('Are you sure you want to clear all system logs?')) {
+                trackEvent('Admin Clear Logs');
+                alert('System logs cleared successfully!');
+                // In real app: call API to clear logs
+                document.getElementById('systemLogs').innerHTML = '<p>No logs available.</p>';
+            }
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+                window.location.href = '../../pages/auth/login.html';
+            }
+        }
+
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

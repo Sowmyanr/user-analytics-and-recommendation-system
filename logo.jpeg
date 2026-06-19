@@ -1,0 +1,7 @@
+<!-- This is a placeholder SVG for logo -->
+<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="40" cy="40" r="35" fill="#1e40af"/>
+  <text x="40" y="30" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">PUNJAB</text>
+  <text x="40" y="45" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">ROZGAR</text>
+  <text x="40" y="58" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">PORTAL</text>
+</svg>

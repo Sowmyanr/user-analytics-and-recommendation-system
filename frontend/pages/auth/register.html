@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Punjab Rozgar Portal</title>
+    <meta name="description" content="Create your account to access thousands of job opportunities in Punjab">
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../js/punjab-analytics.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-home:hover {
+            opacity: 0.8;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .register-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header p {
+            opacity: 0.9;
+        }
+
+        .register-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-control.error {
+            border-color: #dc3545;
+            background-color: #fef2f2;
+        }
+
+        .form-error {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .role-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .role-option {
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .role-option:hover {
+            border-color: #667eea;
+        }
+
+        .role-option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option .role-icon {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-option .role-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .role-option .role-desc {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .btn-register {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+            color: #666;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e1e5e9;
+            z-index: 1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-social {
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .btn-social:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 1px solid #fcc;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #363;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 1px solid #cfc;
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.25rem;
+            accent-color: #667eea;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+
+            .role-selection {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../../index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Join Punjab Rozgar Portal and start your career journey</p>
+        </div>
+
+        <div class="register-form">
+            <div class="error-message" id="error-message"></div>
+            <div class="success-message" id="success-message"></div>
+
+            <!-- Social Login Options -->
+            <div class="social-login">
+                <button type="button" class="btn-social" onclick="googleSignup()">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn-social" onclick="facebookSignup()">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>or register with email</span>
+            </div>
+
+            <form id="registration-form">
+                <!-- Role Selection -->
+                <div class="form-group">
+                    <label>Choose Your Role</label>
+                    <div class="role-selection">
+                        <div class="role-option" data-role="job_seeker">
+                            <input type="radio" name="role" value="job_seeker" id="role-jobseeker" checked>
+                            <div class="role-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="role-title">Job Seeker</div>
+                            <div class="role-desc">Find and apply for jobs</div>
+                        </div>
+                        <div class="role-option" data-role="employer">
+                            <input type="radio" name="role" value="employer" id="role-employer">
+                            <div class="role-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="role-title">Employer</div>
+                            <div class="role-desc">Post jobs and hire talent</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                </div>
+
+                <!-- Address Information -->
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select class="form-control" id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="himachal-pradesh">Himachal Pradesh</option>
+                            <option value="delhi">Delhi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode">PIN Code</label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" pattern="[0-9]{6}" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="../static/terms.html" target="_blank">Terms & Conditions</a> 
+                        and <a href="../static/privacy.html" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">
+                        Subscribe to job alerts and newsletter updates
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-register" id="register-btn">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign in here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            if (typeof trackEvent === 'function') {
+                trackEvent('Register Page Viewed', {
+                    page_type: 'registration',
+                    referrer: document.referrer
+                });
+            }
+
+            setupRoleSelection();
+            setupFormValidation();
+            setupFormSubmission();
+        });
+
+        function setupRoleSelection() {
+            const roleOptions = document.querySelectorAll('.role-option');
+            
+            roleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove previous selection
+                    roleOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Select current option
+                    this.classList.add('selected');
+                    
+                    // Update radio button
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = true;
+
+                    // Track role selection
+                    if (typeof trackEvent === 'function') {
+                        trackEvent('Role Selected', {
+                            role: this.dataset.role
+                        });
+                    }
+                });
+            });
+        }
+
+        function setupFormValidation() {
+            const form = document.getElementById('registration-form');
+            const inputs = form.querySelectorAll('.form-control');
+
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+            });
+
+            // Password confirmation validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            confirmPassword.addEventListener('input', function() {
+                if (password.value !== confirmPassword.value) {
+                    showFieldError(confirmPassword, 'Passwords do not match');
+                } else {
+                    clearFieldError(confirmPassword);
+                }
+            });
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            
+            // Clear previous errors
+            clearFieldError(field);
+
+            // Required field validation
+            if (field.hasAttribute('required') && !value) {
+                showFieldError(field, 'This field is required');
+                return false;
+            }
+
+            // Email validation
+            if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFieldError(field, 'Please enter a valid email address');
+                    return false;
+                }
+            }
+
+            // Phone validation
+            if (field.name === 'phone' && value) {
+                const phoneRegex = /^[+]?[0-9\s\-\(\)]{10,}$/;
+                if (!phoneRegex.test(value)) {
+                    showFieldError(field, 'Please enter a valid phone number');
+                    return false;
+                }
+            }
+
+            // PIN code validation
+            if (field.name === 'pincode' && value) {
+                const pincodeRegex = /^[0-9]{6}$/;
+                if (!pincodeRegex.test(value)) {
+                    showFieldError(field, 'PIN code must be 6 digits');
+                    return false;
+                }
+            }
+
+            // Password validation
+            if (field.name === 'password' && value) {
+                if (value.length < 8) {
+                    showFieldError(field, 'Password must be at least 8 characters');
+                    return false;
+                }
+                if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(value)) {
+                    showFieldError(field, 'Password must contain uppercase, lowercase and numbers');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            
+            // Remove existing error message
+            const existingError = field.parentNode.querySelector('.form-error');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            // Add new error message
+            const errorElement = document.createElement('span');
+            errorElement.className = 'form-error';
+            errorElement.textContent = message;
+            field.parentNode.appendChild(errorElement);
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            const errorElement = field.parentNode.querySelector('.form-error');
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+
+        function setupFormSubmission() {
+            const form = document.getElementById('registration-form');
+            const submitBtn = document.getElementById('register-btn');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validateForm()) return;
+
+                if (typeof authManager === 'undefined') {
+                    showError('Authentication system not loaded. Please refresh and try again.');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+
+                const formData = new FormData(form);
+                // Normalize role values to API-accepted ones
+                const pickedRole = (formData.get('role') || document.querySelector('input[name="role"]:checked')?.value || 'job_seeker').toString();
+                const normalizedRole = pickedRole === 'jobseeker' ? 'job_seeker' : (pickedRole === 'admin' ? 'job_seeker' : pickedRole);
+
+                const userData = {
+                    firstName: formData.get('firstName') || formData.get('first_name') || '',
+                    lastName: formData.get('lastName') || formData.get('last_name') || '',
+                    email: formData.get('email'),
+                    phone: formData.get('phone') || '',
+                    password: formData.get('password'),
+                    role: normalizedRole,
+                    city: formData.get('city') || formData.get('state') || formData.get('location') || ''
+                };
+
+                // Track registration attempt
+                if (typeof trackEvent === 'function') {
+                    trackEvent('Registration Attempted', {
+                        role: userData.role,
+                        email: userData.email,
+                        city: userData.city
+                    });
+                }
+
+                (async () => {
+                    try {
+                        const result = await authManager.register(userData);
+                        if (result.success) {
+                            showSuccess(`Welcome to Punjab Rozgar, ${result.user.name || result.user.email}! Redirecting to your dashboard...`);
+                            // Redirect handled inside authManager.register() unless on test pages
+                        } else {
+                            showError(result.error || 'Registration failed. Please try again.');
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                        }
+                    } catch (err) {
+                        console.error('Registration error:', err);
+                        showError('Network error. Please try again.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                    }
+                })();
+            });
+        }
+
+        function validateForm() {
+            const form = document.getElementById('registration-form');
+            const inputs = form.querySelectorAll('.form-control[required]');
+            const roleSelected = form.querySelector('input[name="role"]:checked');
+            const termsAccepted = form.querySelector('#terms:checked');
+            
+            let isValid = true;
+
+            // Validate role selection
+            if (!roleSelected) {
+                showError('Please select your role');
+                isValid = false;
+            }
+
+            // Validate required fields
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+
+            // Validate terms acceptance
+            if (!termsAccepted) {
+                showError('Please accept the terms and conditions');
+                isValid = false;
+            }
+
+            // Validate password confirmation
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                showFieldError(document.getElementById('confirmPassword'), 'Passwords do not match');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            const successElement = document.getElementById('success-message');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+        }
+
+        function googleSignup() {
+            if (typeof trackEvent === 'function') {
+                trackEvent('Google Signup Clicked');
+            }
+            alert('Google signup integration coming soon!');
+        }
+
+        function facebookSignup() {
+            if (typeof trackEvent === 'function') {
+                trackEvent('Facebook Signup Clicked');
+            }
+            alert('Facebook signup integration coming soon!');
+        }
+    </script>
+</body>
+</html>

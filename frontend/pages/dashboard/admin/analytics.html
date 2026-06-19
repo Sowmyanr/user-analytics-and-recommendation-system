@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Admin Panel</title>
+    
+    <!-- Punjab Rozgar Authentication -->
+    <script src="../../../js/auth.js"></script>
+    <!-- Punjab Rozgar Analytics -->
+    <script src="../../../js/punjab-analytics.js"></script>
+    
+    <!-- Chart.js for analytics visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .date-range {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .date-input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        /* Real-time Stats */
+        .realtime-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .realtime-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .realtime-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .realtime-card.users::before { --accent-color: #667eea; }
+        .realtime-card.sessions::before { --accent-color: #28a745; }
+        .realtime-card.pageviews::before { --accent-color: #ffc107; }
+        .realtime-card.events::before { --accent-color: #dc3545; }
+
+        .realtime-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .realtime-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .realtime-trend {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .trend-up {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .trend-down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .realtime-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .realtime-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .chart-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .chart-container.large {
+            height: 400px;
+        }
+
+        /* Analytics Tables */
+        .analytics-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .analytics-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .analytics-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .analytics-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .analytics-table th,
+        .analytics-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .analytics-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .analytics-table td {
+            font-size: 0.9rem;
+        }
+
+        .page-path {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .metric-value {
+            font-weight: 600;
+        }
+
+        .metric-change {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .change-positive {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .change-negative {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Event Timeline */
+        .event-timeline {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .timeline-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .timeline-icon.user { background: #667eea; }
+        .timeline-icon.job { background: #28a745; }
+        .timeline-icon.apply { background: #ffc107; }
+        .timeline-icon.admin { background: #dc3545; }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .timeline-time {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .logout-btn {
+                position: relative;
+                margin: 1rem 2rem 0;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .charts-grid,
+            .analytics-section {
+                grid-template-columns: 1fr;
+            }
+
+            .realtime-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Punjab Rozgar Portal</p>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="../../admin/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="analytics.html" class="active"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="../../../index.html"><i class="fas fa-home"></i> Back to Portal</a></li>
+                </ul>
+            </nav>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Analytics Dashboard</h1>
+                    <p>Real-time insights and user behavior analytics for Punjab Rozgar Portal</p>
+                </div>
+                <div class="date-range">
+                    <input type="date" class="date-input" id="startDate" value="2024-09-13">
+                    <span>to</span>
+                    <input type="date" class="date-input" id="endDate" value="2024-09-20">
+                    <button class="btn" onclick="updateDateRange()">
+                        <i class="fas fa-sync"></i> Update
+                    </button>
+                </div>
+            </div>
+
+            <!-- Real-time Stats -->
+            <div class="realtime-stats">
+                <div class="realtime-card users">
+                    <div class="realtime-header">
+                        <div class="realtime-icon"><i class="fas fa-users"></i></div>
+                        <div class="realtime-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> +12%
+                        </div>
+                    </div>
+                    <div class="realtime-number">247</div>
+                    <div class="realtime-label">Active Users (Last 30 min)</div>
+                </div>
+
+                <div class="realtime-card sessions">
+                    <div class="realtime-header">
+                        <div class="realtime-icon"><i class="fas fa-clock"></i></div>
+                        <div class="realtime-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> +8%
+                        </div>
+                    </div>
+                    <div class="realtime-number">1,423</div>
+                    <div class="realtime-label">Sessions Today</div>
+                </div>
+
+                <div class="realtime-card pageviews">
+                    <div class="realtime-header">
+                        <div class="realtime-icon"><i class="fas fa-eye"></i></div>
+                        <div class="realtime-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> +15%
+                        </div>
+                    </div>
+                    <div class="realtime-number">4,891</div>
+                    <div class="realtime-label">Page Views Today</div>
+                </div>
+
+                <div class="realtime-card events">
+                    <div class="realtime-header">
+                        <div class="realtime-icon"><i class="fas fa-mouse-pointer"></i></div>
+                        <div class="realtime-trend trend-down">
+                            <i class="fas fa-arrow-down"></i> -3%
+                        </div>
+                    </div>
+                    <div class="realtime-number">856</div>
+                    <div class="realtime-label">Custom Events Today</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Activity Trends</h3>
+                        <select id="chartPeriod" onchange="updateChart()">
+                            <option value="7d">Last 7 Days</option>
+                            <option value="30d" selected>Last 30 Days</option>
+                            <option value="90d">Last 90 Days</option>
+                        </select>
+                    </div>
+                    <div class="chart-container large">
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Types Distribution</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="userTypesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tables -->
+            <div class="analytics-section">
+                <div class="analytics-card">
+                    <div class="analytics-header">
+                        <h3>Top Pages</h3>
+                        <a href="../../analytics/reports.html" class="btn">View All</a>
+                    </div>
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th>Views</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="page-path">/</span></td>
+                                <td class="metric-value">3,247</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +12%</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="page-path">/pages/jobs/browse.html</span></td>
+                                <td class="metric-value">2,891</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +8%</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="page-path">/pages/auth/login.html</span></td>
+                                <td class="metric-value">1,456</td>
+                                <td><span class="metric-change change-negative"><i class="fas fa-arrow-down"></i> -3%</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="page-path">/pages/jobs/detail.html</span></td>
+                                <td class="metric-value">987</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +15%</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="page-path">/pages/employer/dashboard.html</span></td>
+                                <td class="metric-value">654</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +5%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="analytics-header">
+                        <h3>Top Events</h3>
+                        <a href="../../analytics/user-behavior.html" class="btn">View All</a>
+                    </div>
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Count</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Job Viewed</td>
+                                <td class="metric-value">1,234</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +18%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Job Application Started</td>
+                                <td class="metric-value">567</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +12%</span></td>
+                            </tr>
+                            <tr>
+                                <td>User Registration</td>
+                                <td class="metric-value">234</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +25%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Job Search Performed</td>
+                                <td class="metric-value">891</td>
+                                <td><span class="metric-change change-negative"><i class="fas fa-arrow-down"></i> -2%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Profile Updated</td>
+                                <td class="metric-value">156</td>
+                                <td><span class="metric-change change-positive"><i class="fas fa-arrow-up"></i> +8%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Activity Timeline -->
+            <div class="event-timeline">
+                <div class="analytics-header">
+                    <h3>Real-time Activity Feed</h3>
+                    <button class="btn" onclick="refreshActivity()">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                </div>
+                <div id="activityFeed">
+                    <div class="timeline-item">
+                        <div class="timeline-icon user"><i class="fas fa-user"></i></div>
+                        <div class="timeline-content">
+                            <h4>New user registration</h4>
+                            <p>Rajesh Kumar registered as a job seeker</p>
+                        </div>
+                        <div class="timeline-time">2 min ago</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon job"><i class="fas fa-briefcase"></i></div>
+                        <div class="timeline-content">
+                            <h4>Job posting created</h4>
+                            <p>Tech Punjab Ltd. posted "Senior Developer" position</p>
+                        </div>
+                        <div class="timeline-time">5 min ago</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon apply"><i class="fas fa-file-alt"></i></div>
+                        <div class="timeline-content">
+                            <h4>Job application submitted</h4>
+                            <p>Priya Singh applied for Marketing Manager position</p>
+                        </div>
+                        <div class="timeline-time">7 min ago</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon admin"><i class="fas fa-shield-alt"></i></div>
+                        <div class="timeline-content">
+                            <h4>Admin action performed</h4>
+                            <p>Job posting approved by admin</p>
+                        </div>
+                        <div class="timeline-time">12 min ago</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon user"><i class="fas fa-user"></i></div>
+                        <div class="timeline-content">
+                            <h4>Profile updated</h4>
+                            <p>Harpreet Singh updated their profile information</p>
+                        </div>
+                        <div class="timeline-time">15 min ago</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let activityChart, userTypesChart;
+
+        function initializePage() {
+            // Check authentication
+            if (!authManager.isLoggedIn() || !authManager.isAdmin()) {
+                window.location.href = '../../../pages/auth/login.html';
+                return;
+            }
+
+            // Track page view
+            trackEvent('Admin Analytics Page Viewed', {
+                page_type: 'admin_analytics'
+            });
+
+            // Initialize charts
+            initializeCharts();
+
+            // Start real-time updates
+            startRealTimeUpdates();
+        }
+
+        function initializeCharts() {
+            // Activity Trend Chart
+            const activityCtx = document.getElementById('activityChart').getContext('2d');
+            activityChart = new Chart(activityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Sep 14', 'Sep 15', 'Sep 16', 'Sep 17', 'Sep 18', 'Sep 19', 'Sep 20'],
+                    datasets: [
+                        {
+                            label: 'Page Views',
+                            data: [1200, 1350, 1180, 1420, 1580, 1650, 1750],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Sessions',
+                            data: [450, 520, 480, 590, 640, 680, 720],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Events',
+                            data: [320, 380, 350, 410, 450, 480, 520],
+                            borderColor: '#ffc107',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+
+            // User Types Chart
+            const userTypesCtx = document.getElementById('userTypesChart').getContext('2d');
+            userTypesChart = new Chart(userTypesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Job Seekers', 'Employers', 'Admins'],
+                    datasets: [{
+                        data: [892, 345, 10],
+                        backgroundColor: [
+                            '#667eea',
+                            '#28a745',
+                            '#dc3545'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChart() {
+            const period = document.getElementById('chartPeriod').value;
+            trackEvent('Admin Analytics Period Changed', { period });
+            
+            // In real app, fetch new data based on period
+            // For demo, just show alert
+            alert(`Chart updated for period: ${period}`);
+        }
+
+        function updateDateRange() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            trackEvent('Admin Analytics Date Range Updated', {
+                start_date: startDate,
+                end_date: endDate
+            });
+            
+            alert(`Date range updated: ${startDate} to ${endDate}`);
+            // In real app, refresh all data with new date range
+        }
+
+        function refreshActivity() {
+            trackEvent('Admin Analytics Activity Refreshed');
+            
+            // Simulate loading new activity
+            const feed = document.getElementById('activityFeed');
+            feed.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                feed.style.opacity = '1';
+                alert('Activity feed refreshed!');
+            }, 1000);
+        }
+
+        function startRealTimeUpdates() {
+            // Simulate real-time updates every 30 seconds
+            setInterval(() => {
+                updateRealTimeStats();
+            }, 30000);
+        }
+
+        function updateRealTimeStats() {
+            // Simulate updating real-time numbers
+            const activeUsers = document.querySelector('.realtime-card.users .realtime-number');
+            const currentValue = parseInt(activeUsers.textContent);
+            const change = Math.floor(Math.random() * 20) - 10; // Random change between -10 and +10
+            activeUsers.textContent = Math.max(0, currentValue + change);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+                window.location.href = '../../../pages/auth/login.html';
+            }
+        }
+
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

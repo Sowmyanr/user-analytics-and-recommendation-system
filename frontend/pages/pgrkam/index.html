@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab GHAR GHAR ROZGAR</title>
+    <link rel="stylesheet" href="../../assets/css/themes/government.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../assets/js/analytics/tracker.js"></script>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="top-left">
+                <span>English/ਪੰਜਾਬੀ/हिन्दी | A+ A- | <a href="#">FAQs</a></span>
+            </div>
+            <div class="top-right">
+                <span><a href="#">User Manuals</a> | <a href="#">Screen Reader</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="../../assets/images/logos/punjab-rozgar.jpeg" alt="Punjab Logo" />
+                </div>
+                <div class="dept-info">
+                    <h1>Department of Employment Generation</h1>
+                    <p>Skill Development & Training- Govt. Of Punjab, India</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="../auth/register.html">Jobs</a>
+                <a href="../dashboard/admin/dashboard.html">Admin</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Social Media Sidebar -->
+    <div class="social-sidebar">
+        <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <!-- Notice Bar -->
+    <div class="notice-bar">
+        <div class="container">
+            <div class="notice-content">
+                <span><a href="#">List of registered Recruiting Agents in Punjab-for sending abroad on work visa</a> | <a href="#">Beware of Fraudulent/Fake Employers</a> |</span>
+                <div class="notice-controls">
+                    <i class="fas fa-volume-up"></i>
+                    <i class="fas fa-pause"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="search-title">Fill out the form below to search Jobs</div>
+            
+            <div class="main-content">
+                <!-- Left Side - Search Form -->
+                <div class="search-container">
+                    <form class="job-search-form" id="jobSearchForm">
+                        <div class="form-grid">
+                            <select class="form-input" id="jobType">
+                                <option>Select job type</option>
+                                <option value="government">Government Jobs</option>
+                                <option value="private">Private Jobs</option>
+                                <option value="contract">Contract Jobs</option>
+                            </select>
+                            <select class="form-input" id="qualification">
+                                <option>Select Qualification</option>
+                                <option value="10th">10th Pass</option>
+                                <option value="12th">12th Pass</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="postgraduate">Post Graduate</option>
+                            </select>
+                            <select class="form-input" id="experience">
+                                <option>Experience upto (in years)</option>
+                                <option value="0-1">0-1 Years</option>
+                                <option value="2-5">2-5 Years</option>
+                                <option value="5-10">5-10 Years</option>
+                                <option value="10+">10+ Years</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row-2">
+                            <input type="text" class="form-input" id="location" placeholder="Location">
+                            <button type="button" class="registration-btn" onclick="window.location.href='../auth/register.html'">
+                                FREE REGISTRATION<br>
+                                <span class="free-text">FOR JOB SEEKERS</span>
+                            </button>
+                        </div>
+                        
+                        <input type="text" class="form-input full-width" id="jobTitle" placeholder="Job Title / Designation / Company">
+                        
+                        <div class="or-divider">OR</div>
+                        
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i> SEARCH JOBS
+                        </button>
+                        
+                        <div class="job-question">
+                            Don't know which job is right for you? 
+                            <button type="button" class="tell-us-btn">Tell Us</button>
+                        </div>
+                    </form>
+
+                    <!-- Statistics -->
+                    <div class="stats-section">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalJobs">25,847</div>
+                            <div class="stat-label">Active Jobs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalCompanies">4,293</div>
+                            <div class="stat-label">Companies</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalCandidates">50,123</div>
+                            <div class="stat-label">Job Seekers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="placementRate">85%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+
+                    <!-- Punjab Rozgar Logo -->
+                    <div class="punjab-rozgar-logo">
+                        <div class="logo-box">
+                            <div class="logo-text-top">PUNJAB</div>
+                            <div class="logo-text-bottom">ROZGAR</div>
+                        </div>
+                    </div>
+
+                    <!-- Services Icons -->
+                    <div class="services-icons">
+                        <div class="service-icon-item">
+                            <div class="service-icon">📋</div>
+                            <div class="service-text">Job Search</div>
+                        </div>
+                        <div class="service-icon-item">
+                            <div class="service-icon">💼</div>
+                            <div class="service-text">Employers</div>
+                        </div>
+                        <div class="service-icon-item">
+                            <div class="service-icon">🎓</div>
+                            <div class="service-text">Training</div>
+                        </div>
+                        <div class="service-icon-item">
+                            <div class="service-icon">📊</div>
+                            <div class="service-text">Analytics</div>
+                        </div>
+                        <div class="service-icon-item">
+                            <div class="service-icon">🤝</div>
+                            <div class="service-text">Counseling</div>
+                        </div>
+                        <div class="service-icon-item">
+                            <div class="service-icon">📱</div>
+                            <div class="service-text">Mobile App</div>
+                        </div>
+                    </div>
+
+                    <div class="view-more-services">
+                        <a href="../jobs/browse.html" class="view-more-btn">VIEW MORE EMPLOYMENT SERVICES ></a>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="right-sidebar">
+                    <!-- Login Section -->
+                    <div class="login-widget">
+                        <div class="widget-header">
+                            <h3>Job Seeker Login</h3>
+                        </div>
+                        <div class="widget-body">
+                            <form class="login-form" id="loginForm">
+                                <input type="text" class="login-input" id="username" placeholder="Username" required>
+                                <input type="password" class="login-input" id="password" placeholder="Password" required>
+                                <button type="submit" class="login-btn">Login</button>
+                                <div class="login-links">
+                                    <a href="#" onclick="forgotPassword()">Forgot password link</a> | <a href="#" onclick="loginOTP()">Login using OTP link</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Calendar -->
+                    <div class="calendar-widget">
+                        <div class="widget-header">
+                            <h3>Calendar</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="calendar-nav">
+                                <button class="calendar-prev" onclick="previousMonth()">‹</button>
+                                <span class="calendar-month">September 2025</span>
+                                <button class="calendar-next" onclick="nextMonth()">›</button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="calendar-header">
+                                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                </div>
+                                <div class="calendar-days">
+                                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                                    <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span class="today">20</span><span>21</span>
+                                    <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                                    <span>29</span><span>30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="notifications-widget">
+                        <div class="widget-header">
+                            <h3>Latest Updates</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="notification-item">
+                                <div class="notification-title">New Government Jobs</div>
+                                <div class="notification-link">500+ positions in Punjab Police</div>
+                                <div class="notification-date">Sept 19, 2025</div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-title">Skill Development</div>
+                                <div class="notification-link">Free training programs available</div>
+                                <div class="notification-date">Sept 18, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Downloads -->
+                    <div class="downloads-widget">
+                        <div class="widget-header">
+                            <h3>Downloads</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="download-item">
+                                <div class="download-title">Application Forms</div>
+                                <div class="download-links">
+                                    <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#"><i class="fas fa-file-word"></i> DOC</a>
+                                </div>
+                            </div>
+                            <div class="download-item">
+                                <div class="download-title">User Manual</div>
+                                <div class="download-links">
+                                    <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials Section -->
+    <section class="video-testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2>VIDEO TESTIMONIALS</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/300x200/1e40af/ffffff?text=Success+Story+1" alt="Success Story">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Rajesh Kumar - Software Engineer</h4>
+                        <p>Found my dream job through Punjab Rozgar Portal</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/300x200/059669/ffffff?text=Success+Story+2" alt="Success Story">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Priya Singh - Teacher</h4>
+                        <p>Excellent platform for government job seekers</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/300x200/dc2626/ffffff?text=Success+Story+3" alt="Success Story">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Manpreet Kaur - Nurse</h4>
+                        <p>Quick and efficient job matching process</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/300x200/f59e0b/ffffff?text=Success+Story+4" alt="Success Story">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Amarjit Singh - Police Officer</h4>
+                        <p>Transparent and reliable recruitment process</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="container">
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/120x80/cccccc/666666?text=NSDC" alt="National Skill Development Corporation">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/120x80/cccccc/666666?text=MSDE" alt="Ministry of Skill Development">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/120x80/cccccc/666666?text=India.gov" alt="National Portal of India">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/120x80/cccccc/666666?text=Punjab+Govt" alt="Government of Punjab">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/120x80/cccccc/666666?text=MGNREGA" alt="MGNREGA">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../assets/images/logos/punjab-govt.png" alt="Punjab Government" style="height: 60px;">
+                    <div class="footer-info">
+                        <p><strong>Department of Employment Generation</strong></p>
+                        <p>Skill Development & Training</p>
+                        <p>Government of Punjab, India</p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <strong>Contact Information</strong>
+                    <p>📞 Helpline: 1800-180-1551</p>
+                    <p>✉️ Email: support@punjabrozgar.gov.in</p>
+                    <p>📍 Address: Punjab Bhawan, Sector 1, Chandigarh</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../static/about.html">About Us</a></li>
+                        <li><a href="../static/contact.html">Contact</a></li>
+                        <li><a href="../static/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../static/terms.html">Terms & Conditions</a></li>
+                        <li><a href="../static/help.html">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p>&copy; 2025 Government of Punjab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/utils/api.js"></script>
+    <script src="../../assets/js/services/auth-service.js"></script>
+    <script>
+        // Backend integration JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view for analytics
+            if (window.analytics) {
+                window.analytics.trackPageView('pgrkam-home');
+            }
+            
+            loadStatistics();
+            
+            // Login form handler
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            // Job search form handler
+            const jobSearchForm = document.getElementById('jobSearchForm');
+            if (jobSearchForm) {
+                jobSearchForm.addEventListener('submit', handleJobSearch);
+            }
+        });
+
+        async function loadStatistics() {
+            try {
+                const response = await fetch('/api/v1/admin/analytics');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('totalJobs').textContent = data.totalJobs || '25,847';
+                    document.getElementById('totalCompanies').textContent = data.totalCompanies || '4,293';
+                    document.getElementById('totalCandidates').textContent = data.totalCandidates || '50,123';
+                    document.getElementById('placementRate').textContent = (data.placementRate || 85) + '%';
+                }
+            } catch (error) {
+                console.log('Using default statistics');
+                // Default values are already set in HTML
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Track successful login
+                    if (window.analytics) {
+                        window.analytics.track('login_success', { 
+                            username: username,
+                            loginMethod: 'password' 
+                        });
+                    }
+                    
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('userData', JSON.stringify(data.user));
+                    
+                    // Redirect based on user role
+                    if (data.user.role === 'admin') {
+                        window.location.href = '../dashboard/admin/dashboard.html';
+                    } else if (data.user.role === 'employer') {
+                        window.location.href = '../dashboard/employer/dashboard.html';
+                    } else {
+                        window.location.href = '../dashboard/job-seeker/dashboard.html';
+                    }
+                } else {
+                    // Track failed login
+                    if (window.analytics) {
+                        window.analytics.track('login_failed', { 
+                            username: username,
+                            error: data.message 
+                        });
+                    }
+                    alert(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
+            }
+        }
+
+        async function handleJobSearch(e) {
+            e.preventDefault();
+            const jobType = document.getElementById('jobType').value;
+            const qualification = document.getElementById('qualification').value;
+            const experience = document.getElementById('experience').value;
+            const location = document.getElementById('location').value;
+            const jobTitle = document.getElementById('jobTitle').value;
+
+            // Track search analytics
+            if (window.analytics) {
+                window.analytics.track('job_search', {
+                    jobType,
+                    qualification,
+                    experience,
+                    location,
+                    jobTitle
+                });
+            }
+
+            // Redirect to jobs page with search parameters
+            const params = new URLSearchParams();
+            if (jobType && jobType !== 'Select job type') params.append('type', jobType);
+            if (qualification && qualification !== 'Select Qualification') params.append('qualification', qualification);
+            if (experience && experience !== 'Experience upto (in years)') params.append('experience', experience);
+            if (location) params.append('location', location);
+            if (jobTitle) params.append('title', jobTitle);
+
+            window.location.href = `../jobs/browse.html?${params.toString()}`;
+        }
+
+        function forgotPassword() {
+            if (window.analytics) {
+                window.analytics.track('forgot_password_clicked');
+            }
+            window.location.href = '../auth/forgot-password.html';
+        }
+
+        function loginOTP() {
+            if (window.analytics) {
+                window.analytics.track('otp_login_clicked');
+            }
+            alert('OTP Login functionality will be implemented soon.');
+        }
+
+        function previousMonth() {
+            if (window.analytics) {
+                window.analytics.track('calendar_navigation', { direction: 'previous' });
+            }
+            alert('Calendar navigation will be implemented.');
+        }
+
+        function nextMonth() {
+            if (window.analytics) {
+                window.analytics.track('calendar_navigation', { direction: 'next' });
+            }
+            alert('Calendar navigation will be implemented.');
+        }
+    </script>
+</body>
+</html>
